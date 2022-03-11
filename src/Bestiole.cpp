@@ -1,7 +1,7 @@
 #include "Bestiole.h"
 
 #include "Milieu.h"
-
+   
 #include <cstdlib>
 #include <cmath>
 
@@ -11,6 +11,36 @@ const double      Bestiole::MAX_VITESSE = 10.;
 const double      Bestiole::LIMITE_VUE = 30.;
 
 int               Bestiole::next = 0;
+
+
+
+// clonage Bestiole courante
+*IBestiole Bestiole::clone(){
+   *IBestiole clone_bestiole = new Bestiole(*this);
+   return clone_bestiole;
+}
+
+
+
+Bestiole::Bestiole(*IComportement comportement):comportement(comportement)
+{
+
+   identite = ++next;
+
+   cout << "const Bestiole (" << identite << ") par defaut" << endl;
+
+   x = y = 0;
+   cumulX = cumulY = 0.;
+   orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
+   vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
+
+   couleur = new T[ 3 ];
+   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+
+}
+
 
 
 Bestiole::Bestiole( void )
