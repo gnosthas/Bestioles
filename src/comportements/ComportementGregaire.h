@@ -1,7 +1,7 @@
 #ifndef _COMPORTEMENTGREGAIRE_H_
 #define _COMPORTEMENTGREGAIRE_H_
 
-#include "comportements/iComportement.h"
+#include "iComportement.h"
 
 class ComportementGregaire : public iComportement {
     public:

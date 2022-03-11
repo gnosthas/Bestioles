@@ -1,7 +1,7 @@
 #ifndef _COMPORTEMENTKAMIKAZE_H_
 #define _COMPORTEMENTKAMIKAZE_H_
 
-#include "comportements/iComportement.h"
+#include "iComportement.h"
 
 class ComportementKamikaze : public iComportement {
     public:

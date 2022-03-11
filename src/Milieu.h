@@ -26,10 +26,10 @@ public :
 
    int getWidth( void ) const { return width; };
    int getHeight( void ) const { return height; };
-
+   std::vector<Bestiole> getListeBestioles( void) const {return listeBestioles;};
    void step( void );
 
-   void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
+   void ajouterBestiole( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
    int nbVoisins( const Bestiole & b );
 
 };
