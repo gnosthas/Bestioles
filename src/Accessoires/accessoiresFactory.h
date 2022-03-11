@@ -7,7 +7,7 @@ using namespace std;
 // AccessoiresFactory est une Classe virtuelle : aucun accessoire ne peut être crée par appel à cet classe
 // Les classes filles de AccessoiresFactory créent un accessoir spécifique
 
-#include "iaccessoire.h"
+#include "IAccessoire.h"
 
 class AccessoiresFactory {
     public:

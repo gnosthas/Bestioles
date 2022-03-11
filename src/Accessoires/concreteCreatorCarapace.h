@@ -3,8 +3,8 @@
 
 // Classe fille de accessoiresFactory : implémente ces classes
 
-#include "accessoiresFactory.h"
-#include "carapace.h"
+#include "AccessoiresFactory.h"
+#include "Carapace.h"
 
 class ConcreteCreatorCarapace : public AccessoiresFactory {
     public:

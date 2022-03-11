@@ -1,5 +1,5 @@
 #include <iostream>
-#include "nageoire.h"
+#include "Nageoire.h"
 using namespace std;
 
 // void Cochon::noise() const{

@@ -1,5 +1,5 @@
 #include "iostream"
-#include "concreteCreatorCamouflage.h"
+#include "ConcreteCreatorCamouflage.h"
 
 using namespace std;
 

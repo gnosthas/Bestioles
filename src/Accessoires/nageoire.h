@@ -3,7 +3,7 @@
 
 // Implémente les méthodes de l'interfacce Mob
 
-#include "iaccessoire.h"
+#include "IAccessoire.h"
 
 class Nageoire : public IAccessoire {
     private:
