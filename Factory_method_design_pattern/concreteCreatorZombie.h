@@ -5,11 +5,11 @@
 // Un appel à createMob crée un objet Zombie
 
 #include "mobFactory.h"
-#include "mob.h"
+#include "zombie.h"
 
 class ConcreteCreatorZombie : public MobFactory {
     public:
-        Mob* createMob() const override;
+        Zombie* createMob() const override;
 };
 
 #endif

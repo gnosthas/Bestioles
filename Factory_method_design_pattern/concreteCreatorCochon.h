@@ -5,11 +5,11 @@
 // Un appel à createMob crée un objet Cochon
 
 #include "mobFactory.h"
-#include "mob.h"
+#include "cochon.h"
 
 class ConcreteCreatorCochon : public MobFactory {
     public:
-        Mob* createMob() const override;
+        Cochon* createMob() const override;
 };
 
 #endif
