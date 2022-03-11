@@ -1,7 +1,9 @@
+#define _USE_MATH_DEFINES
+
 #include "IBestiole.h"
 #include "Milieu.h"
 #include <cmath>
-
+#include <cstdlib>
 
 void bougeNormalement( Bestiole &b, Milieu &m )
 {
@@ -34,7 +36,7 @@ void bougeNormalement( Bestiole &b, Milieu &m )
     }
     else {
         b.y = static_cast<int>( ny );
-        b.cumulY += ny - y;
+        b.cumulY += ny - b.y;
     }
 
 }

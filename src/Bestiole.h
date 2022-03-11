@@ -2,6 +2,7 @@
 #define _BESTIOLES_H_
 
 #include "UImg.h"
+#include "IBestiole.h"
 
 #include <iostream>
 
@@ -17,7 +18,7 @@ class Bestiole : public IBestiole
 public :                                           // Forme canonique :
    Bestiole( void );                               // Constructeur par defaut
 
-   Bestiole(*Icomportement comportement);
+   Bestiole(iComportement comportement);
 
    Bestiole( const Bestiole & b );                 // Constructeur de copies
    ~Bestiole( void );                              // Destructeur
@@ -25,17 +26,15 @@ public :                                           // Forme canonique :
    
 
 
-   Bestiole(*IComportement comportement) : comportement(comportement){};
+   Bestiole(iComportement comportement);
 
    void draw( UImg & support );
 
    bool jeTeVois( const Bestiole & b ) const;
 
-   *IBestiole clone();
+   IBestiole* clone();
 
    
-} 
-
 };
 
 
