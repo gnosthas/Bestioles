@@ -19,7 +19,7 @@ private :
 private :
    int               identite;  //Id unique d'une bestiole
    int               x, y; //Position de la bestiole sur le cadrillage
-   double            cumulX, cumulY; #Position réelle de la bestiole  //Position ajustée de la bestiole
+   double            cumulX, cumulY; //Position réelle de la bestiole
    double            orientation; 
    double            vitesse; 
 

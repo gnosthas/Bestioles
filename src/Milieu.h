@@ -26,12 +26,12 @@ public :
 
    int getWidth( void ) const { return width; };
    int getHeight( void ) const { return height; };
-   std::vector<Bestiole> getListeBestioles( void) const {return listeBestioles;};
+   std::vector<Bestiole>& getListeBestioles(void) {return listeBestioles;};
    void step( void );
 
-   void ajouterBestiole( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
+   void ajouterBestiole( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); };
    int nbVoisins( const Bestiole & b );
-
+   std::vector<Bestiole>& getBestiolesVues(const Bestiole& b);
 };
 
 
