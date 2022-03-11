@@ -18,29 +18,29 @@ int main()
       ecosysteme.getMilieu().addMember( Bestiole() );
    ecosysteme.run();
 
-   ConcreteCreatorCamouflage creator_camouflage;
-   ConcreteCreatorCarapace creator_carapace;
-   ConcreteCreatorNageoire creator_nageoire;
+   // ConcreteCreatorCamouflage creator_camouflage;
+   // ConcreteCreatorCarapace creator_carapace;
+   // ConcreteCreatorNageoire creator_nageoire;
 
-   Camouflage* camouflage = creator_camouflage.createAccessoire();
-   Carapace* carapace = creator_carapace.createAccessoire();
-   Nageoire* nageoire = creator_nageoire.createAccessoire();
+   // Camouflage* camouflage = creator_camouflage.createAccessoire();
+   // Carapace* carapace = creator_carapace.createAccessoire();
+   // Nageoire* nageoire = creator_nageoire.createAccessoire();
 
-   camouflage->getCamouflage();
-   camouflage->setCamouflage(0.3);
-   camouflage->getCamouflage();
+   // camouflage->getCamouflage();
+   // camouflage->setCamouflage(0.3);
+   // camouflage->getCamouflage();
 
-   carapace->setResistance(5.);
-   carapace->setReducVitesse(0.5);
-   carapace->getResistance();
-   carapace->getReducVitesse();
+   // carapace->setResistance(5.);
+   // carapace->setReducVitesse(0.5);
+   // carapace->getResistance();
+   // carapace->getReducVitesse();
 
-   nageoire->setMultvitesse(3);
-   nageoire->getMultvitesse();
+   // nageoire->setMultvitesse(3);
+   // nageoire->getMultvitesse();
 
-   delete camouflage;
-   delete carapace;
-   delete nageoire;
+   // delete camouflage;
+   // delete carapace;
+   // delete nageoire;
 
    return 0;
 
