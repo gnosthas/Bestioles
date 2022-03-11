@@ -1,7 +1,7 @@
 #ifndef _COMPORTEMENTPEUREUSE_H_
 #define _COMPORTEMENTPEUREUSE_H_
 
-#include "iComportement.h"
+#include "comportements/iComportement.h"
 
 class ComportementPeureuse : public iComportement {
     public:

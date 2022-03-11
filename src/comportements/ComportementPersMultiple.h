@@ -1,7 +1,7 @@
 #ifndef _COMPORTEMENTPERSMULTIPLE_H_
 #define _COMPORTEMENTPERSMULTIPLE_H_
 
-#include "iComportement.h"
+#include "comportements/iComportement.h"
 
 class ComportementPersMultiple : public iComportement {
     public:

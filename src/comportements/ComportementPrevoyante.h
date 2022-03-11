@@ -1,7 +1,7 @@
 #ifndef _COMPORTEMENTPREVOYANTE_H_
 #define _COMPORTEMENTPREVOYANTE_H_
 
-#include "iComportement.h"
+#include "comportements/iComportement.h"
 
 class ComportementPrevoyante : public iComportement {
     public:
