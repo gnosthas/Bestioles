@@ -3,6 +3,7 @@
 
 #include "Bestiole.h"
 #include "Milieu.h"
+#include "deplacements.cpp"
 
 // VISITOR DESIGN PATTERN
 

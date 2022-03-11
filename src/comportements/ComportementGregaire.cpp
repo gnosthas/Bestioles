@@ -5,9 +5,9 @@ void ComportementGregaire::bougeSelonComportement(Milieu &m, Bestiole &b) const
 {
     std::vector<Bestiole>& bestiolesVues = m.getBestiolesVues(b);
     if (bestiolesVues.size() == 0) {
-        bougeNormalement(b);
+        bougeNormalement(b, m);
     }
     else {
-        bougeNormalement(b);
+        bougeNormalement(b, m);
     }
 }
