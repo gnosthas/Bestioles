@@ -4,7 +4,6 @@
 #include "Accessoires/concreteCreatorCamouflage.h"
 #include "Accessoires/concreteCreatorCarapace.h"
 #include "Accessoires/concreteCreatorNageoire.h"
-
 #include <iostream>
 
 using namespace std;
@@ -23,13 +22,25 @@ int main()
    ConcreteCreatorCarapace creator_carapace;
    ConcreteCreatorNageoire creator_nageoire;
 
-   Camouflage* test_camouflage = creator_camouflage.createAccessoire();
-   Carapace* test_carapace = creator_carapace.createAccessoire();
-   Nageoire* test_nageoire = creator_nageoire.createAccessoire();
+   Camouflage* camouflage = creator_camouflage.createAccessoire();
+   Carapace* carapace = creator_carapace.createAccessoire();
+   Nageoire* nageoire = creator_nageoire.createAccessoire();
 
-   delete test_camouflage;
-   delete test_carapace;
-   delete test_nageoire;
+   camouflage->getCamouflage();
+   camouflage->setCamouflage(0.3);
+   camouflage->getCamouflage();
+
+   carapace->setResistance(5.);
+   carapace->setReducVitesse(0.5);
+   carapace->getResistance();
+   carapace->getReducVitesse();
+
+   nageoire->setMultvitesse(3);
+   nageoire->getMultvitesse();
+
+   delete camouflage;
+   delete carapace;
+   delete nageoire;
 
    return 0;
 

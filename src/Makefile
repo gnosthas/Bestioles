@@ -1,4 +1,4 @@
-OBJ = main.cpp Aquarium.o Bestiole.o Milieu.o Accessoires/ConcreteCreatorCamouflage.o Accessoires/ConcreteCreatorCarapace.o Accessoires/ConcreteCreatorNageoire.o
+OBJ = main.cpp Aquarium.o Bestiole.o Milieu.o Accessoires/ConcreteCreatorCamouflage.o Accessoires/ConcreteCreatorCarapace.o Accessoires/ConcreteCreatorNageoire.o Accessoires/Camouflage.o Accessoires/Carapace.o Accessoires/Nageoire.o
 CC = g++
 
 main : $(OBJ)

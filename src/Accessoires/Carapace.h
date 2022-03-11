@@ -10,9 +10,11 @@ class Carapace : public IAccessoire {
         double omega;
         double eta;
 
-    // public:
-    //     void noise() const override;
-
+    public:
+        double getResistance() const;
+        void setResistance(double omega);
+        double getReducVitesse() const;
+        void setReducVitesse(double eta);
 };
 
 #endif

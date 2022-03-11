@@ -8,10 +8,9 @@
 class Camouflage : public IAccessoire {
     private:
         double psi;
-
-    // public:
-    //     void noise() const override;
-
+    public:
+        double getCamouflage() const;
+        void setCamouflage(double psi);
 };
 
 #endif
