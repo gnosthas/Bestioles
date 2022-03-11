@@ -3,9 +3,9 @@
 
 // Implémente les méthodes de l'interfacce Mob
 
-#include "accessoire.h"
+#include "iaccessoire.h"
 
-class Carapace : public Accessoire {
+class Carapace : public IAccessoire {
     private:
         double omega;
         double eta;

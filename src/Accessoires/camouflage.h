@@ -3,9 +3,9 @@
 
 // Implémente les méthodes de l'interfacce Mob
 
-#include "accessoire.h"
+#include "iaccessoire.h"
 
-class Camouflage : public Accessoire {
+class Camouflage : public IAccessoire {
     private:
         double psi;
 

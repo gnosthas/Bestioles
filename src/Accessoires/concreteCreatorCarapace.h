@@ -4,11 +4,11 @@
 // Classe fille de accessoiresFactory : implémente ces classes
 
 #include "accessoiresFactory.h"
-#include "accessoire.h"
+#include "carapace.h"
 
 class ConcreteCreatorCarapace : public AccessoiresFactory {
     public:
-        Accessoire* createAccessoire() const override;
+        Carapace* createAccessoire() const override;
 };
 
 #endif

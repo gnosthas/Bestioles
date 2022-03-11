@@ -3,9 +3,9 @@
 
 // Implémente les méthodes de l'interfacce Mob
 
-#include "accessoire.h"
+#include "iaccessoire.h"
 
-class Nageoire : public Accessoire {
+class Nageoire : public IAccessoire {
     private:
         double nu;
 

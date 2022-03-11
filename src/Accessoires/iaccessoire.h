@@ -1,14 +1,14 @@
-#ifndef ACCESSOIRE
-#define ACCESSOIRE
+#ifndef IACCESSOIRE
+#define IACCESSOIRE
 
 #include <iostream>
 using namespace std;
 
 // Déclare les operations que les accessoires concrets devront implémenter
 
-class Accessoire {
+class IAccessoire {
     public:
-        virtual ~Accessoire(){cout<<"Destruction d'un accessoire"<<endl;};
+        virtual ~IAccessoire(){cout<<"Destruction d'un accessoire"<<endl;};
         // virtual void noise() const = 0;
 };
 
