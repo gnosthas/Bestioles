@@ -19,17 +19,17 @@ int main()
       ecosysteme.getMilieu().addMember( Bestiole() );
    ecosysteme.run();
 
-   // ConcreteCreatorCamouflage creator_camouflage;
-   // ConcreteCreatorCarapace creator_carapace;
-   // ConcreteCreatorNageoire creator_nageoire;
+   ConcreteCreatorCamouflage creator_camouflage;
+   ConcreteCreatorCarapace creator_carapace;
+   ConcreteCreatorNageoire creator_nageoire;
 
-   // Camouflage* test_camouflage = creator_camouflage.createAccessoire();
-   // Carapace* test_carapace = creator_carapace.createAccessoire();
-   // Nageoire* test_nageoire = creator_nageoire.createAccessoire();
+   Camouflage* test_camouflage = creator_camouflage.createAccessoire();
+   Carapace* test_carapace = creator_carapace.createAccessoire();
+   Nageoire* test_nageoire = creator_nageoire.createAccessoire();
 
-   // delete test_camouflage;
-   // delete test_carapace;
-   // delete test_nageoire;
+   delete test_camouflage;
+   delete test_carapace;
+   delete test_nageoire;
 
    return 0;
 

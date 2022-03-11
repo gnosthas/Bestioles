@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Carapace.h"
+#include "Camouflage.h"
 using namespace std;
 
 // void Cochon::noise() const{

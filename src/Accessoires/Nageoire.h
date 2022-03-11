@@ -1,14 +1,13 @@
-#ifndef CARAPACE
-#define CARAPACE
+#ifndef NAGEOIRE
+#define NAGEOIRE
 
 // Implémente les méthodes de l'interfacce Mob
 
 #include "IAccessoire.h"
 
-class Carapace : public IAccessoire {
+class Nageoire : public IAccessoire {
     private:
-        double omega;
-        double eta;
+        double nu;
 
     // public:
     //     void noise() const override;
