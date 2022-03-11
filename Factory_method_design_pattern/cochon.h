@@ -5,6 +5,7 @@
 
 #include "mob.h"
 
+
 class Cochon : public Mob {
     private:
         int nb_coeurs;

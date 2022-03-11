@@ -13,12 +13,12 @@ zombie.o: zombie.cpp zombie.h mob.h
 cochon.o: cochon.cpp cochon.h mob.h
 	$(CC) -c cochon.cpp
 
-concreteCreatorZombie.o: concreteCreatorZombie.cpp concreteCreatorZombie.h mobFactory.h mob.h
+concreteCreatorZombie.o: concreteCreatorZombie.cpp concreteCreatorZombie.h zombie.h
 	$(CC) -c concreteCreatorZombie.cpp
 
-concreteCreatorCochon.o: concreteCreatorCochon.cpp concreteCreatorCochon.h mobFactory.h mob.h
+concreteCreatorCochon.o: concreteCreatorCochon.cpp concreteCreatorCochon.h cochon.h
 	$(CC) -c concreteCreatorCochon.cpp
 
 
 clean:
-	rm -f *.o
+	rm -f *.o ./program
