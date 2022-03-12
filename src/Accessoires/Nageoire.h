@@ -9,9 +9,9 @@ class Nageoire : public IAccessoire {
     private:
         double nu;
 
-    // public:
-    //     void noise() const override;
-
+    public:
+        double getMultvitesse() const;
+        void setMultvitesse(double nu);
 };
 
 #endif
