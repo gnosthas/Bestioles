@@ -12,6 +12,9 @@
 /* Est-ce qu'il faut mettre les comportements en const ? */
 /* Est-ce qu'il faut redef les fonctions */
 
+class Bestiole;
+class Milieu;
+
 class IComportement {
     public:
         virtual ~IComportement(){cout<<"Destruction comportement"<<endl;};
