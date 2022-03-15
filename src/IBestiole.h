@@ -4,8 +4,8 @@
 #include <iostream>
 #include <vector>
 
-#include "Accessoires/iaccessoire.h"
-#include "comportements/IComportement.h"
+#include "Accessoires/IAccessoire.h"
+#include "comportements/iComportement.h"
 #include "UImg.h"
 
 using namespace std;
@@ -14,7 +14,7 @@ class ICapteur;
 
 class IBestiole{
 
-private :
+protected :
    static const double     AFF_SIZE; //diamètre
    static const double     MAX_VITESSE; //vitesse max
    static const double     LIMITE_VUE; //vue max
@@ -34,7 +34,7 @@ public :
    double proba_death; //proba de mort lors d'une collision
    std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
    std::vector<IAccessoire*> listAccesoires; //liste d'accessoires associée à la bestiole
-   iComportement* comportement; //Comportement de la bestiole
+   IComportement* comportement; //Comportsement de la bestiole
 
 
 
@@ -55,6 +55,7 @@ private :
 public :                                           // Forme canonique :
    ~IBestiole( void );                              // Destructeur
 
+   IBestiole(IComportement* comportement);
 
    virtual IBestiole* clone() const = 0; //DP Prototype  
 

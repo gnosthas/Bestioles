@@ -18,20 +18,20 @@ int               IBestiole::next = 0;
 
 
 
-void bouge(Milieu &milieu); 
+// void bouge(Milieu &milieu); 
 
-void IBestiole::collision(Milieu &milieu) { };
-void IBestiole::incrAge() { };
-IBestiole::IBestiole( void ) { };
-IBestiole::IBestiole(iComportement comportement) { };
-IBestiole::IBestiole( const IBestiole &ib ) { }; 
-IBestiole::~IBestiole( void ) { };
-IBestiole* IBestiole::clone();
-void IBestiole::action( Milieu & monMilieu ) { };
-void IBestiole::draw( UImg & support ) { };
-bool IBestiole::jeTeVois( const Bestiole & b ) const { };
-void IBestiole::initCoords( int xLim, int yLim ) { };
-friend bool IBestiole::operator==( const Bestiole & b1, const Bestiole & b2 ) { };
+// void IBestiole::collision(Milieu &milieu) { };
+// void IBestiole::incrAge() { };
+// IBestiole::IBestiole( void ) { };
+// IBestiole::IBestiole(IComportement comportement) { };
+// IBestiole::IBestiole( const IBestiole &ib ) { }; 
+// IBestiole::~IBestiole( void ) { };
+// IBestiole* IBestiole::clone();
+// void IBestiole::action( Milieu & monMilieu ) { };
+// void IBestiole::draw( UImg & support ) { };
+// bool IBestiole::jeTeVois( const Bestiole & b ) const { };
+// void IBestiole::initCoords( int xLim, int yLim ) { };
+// friend bool IBestiole::operator==( const Bestiole & b1, const Bestiole & b2 ) { };
 
 
 

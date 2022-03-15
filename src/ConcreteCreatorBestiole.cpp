@@ -1,19 +1,13 @@
-#include "ConcrecteCreatorBestiole.h"
+#include "ConcreteCreatorBestiole.h"
+#include "comportements/IComportement.h"
 
 using namespace std;
 
-class ConcreteCreatorBestiole{
+Bestiole* ConcreteCreatorBestiole::createBestiole(IComportement* comportement) const {
 
-
-IBestiole* ConcreteCreatorBestiole::createBestiole(IComportement* comportement){
-
-        *IBestiole bestiole = new Bestiole(comportement);
+        //Bestiole* bestiole = new Bestiole(comportement);
 
         //Random ajout d'accessoires et de capteurs i.e appel aux fabriques de capteurs et d'accessoires
-
-        return bestiole
+        return new Bestiole(comportement);
 }
 
-};
-
-#endif
