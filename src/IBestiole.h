@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "Accessoires/IAccessoire.h"
-#include "comportements/iComportement.h"
+#include "comportements/IComportement.h"
 #include "UImg.h"
 
 using namespace std;
