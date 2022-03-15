@@ -6,6 +6,8 @@
 
 #include <iostream>
 
+#include "Capteurs/concreteCreatorYeux.h"
+
 using namespace std;
 
 
@@ -47,6 +49,7 @@ public :                                           // Forme canonique :
    void initCoords( int xLim, int yLim );
 
    friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
+   void attribuerCapteurs();
 
 };
 

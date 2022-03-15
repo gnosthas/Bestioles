@@ -11,17 +11,18 @@ using namespace std;
 int main()
 {
 
-   Aquarium       ecosysteme( 640, 480, 30 );
+   Aquarium       ecosysteme( 1920 , 1080, 30 );
 
-   // for ( int i = 1; i <= 20; ++i )
-   //    ecosysteme.getMilieu().addMember( Bestiole() );
-   // ecosysteme.run();
+    for ( int i = 1; i <= 10; ++i ){
+       ecosysteme.getMilieu().addMember( Bestiole() );
+   }
 
 
    ConcreteCreatorYeux eyez;
    Yeux* test_eyez = eyez.createCapteur();
+   test_eyez->detection();
 
-
+   ecosysteme.run();
    delete test_eyez;
 
 

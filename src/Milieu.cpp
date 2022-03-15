@@ -12,7 +12,7 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
 {
 
    cout << "const Milieu" << endl;
-
+   ConcreteCreatorYeux createur_yeux;
    std::srand( time(NULL) );
 
 }

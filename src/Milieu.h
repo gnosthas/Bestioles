@@ -4,6 +4,7 @@
 
 #include "UImg.h"
 #include "Bestiole.h"
+#include "Capteurs/concreteCreatorYeux.h"
 
 #include <iostream>
 #include <vector>
@@ -19,10 +20,13 @@ private :
 
    int                     width, height;
    std::vector<Bestiole>   listeBestioles;
-
+   ConcreteCreatorYeux createur_yeux; 
+   
 public :
    Milieu( int _width, int _height );
    ~Milieu( void );
+
+ 
 
    int getWidth( void ) const { return width; };
    int getHeight( void ) const { return height; };

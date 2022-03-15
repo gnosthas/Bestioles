@@ -1,11 +1,11 @@
-#ifndef YEUX
-#define YEUX
+#ifndef OREILLES
+#define OREILLES
 
 // Implémente les méthodes de l'interfacce ICapteur
 
 #include "capteur.h"
 
-class Yeux : public ICapteur {
+class Oreilles : public ICapteur {
     private:
         double alpha_m;
         double alpha_M;
@@ -20,7 +20,6 @@ class Yeux : public ICapteur {
 
 
     public:
-
 
         void detection() const override;
 

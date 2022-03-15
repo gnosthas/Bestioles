@@ -6,7 +6,7 @@
 #include <cmath>
 
 
-const double      Bestiole::AFF_SIZE = 8.;
+const double      Bestiole::AFF_SIZE = 20.; //DEFAULT = 8.
 const double      Bestiole::MAX_VITESSE = 10.;
 const double      Bestiole::LIMITE_VUE = 30.;
 
@@ -29,7 +29,7 @@ Bestiole::Bestiole( void )
    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-
+   
 }
 
 
@@ -47,6 +47,7 @@ Bestiole::Bestiole( const Bestiole & b )
    vitesse = b.vitesse;
    couleur = new T[ 3 ];
    memcpy( couleur, b.couleur, 3*sizeof(T) );
+
 
 }
 
@@ -143,5 +144,15 @@ bool Bestiole::jeTeVois( const Bestiole & b ) const
 
    dist = std::sqrt( (x-b.x)*(x-b.x) + (y-b.y)*(y-b.y) );
    return ( dist <= LIMITE_VUE );
+
+}
+
+void Bestiole::attribuerCapteurs(Milieu & monMilieu)
+{
+
+   monMilieu::createur_yeux.createCapteur()
+   // Yeux* test_createur_yeux = createur_yeux.createCapteur();
+   // test_createur_yeux->detection();
+   // delete test_createur_yeux;
 
 }
