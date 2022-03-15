@@ -3,7 +3,7 @@
 
 #include "IComportement.h"
 
-class ComportementGregaire : public iComportement {
+class ComportementGregaire : public IComportement {
     public:
         void bougeSelonComportement(Milieu &m, Bestiole &b) const override;
 };

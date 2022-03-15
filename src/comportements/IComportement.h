@@ -3,7 +3,7 @@
 
 #include "Bestiole.h"
 #include "Milieu.h"
-#include "deplacements.cpp"
+#include "Deplacements.cpp"
 
 // VISITOR DESIGN PATTERN
 
@@ -16,7 +16,7 @@ class IComportement {
     public:
         virtual ~IComportement(){cout<<"Destruction comportement"<<endl;};
         virtual void bougeSelonComportement(Milieu &m, Bestiole &b) const = 0;
-}
+};
 
 
 #endif
