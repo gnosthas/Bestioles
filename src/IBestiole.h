@@ -34,7 +34,7 @@ public :
    double proba_death; //proba de mort lors d'une collision
    std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
    std::vector<IAccessoire*> listAccesoires; //liste d'accessoires associée à la bestiole
-   IComportement* comportement; //Comportsement de la bestiole
+   IComportement* comportement; //Comportement de la bestiole
 
 
 
@@ -55,7 +55,8 @@ private :
 public :                                           // Forme canonique :
    ~IBestiole( void );                              // Destructeur
 
-   IBestiole(IComportement* comportement);
+
+   IBestiole(IComportement* comportement); //Constructeur
 
    virtual IBestiole* clone() const = 0; //DP Prototype  
 
