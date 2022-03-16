@@ -8,11 +8,6 @@
 
 using namespace std;
 
-
-class Milieu;
-
-class IComportement;
-
 class Bestiole : public IBestiole
 {
 
@@ -21,12 +16,9 @@ public :                                           // Forme canonique :
 
    Bestiole(IComportement* comportement);//fait appel au constructeur de IBestiole
 
-   Bestiole( const Bestiole & b );                 // Constructeur de copies
-   ~Bestiole( void );                              // Destructeur
-
-   void draw( UImg & support );
-
-   bool jeTeVois( const Bestiole & b ) const;
+   Bestiole(const Bestiole & b);//fait appel au constructeur par copie de IBestiole
+   
+   ~Bestiole( void );                             // Destructeur
 
    Bestiole* clone() const override; //DP Prototype
 };
