@@ -10,18 +10,18 @@
 
 using namespace std;
 
-class ICapteur;
+class ICapteur; //capteurs
 
 class IBestiole{
 
-protected :
+protected : 
    static const double     AFF_SIZE; //diamètre
    static const double     MAX_VITESSE; //vitesse max
    static const double     LIMITE_VUE; //vue max
    
    static int              next; //permet d'incrémenter l'Id des bestioles
 
-public :
+protected :
    int               identite;  //Id unique d'une bestiole
    int               x, y; //Position de la bestiole sur le cadrillage
    double            cumulX, cumulY; //Position réelle de la bestiole
@@ -33,7 +33,7 @@ public :
    double proba_clone; //proba de se cloner à chaque pas de simul
    double proba_death; //proba de mort lors d'une collision
    std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
-   std::vector<IAccessoire*> listAccesoires; //liste d'accessoires associée à la bestiole
+   std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
    IComportement* comportement; //Comportement de la bestiole
 
 
@@ -48,30 +48,45 @@ private :
    En cas de collision, 1] proba mort 2] changement d'orientation à l'opposée */
    void collision(Milieu &milieu);
 
-   //Augmente l'age de la bestiole --> appelé à chaque pas de simul
-   void incrAge();
+   //Augmente l'age de la bestiole --> appelé à chaque pas de simulation
+   void incr_age(void){++age;};
 
+   void initBestiole(void);
 
-public :                                           // Forme canonique :
-   ~IBestiole( void );                              // Destructeur
+public :         
 
+   virtual ~IBestiole( void );                              // Destructeur
 
-   IBestiole(IComportement* comportement); //Constructeur
+   IBestiole(IComportement* comportement); //Constructeur d'une bestiole
+
+   IBestiole(const IBestiole &ib); //Constructeur par copie d'une bestiole
+
+   void action( Milieu & monMilieu ); //Méthode appelée sur la créature à chaque pas de simul
 
    virtual IBestiole* clone() const = 0; //DP Prototype  
 
-   void action( Milieu & monMilieu );
+   void draw( UImg & support, Milieu & milieu ); //Affichage d'une créature
 
+   bool jeTeVois( const Bestiole & b ) const; //détermine si la créature détecte la créature passée en argument
 
-   void draw( UImg & support );
-
-   bool jeTeVois( const Bestiole & b ) const;
-
-   void initCoords( int xLim, int yLim );
+   void initCoords( int xLim, int yLim ); //Place la bestiole à un endroit aléatoire avec limite horyzontale & verticale
 
    friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
 
-   IBestiole* clone(Bestiole* b);
+   /////////////////////////  GETTEURS / SETTEURS //////////////////////////////
+
+   virtual double get_proba_death(void) const;
+   int getX() const {return x;};
+   int getY() const {return y;};
+   virtual double get_vitesse(void) const;
+   virtual double getOrientation(void) const;
+   int getIdentite(void) {return identite;};
+   IComportement* getComportement(void) {return comportement;};
+   int getAge(void){return age;};
+
+   void setColor(int r, int g, int b);
+   virtual void setVitesse(double v);
+
 };
 
 
