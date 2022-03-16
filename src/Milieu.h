@@ -10,6 +10,7 @@
 
 using namespace std;
 
+class Bestiole;
 
 class Milieu : public UImg
 {
@@ -29,7 +30,7 @@ public :
    std::vector<Bestiole>& getListeBestioles(void) {return listeBestioles;};
    void step( void );
 
-   void ajouterBestiole( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); };
+   void ajouterBestiole( const Bestiole & b ) { listeBestioles.push_back(b);}; //listeBestioles.back().initCoords(width, height); };
    int nbVoisins( const Bestiole & b );
    std::vector<Bestiole>& getBestiolesVues(const Bestiole& b);
 };
