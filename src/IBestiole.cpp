@@ -25,6 +25,8 @@ void IBestiole::initBestiole(){
    this->x = this->y = 0;
    this->cumulX = this->cumulY = 0.;
 
+   //Orientation initiale aléatoire
+   this->orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
    // vitesse initiale aléatoire
    this->vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
@@ -56,6 +58,7 @@ cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orient
 proba_death(ib.proba_death), age(ib.age), proba_clone(ib.proba_clone), listCapteurs(ib.listCapteurs),
  listAccessoires(ib.listAccessoires),comportement(ib.comportement)
 {
+   cout << "const IBestiole (" << this->identite << ") par copie" << endl;
    couleur = new T[ 3 ];
    memcpy( couleur, ib.couleur, 3*sizeof(T) );
 }
@@ -63,8 +66,10 @@ proba_death(ib.proba_death), age(ib.age), proba_clone(ib.proba_clone), listCapte
 ///////////////////////// Destructeur /////////////////////////////
 IBestiole::~IBestiole( void )
 {
+   cout << "dest IBestiole" << endl;
    delete[] this->couleur;
    delete this->comportement;
+   
 }
 ////////////////// Initialise aléatoire la position de la bestiole ///////////////
 void IBestiole::initCoords( int xLim, int yLim )
@@ -111,15 +116,85 @@ void IBestiole::setColor(int r, int g, int b){
 
 ////////////////////////Les Méthodes qu'il reste à implémenter ////////////////
 
- //Déplace la créature dans le milieu
-void bouge(Milieu &milieu); 
+ ///////////////////////////// Déplacement de la bestiole dans le milieu ////////////////////////
+void IBestiole::bouge(Milieu &milieu){
+   double         nx, ny;
+   int            cx, cy;
+   int xLim = milieu.getWidth();
+   int yLim = milieu.getHeight();
+
+   double         dx = cos( orientation )*vitesse; // A vérifier ce déplacement
+   double         dy = -sin( orientation )*vitesse;
+
+   cx = static_cast<int>( cumulX ); cumulX -= cx;
+   cy = static_cast<int>( cumulY ); cumulY -= cy;
+
+   nx = x + dx + cx;
+   ny = y + dy + cy;
+
+   if ( (nx < 0) || (nx > xLim - 1) ) {
+      orientation = M_PI - orientation;
+      cumulX = 0.;
+   }
+   else {
+      x = static_cast<int>( nx );
+      cumulX += nx - x;
+   }
+
+   if ( (ny < 0) || (ny > yLim - 1) ) {
+      orientation = -orientation;
+      cumulY = 0.;
+   }
+   else {
+      y = static_cast<int>( ny );
+      cumulY += ny - y;
+   }
+
+}
+
+//////////////// Méthode appelée sur la bestiole à chaque pas de simulation /////////////////////////
+void IBestiole::action(Milieu & milieu ){ 
+
+   ///////// Clonage /////////////
+   bouge(milieu);
+
+   ///////// Collision ////////////
+   collision(milieu);
+   incr_age();
+}; 
+
+
+//////////////////////////// Affichage d'une créature /////////////////////////////////////////
+void IBestiole::draw( UImg & support, Milieu & milieu ){
+
+   double         xt = x + cos( orientation )*AFF_SIZE/2.1;
+   double         yt = y - sin( orientation )*AFF_SIZE/2.1;
+
+
+   support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
+   support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
+
+}; 
+
+
+
 
 
  /*Gère la collision entre les créatures. La collision se fait entre deux cercles ? deux ellipses ?
    Parcours la liste de toutes les autres créatures ?
    En cas de collision, 1] proba mort 2] changement d'orientation à l'opposée */
-void collision(Milieu &milieu);
+void IBestiole::collision(Milieu &milieu){
+};
 
-void action( Milieu & monMilieu ); //Méthode appelée sur la créature à chaque pas de simul
 
-void draw( UImg & support, Milieu & milieu ); //Affichage d'une créature
+
+
+
+
+
+
+
+
+
+
+
