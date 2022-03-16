@@ -67,23 +67,22 @@ public :
 
    void draw( UImg & support, Milieu & milieu ); //Affichage d'une créature
 
-   bool jeTeVois( const Bestiole & b ) const; //détermine si la créature détecte la créature passée en argument
+   bool jeTeVois( const IBestiole & b ) const; //détermine si la créature détecte la créature passée en argument
 
    void initCoords( int xLim, int yLim ); //Place la bestiole à un endroit aléatoire avec limite horyzontale & verticale
 
-   friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
+   friend bool operator==( const IBestiole & b1, const IBestiole & b2 ); //Est-ce utile ? ou directement le faire pour les bestioles
 
    /////////////////////////  GETTEURS / SETTEURS //////////////////////////////
 
    virtual double get_proba_death(void) const;
-   int getX() const {return x;};
-   int getY() const {return y;};
+   int getX() const;
+   int getY() const;
    virtual double get_vitesse(void) const;
    virtual double getOrientation(void) const;
-   int getIdentite(void) {return identite;};
-   IComportement* getComportement(void) {return comportement;};
-   int getAge(void){return age;};
-
+   int getIdentite(void) const;
+   IComportement* getComportement(void) const;
+   int getAge(void) const;
    void setColor(int r, int g, int b);
    virtual void setVitesse(double v);
 
