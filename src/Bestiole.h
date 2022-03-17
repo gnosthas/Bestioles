@@ -13,6 +13,7 @@ class Bestiole : public IBestiole
 public :                                           // Forme canonique :
    Bestiole();                               // Constructeur par defaut
 
+   ////////// TEMPORAIRE POUR TEST COMPILATION
    // Bestiole(IComportement* comportement);//fait appel au constructeur de IBestiole
 
    Bestiole(const Bestiole & b);//fait appel au constructeur par copie de IBestiole
