@@ -1,6 +1,7 @@
 #include "Aquarium.h"
 #include "Milieu.h"
-#include "Bestiole.h"
+// #include "Bestiole.h"
+#include "ConcreteCreatorBestiole.h"
 
 #include <iostream>
 
@@ -11,14 +12,15 @@ int main()
 {
 
    Aquarium       ecosysteme( 640, 480, 30 );
+   ConcreteCreatorBestiole creator_bestiole;
 
    for ( int i = 1; i <= 20; ++i ){
-      IBestiole* bestiole = new Bestiole();
+      Bestiole* bestiole = creator_bestiole.createBestiole();
       ecosysteme.getMilieu().addBestiole(bestiole);
-      // delete bestiole;
    }
    ecosysteme.run();
 
+      
    return 0;
 
 }

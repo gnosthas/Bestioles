@@ -1,11 +1,12 @@
 #include "ConcreteCreatorBestiole.h"
 
+#include <iostream>
 using namespace std;
 
 
 
 //Constructeur
-ConcreteCreatorBestiole::ConcreteCreatorBestiole() : BestiolesFactory(){}
+ConcreteCreatorBestiole::ConcreteCreatorBestiole() : BestiolesFactory(){cout << "Construction concrete creator bestiole" << endl;}
 
 
 //On fait le choix de renvoyer un pointeur de Bestiole plutôt qu'un pointeur de IBestiole pour des 
