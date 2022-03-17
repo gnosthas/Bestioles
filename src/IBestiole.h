@@ -11,6 +11,8 @@
 using namespace std;
 
 class ICapteur; //capteurs
+class Milieu;
+class IComportement;
 
 class IBestiole{
 
@@ -40,6 +42,9 @@ protected :
 
 private :
 
+   //Augmente l'age de la bestiole --> appelé à chaque pas de simulation
+   void incr_age(void){++age;};
+
    //Déplace la créature dans le milieu
    void bouge(Milieu &milieu); 
    
@@ -47,9 +52,6 @@ private :
    Parcours la liste de toutes les autres créatures ?
    En cas de collision, 1] proba mort 2] changement d'orientation à l'opposée */
    void collision(Milieu &milieu);
-
-   //Augmente l'age de la bestiole --> appelé à chaque pas de simulation
-   void incr_age(void){++age;};
 
    void initBestiole(void);
 

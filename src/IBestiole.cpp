@@ -45,6 +45,7 @@ void IBestiole::initBestiole(){
 IBestiole::IBestiole(IComportement* comportement) : comportement(comportement){
 
    initBestiole();
+   cout << " Naissance d'une Bestiole immatriculée:(" << this->identite << ") par defaut" << endl;
 //    switch (comportement->getComportementType())
 //    {
 //    // couleur en fonction du comportement ? setColor(r,g,b) mais il faut un enumtype des comportements !
