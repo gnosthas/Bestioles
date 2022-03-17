@@ -15,13 +15,10 @@ int main()
    for ( int i = 1; i <= 20; ++i ){
       IBestiole* bestiole = new Bestiole();
       ecosysteme.getMilieu().addBestiole(bestiole);
-      delete bestiole;
+      // delete bestiole;
    }
+   ecosysteme.run();
 
-   // IBestiole* bestiole = new Bestiole();
-   // ecosysteme.getMilieu().addBestiole(bestiole);
-   // ecosysteme.run();
-   // delete bestiole;
-   // return 0;
+   return 0;
 
 }
