@@ -19,6 +19,7 @@ class IComportement {
     public:
         virtual ~IComportement(){cout<<"Destruction comportement"<<endl;};
         virtual void bougeSelonComportement(Milieu &m, Bestiole &b) const = 0;
+        virtual void adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const = 0;
 };
 
 

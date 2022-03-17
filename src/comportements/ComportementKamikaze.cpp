@@ -1,7 +1,20 @@
 #include "ComportementKamikaze.h"
 
+void ComportementKamikaze::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const
+{
+    for (IBestiole* b: listeVoisins) {
+
+    }
+}
+
 void ComportementKamikaze::bougeSelonComportement(Milieu &m, Bestiole &b) const
 {
-    int a = 1;
-
+    std::vector<IBestiole*> listeVoisins = m.getBestiolesVues(b);
+    adapterBestioleAVoisins(b, listeVoisins);
+    if (listeVoisins.size() == 0) {
+        bougeNormalement(b, m);
+    }
+    else {
+        bougeNormalement(b, m);
+    }
 }

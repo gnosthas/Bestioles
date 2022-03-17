@@ -34,6 +34,8 @@ public :
    void addBestiole( IBestiole* ib ) { listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); };
    int nbVoisins( const IBestiole & ib );
 
+   std::vector<IBestiole*>& getBestiolesVues( IBestiole &b );
+
 
 };
 

@@ -1,10 +1,19 @@
 #include "ComportementGregaire.h"
 #include "Milieu.h"
 
+
+void ComportementGregaire::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const
+{
+    for (IBestiole* b: listeVoisins) {
+
+    }
+}
+
 void ComportementGregaire::bougeSelonComportement(Milieu &m, Bestiole &b) const
 {
-    std::vector<Bestiole>& bestiolesVues = m.getBestiolesVues(b);
-    if (bestiolesVues.size() == 0) {
+    std::vector<IBestiole*> listeVoisins = m.getBestiolesVues(b);
+    adapterBestioleAVoisins(b, listeVoisins);
+    if (listeVoisins.size() == 0) {
         bougeNormalement(b, m);
     }
     else {
