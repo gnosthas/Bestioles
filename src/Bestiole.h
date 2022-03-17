@@ -18,7 +18,7 @@ public :                                           // Forme canonique :
 
    Bestiole(const Bestiole & b);//fait appel au constructeur par copie de IBestiole
    
-   ~Bestiole( void );                             // Destructeur
+   ~Bestiole(void){};                             // Destructeur ABSOLUTELY HAVE A BODY BECAUSE IT HERITS FROM A VIRTUAL DESTRUCTOR
 
    IBestiole* clone() const override; //DP Prototype
 };
