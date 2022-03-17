@@ -10,5 +10,5 @@ public:
     
     ConcreteCreatorBestiole(); //Constructeur
 
-    Bestiole* createBestiole(IComportement* comportement) const override; //Mettre IComportement* en argument
+    IBestiole* createBestiole(IComportement* comportement) const override; 
 };

@@ -10,7 +10,7 @@ Bestiole::Bestiole(IComportement* comportement):IBestiole(comportement){}
 Bestiole::Bestiole(const Bestiole & b):IBestiole(b){}
 
 
-Bestiole* Bestiole::clone() const{
+IBestiole* Bestiole::clone() const{
     return new Bestiole(*this);
 }
 
