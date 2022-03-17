@@ -18,7 +18,8 @@ private :
    static const T          white[];
 
    int                     width, height;
-   std::vector<Bestiole>   listeBestioles;
+   
+   std::vector<IBestiole*>   listeBestioles;
 
 public :
    Milieu( int _width, int _height );
@@ -29,8 +30,9 @@ public :
 
    void step( void );
 
-   void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
-   int nbVoisins( const Bestiole & b );
+   // void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
+   void addBestiole( IBestiole* ib ) { listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); };
+   int nbVoisins( const IBestiole & ib );
 
 };
 

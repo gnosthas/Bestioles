@@ -1,54 +1,27 @@
 #ifndef _BESTIOLES_H_
 #define _BESTIOLES_H_
 
-
-#include "UImg.h"
+#include "IBestiole.h"
 
 #include <iostream>
-
 using namespace std;
 
 
-class Milieu;
-
-
-class Bestiole
+class Bestiole : public IBestiole
 {
 
-private :
-   static const double     AFF_SIZE;
-   static const double     MAX_VITESSE;
-   static const double     LIMITE_VUE;
-
-   static int              next;
-
-private :
-   int               identite;
-   int               x, y;
-   double            cumulX, cumulY;
-   double            orientation;
-   double            vitesse;
-
-   T               * couleur;
-
-private :
-   void bouge( int xLim, int yLim );
-
 public :                                           // Forme canonique :
-   Bestiole( void );                               // Constructeur par defaut
-   Bestiole( const Bestiole & b );                 // Constructeur de copies
-   ~Bestiole( void );                              // Destructeur
-                                                   // Operateur d'affectation binaire par defaut
-   void action( Milieu & monMilieu );
-   void draw( UImg & support );
+   Bestiole();                               // Constructeur par defaut
 
-   bool jeTeVois( const Bestiole & b ) const;
+   // Bestiole(IComportement* comportement);//fait appel au constructeur de IBestiole
 
-   void initCoords( int xLim, int yLim );
+   Bestiole(const Bestiole & b);//fait appel au constructeur par copie de IBestiole
+   
+   ~Bestiole(){cout << "Destruction bestiole" << endl;};                             // Destructeur
 
-   friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
-
+   Bestiole* clone() const override; //DP Prototype
 };
+
 
 
 #endif

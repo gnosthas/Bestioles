@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include "comportements/IComportement.h"
+// #include "comportements/IComportement.h"
 #include "Milieu.h"
 #include "UImg.h"
 #include "IBestiole.h"
@@ -42,33 +42,59 @@ void IBestiole::initBestiole(){
 }
 
 ///////////////////////// Constructeur d'une bestiole /////////////////////////////
-IBestiole::IBestiole(IComportement* comportement) : comportement(comportement){
 
-   initBestiole();
+////////// TEMPORAIRE POUR TEST COMPILATION
+
+// IBestiole::IBestiole(IComportement* comportement) : comportement(comportement){
+
+//    initBestiole();
 //    switch (comportement->getComportementType())
 //    {
 //    // couleur en fonction du comportement ? setColor(r,g,b) mais il faut un enumtype des comportements !
 // }
-}
+// }
 
+IBestiole::IBestiole(){
+   initBestiole();
+}
 
 ///////////////////////// Constructeur par copie de la bestiole /////////////////////////////
-IBestiole::IBestiole( const IBestiole & ib ) : identite(++next), x(ib.x), y(ib.y), 
-cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
-proba_death(ib.proba_death), age(ib.age), proba_clone(ib.proba_clone), listCapteurs(ib.listCapteurs),
- listAccessoires(ib.listAccessoires),comportement(ib.comportement)
+
+////////// TEMPORAIRE POUR TEST COMPILATION
+IBestiole::IBestiole( const IBestiole & b )
 {
-   cout << "const IBestiole (" << this->identite << ") par copie" << endl;
+
+   identite = ++next;
+
+   cout << "const Bestiole (" << identite << ") par copie" << endl;
+
+   x = b.x;
+   y = b.y;
+   cumulX = cumulY = 0.;
+   orientation = b.orientation;
+   vitesse = b.vitesse;
    couleur = new T[ 3 ];
-   memcpy( couleur, ib.couleur, 3*sizeof(T) );
+   memcpy( couleur, b.couleur, 3*sizeof(T) );
+
 }
+
+// IBestiole::IBestiole( const IBestiole & ib ) : identite(++next), x(ib.x), y(ib.y), 
+// cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
+// proba_death(ib.proba_death), age(ib.age), proba_clone(ib.proba_clone), listCapteurs(ib.listCapteurs),
+//  listAccessoires(ib.listAccessoires),comportement(ib.comportement)
+// {
+//    cout << "const IBestiole (" << this->identite << ") par copie" << endl;
+//    couleur = new T[ 3 ];
+//    memcpy( couleur, ib.couleur, 3*sizeof(T) );
+// }
 
 ///////////////////////// Destructeur /////////////////////////////
 IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
    delete[] this->couleur;
-   delete this->comportement;
+   ////////// TEMPORAIRE POUR TEST COMPILATION
+   // delete this->comportement;
    
 }
 ////////////////// Initialise aléatoire la position de la bestiole ///////////////
@@ -97,7 +123,7 @@ int IBestiole::getX() const {return x;}
 int IBestiole::getY() const {return y;}
 int IBestiole::getIdentite() const {return this->identite;}
 int IBestiole::getAge() const{return this->age;};
-IComportement* IBestiole::getComportement() const {return this->comportement;}
+// IComportement* IBestiole::getComportement() const {return this->comportement;}
 double IBestiole::get_proba_death() const{return this->proba_death;}
 double IBestiole::get_vitesse() const{return this-> vitesse;}
 double IBestiole::getOrientation() const{return this->orientation;}
@@ -165,7 +191,20 @@ void IBestiole::action(Milieu & milieu ){
 
 
 //////////////////////////// Affichage d'une créature /////////////////////////////////////////
-void IBestiole::draw( UImg & support, Milieu & milieu ){
+// void IBestiole::draw( UImg & support, Milieu & milieu ){
+
+//    double         xt = x + cos( orientation )*AFF_SIZE/2.1;
+//    double         yt = y - sin( orientation )*AFF_SIZE/2.1;
+
+
+//    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
+//    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
+
+// }; 
+
+////////// TEMPORAIRE POUR TEST COMPILATION
+void IBestiole::draw( UImg & support )
+{
 
    double         xt = x + cos( orientation )*AFF_SIZE/2.1;
    double         yt = y - sin( orientation )*AFF_SIZE/2.1;
@@ -174,7 +213,7 @@ void IBestiole::draw( UImg & support, Milieu & milieu ){
    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
 
-}; 
+}
 
 
 

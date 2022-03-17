@@ -2,15 +2,16 @@
 #define _IBESTIOLE_H_
 
 #include <iostream>
-#include <vector>
-
-#include "Accessoires/IAccessoire.h"
-#include "comportements/IComportement.h"
+// #include <vector>
+// #include "Accessoires/IAccessoire.h"
+// #include "comportements/IComportement.h"
 #include "UImg.h"
 
 using namespace std;
 
-class ICapteur; //capteurs
+// class ICapteur; //capteurs
+
+class Milieu;
 
 class IBestiole{
 
@@ -32,9 +33,9 @@ protected :
    int age; //Age de la bestiole qui augmente à chaque pas de simulation
    double proba_clone; //proba de se cloner à chaque pas de simul
    double proba_death; //proba de mort lors d'une collision
-   std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
-   std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
-   IComportement* comportement; //Comportement de la bestiole
+   // std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
+   // std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
+   // IComportement* comportement; //Comportement de la bestiole
 
 
 
@@ -57,15 +58,20 @@ public :
 
    virtual ~IBestiole( void );                              // Destructeur
 
-   IBestiole(IComportement* comportement); //Constructeur d'une bestiole
+   
+   IBestiole(); ////////// TEMPORAIRE POUR TEST COMPILATION
+   // IBestiole(IComportement* comportement); //Constructeur d'une bestiole
 
+   ////////// TEMPORAIRE POUR TEST COMPILATION
    IBestiole(const IBestiole &ib); //Constructeur par copie d'une bestiole
 
    void action( Milieu & monMilieu ); //Méthode appelée sur la créature à chaque pas de simul
 
    virtual IBestiole* clone() const = 0; //DP Prototype  
 
-   void draw( UImg & support, Milieu & milieu ); //Affichage d'une créature
+   ////////// TEMPORAIRE POUR TEST COMPILATION
+   // void draw( UImg & support, Milieu & milieu ); //Affichage d'une créature
+   void draw( UImg & support );
 
    bool jeTeVois( const IBestiole & b ) const; //détermine si la créature détecte la créature passée en argument
 
@@ -81,7 +87,7 @@ public :
    virtual double get_vitesse(void) const;
    virtual double getOrientation(void) const;
    int getIdentite(void) const;
-   IComportement* getComportement(void) const;
+   // IComportement* getComportement(void) const;
    int getAge(void) const;
    void setColor(int r, int g, int b);
    virtual void setVitesse(double v);

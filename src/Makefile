@@ -1,4 +1,4 @@
-OBJ = main.cpp Aquarium.o Bestiole.o Milieu.o 
+OBJ = main.cpp Aquarium.o IBestiole.o Bestiole.o Milieu.o 
 CC = g++
 
 main : $(OBJ)
@@ -7,10 +7,13 @@ main : $(OBJ)
 Aquarium.o : Aquarium.h Aquarium.cpp
 	$(CC) -Wall -std=c++11  -c Aquarium.cpp -I .
 
-Bestiole.o : Bestiole.h Bestiole.cpp
+IBestiole.o : IBestiole.h IBestiole.cpp
+	$(CC) -Wall -std=c++11  -c IBestiole.cpp -I .
+
+Bestiole.o : Bestiole.h Bestiole.cpp IBestiole.h
 	$(CC) -Wall -std=c++11  -c Bestiole.cpp -I .
 
-Milieu.o : Milieu.h Milieu.cpp
+Milieu.o : Milieu.h Milieu.cpp IBestiole.h Bestiole.h
 	$(CC) -Wall -std=c++11  -c Milieu.cpp -I .
 
 clean:
