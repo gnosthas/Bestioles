@@ -18,7 +18,7 @@ private :
    static const T          white[];
 
    int                     width, height;
-   std::vector<Bestiole>   listeBestioles;
+   std::vector<IBestiole*>   listeBestioles; //on fait le choix de stocker des pointeurs de IBestiole vers des bestioles
 
 public :
    Milieu( int _width, int _height );
@@ -26,12 +26,15 @@ public :
 
    int getWidth( void ) const { return width; };
    int getHeight( void ) const { return height; };
-
+   std::vector<IBestiole*>& getListeBestioles(void) {return listeBestioles;};
    void step( void );
 
-   void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
-   int nbVoisins( const Bestiole & b );
-
+   
+   void addBestiole( IBestiole* ib ) { listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); };
+   
+   int nbVoisins( const IBestiole & ib );
+   
+   // std::vector<Bestiole>& getBestiolesVues(const Bestiole& b);
 };
 
 
