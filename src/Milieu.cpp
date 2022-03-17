@@ -54,3 +54,8 @@ int Milieu::nbVoisins( const IBestiole & ib )
    return nb;
 
 }
+
+std::vector<IBestiole*>& Milieu::getBestiolesVues( IBestiole &b ) {
+   std::vector<IBestiole*> listeVoisins;
+   return listeVoisins;
+}
