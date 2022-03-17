@@ -27,12 +27,13 @@ public :
 
    int getWidth( void ) const { return width; };
    int getHeight( void ) const { return height; };
-
+   std::vector<IBestiole*>& getListeBestiole() {return listeBestioles;};
    void step( void );
 
    // void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
    void addBestiole( IBestiole* ib ) { listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); };
    int nbVoisins( const IBestiole & ib );
+
 
 };
 

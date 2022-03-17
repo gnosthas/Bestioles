@@ -52,5 +52,7 @@ void Aquarium::run( void )
       wait( delay );
 
    } // while
-
+   for (IBestiole* b : flotte->getListeBestiole()) {
+      delete b;
+   }
 }
