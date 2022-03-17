@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 
-// #include "comportements/IComportement.h"
 #include "Milieu.h"
 #include "UImg.h"
 #include "IBestiole.h"
@@ -45,14 +44,14 @@ void IBestiole::initBestiole(){
 
 ////////// TEMPORAIRE POUR TEST COMPILATION
 
-// IBestiole::IBestiole(IComportement* comportement) : comportement(comportement){
+IBestiole::IBestiole(IComportement* comportement) : comportement(comportement){
 
-//    initBestiole();
-//    switch (comportement->getComportementType())
-//    {
-//    // couleur en fonction du comportement ? setColor(r,g,b) mais il faut un enumtype des comportements !
-// }
-// }
+   initBestiole();
+   // switch (comportement->getComportementType())
+   // {
+   // couleur en fonction du comportement ? setColor(r,g,b) mais il faut un enumtype des comportements !
+   // }
+}
 
 IBestiole::IBestiole(){
    initBestiole();
@@ -93,8 +92,7 @@ IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
    delete[] this->couleur;
-   ////////// TEMPORAIRE POUR TEST COMPILATION
-   // delete this->comportement;
+   delete this->comportement;
    
 }
 ////////////////// Initialise aléatoire la position de la bestiole ///////////////
@@ -123,7 +121,7 @@ int IBestiole::getX() const {return x;}
 int IBestiole::getY() const {return y;}
 int IBestiole::getIdentite() const {return this->identite;}
 int IBestiole::getAge() const{return this->age;};
-// IComportement* IBestiole::getComportement() const {return this->comportement;}
+IComportement* IBestiole::getComportement() const {return this->comportement;}
 double IBestiole::get_proba_death() const{return this->proba_death;}
 double IBestiole::get_vitesse() const{return this-> vitesse;}
 double IBestiole::getOrientation() const{return this->orientation;}
@@ -143,40 +141,9 @@ void IBestiole::setColor(int r, int g, int b){
 ////////////////////////Les Méthodes qu'il reste à implémenter ////////////////
 
  ///////////////////////////// Déplacement de la bestiole dans le milieu ////////////////////////
-void IBestiole::bouge(Milieu &milieu){
-   double         nx, ny;
-   int            cx, cy;
-   int xLim = milieu.getWidth();
-   int yLim = milieu.getHeight();
-
-   double         dx = cos( orientation )*vitesse; // A vérifier ce déplacement
-   double         dy = -sin( orientation )*vitesse;
-
-   cx = static_cast<int>( cumulX ); cumulX -= cx;
-   cy = static_cast<int>( cumulY ); cumulY -= cy;
-
-   nx = x + dx + cx;
-   ny = y + dy + cy;
-
-   if ( (nx < 0) || (nx > xLim - 1) ) {
-      orientation = M_PI - orientation;
-      cumulX = 0.;
-   }
-   else {
-      x = static_cast<int>( nx );
-      cumulX += nx - x;
-   }
-
-   if ( (ny < 0) || (ny > yLim - 1) ) {
-      orientation = -orientation;
-      cumulY = 0.;
-   }
-   else {
-      y = static_cast<int>( ny );
-      cumulY += ny - y;
-   }
-
-}
+// void IBestiole::bouge(Milieu &milieu){
+//    comportement->bougeSelonComportement(milieu, &this);
+// }
 
 //////////////// Méthode appelée sur la bestiole à chaque pas de simulation /////////////////////////
 void IBestiole::action(Milieu & milieu ){ 

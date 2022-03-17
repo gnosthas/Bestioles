@@ -1,9 +1,12 @@
 #define _USE_MATH_DEFINES
 
-#include "IBestiole.h"
+#include "Bestiole.h"
 #include "Milieu.h"
 #include <cmath>
 #include <cstdlib>
+
+class Bestiole;
+class Milieu;
 
 void bougeNormalement( Bestiole &b, Milieu &m )
 {

@@ -4,8 +4,9 @@
 #include <iostream>
 // #include <vector>
 // #include "Accessoires/IAccessoire.h"
-// #include "comportements/IComportement.h"
+#include "comportements/IComportement.h"
 #include "UImg.h"
+#include "Milieu.h"
 
 using namespace std;
 
@@ -35,14 +36,14 @@ protected :
    double proba_death; //proba de mort lors d'une collision
    // std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
    // std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
-   // IComportement* comportement; //Comportement de la bestiole
+   IComportement* comportement; //Comportement de la bestiole
 
 
 
 private :
 
    //Déplace la créature dans le milieu
-   void bouge(Milieu &milieu); 
+   virtual void bouge(Milieu &milieu); 
    
    /*Gère la collision entre les créatures. La collision se fait entre deux cercles ? deux ellipses ?
    Parcours la liste de toutes les autres créatures ?
@@ -60,7 +61,7 @@ public :
 
    
    IBestiole(); ////////// TEMPORAIRE POUR TEST COMPILATION
-   // IBestiole(IComportement* comportement); //Constructeur d'une bestiole
+   IBestiole(IComportement* comportement); //Constructeur d'une bestiole
 
    ////////// TEMPORAIRE POUR TEST COMPILATION
    IBestiole(const IBestiole &ib); //Constructeur par copie d'une bestiole
@@ -87,7 +88,7 @@ public :
    virtual double get_vitesse(void) const;
    virtual double getOrientation(void) const;
    int getIdentite(void) const;
-   // IComportement* getComportement(void) const;
+   IComportement* getComportement(void) const;
    int getAge(void) const;
    void setColor(int r, int g, int b);
    virtual void setVitesse(double v);
