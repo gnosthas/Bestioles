@@ -167,11 +167,12 @@ void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestiole
    }
    
    bouge(milieu);
-   
 
    ///////// Collision ////////////
    collision(milieu);
+
    decrDureeVie();
+   cout << "Action fonctionne bestiole" << endl;
 }; 
 
 
@@ -210,7 +211,7 @@ void IBestiole::draw( UImg & support )
 void IBestiole::collision(Milieu &milieu){
    std::vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
    double         distance_bestioles;
-   for (std::vector<IBestiole*>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it)
+   for (auto it = bestioles.begin() ; it != bestioles.end() ; ++it)
    {
       if(*it != this){
          distance_bestioles = sqrt( pow(this->x-(*it)->x,2)+ pow(this->y-(*it)->y,2) );

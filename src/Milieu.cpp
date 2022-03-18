@@ -30,26 +30,25 @@ Milieu::~Milieu( void )
 
 void Milieu::step( void )
 {
-   std::vector<IBestiole*> appendBestioles; //Bestioles à ajouter à chaque pas de simul
+   std::vector<IBestiole*> appendBestioles; //Bestioles à ajouter à chaque pas de simulation
 
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
 
-   for (std::vector<IBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it)
+   for (auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it)
    {
       (*it)->action(*this, appendBestioles);
-      if(!appendBestioles.empty())
-      { 
-
-      for(std::vector<IBestiole*>::iterator it = listeBestioles.begin() ; it != appendBestioles.end() ; ++it)
-      {
-         addBestiole(*it);
-      }
 
       (*it)->draw( *this );
 
-   } // for
 
-}
+   }
+   // if(!appendBestioles.empty()){ 
+   //    for(auto it = appendBestioles.begin() ; it != appendBestioles.end() ; ++it){
+   //       addBestiole(*it);
+   //       cout << "ADDED BESTIOLE" << endl;
+   //    }
+   // }
+      
 }
 
 
