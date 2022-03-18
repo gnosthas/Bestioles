@@ -1,4 +1,7 @@
 #include "ComportementPeureuse.h"
+#include "Milieu.h"
+#include "Bestiole.h"
+#include "IBestiole.h"
 #include "Deplacements.h"
 
 void ComportementPeureuse::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const
