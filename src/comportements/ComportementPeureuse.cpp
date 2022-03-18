@@ -6,9 +6,9 @@
 
 void ComportementPeureuse::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const
 {
-    for (IBestiole* b: listeVoisins) {
+    // for (IBestiole* b: listeVoisins) {
 
-    }
+    // }
 }
 
 void ComportementPeureuse::bougeSelonComportement(Milieu &m, Bestiole &b) const

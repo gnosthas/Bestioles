@@ -20,6 +20,5 @@ Bestiole* Bestiole::clone() const{
 }
 
 void Bestiole::bouge(Milieu &milieu){
-   std::vector<IBestiole*> listeVoisins = milieu.getBestiolesVues(*this);
    comportement->bougeSelonComportement(milieu, *this);
 }

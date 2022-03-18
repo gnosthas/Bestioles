@@ -34,7 +34,7 @@ public :
    void addBestiole( IBestiole* ib );
    int nbVoisins( const IBestiole & ib );
 
-   std::vector<IBestiole*>& getBestiolesVues( IBestiole &b );
+   std::vector<IBestiole*> getBestiolesVues( IBestiole &b );
 
 
 };

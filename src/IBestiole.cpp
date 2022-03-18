@@ -160,6 +160,7 @@ void IBestiole::action(Milieu & milieu ){
 
    ///////// Clonage /////////////
    bouge(milieu);
+   
 
    ///////// Collision ////////////
    collision(milieu);

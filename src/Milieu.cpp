@@ -31,10 +31,12 @@ void Milieu::step( void )
 {
 
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
+
    for ( std::vector<IBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
    {
 
       (*it)->action( *this );
+
       (*it)->draw( *this );
 
    } // for
@@ -58,8 +60,10 @@ int Milieu::nbVoisins( const IBestiole & ib )
 
 std::vector<IBestiole*>& Milieu::getListeBestiole() {return listeBestioles;};
 
-std::vector<IBestiole*>& Milieu::getBestiolesVues( IBestiole &b ) {
+std::vector<IBestiole*> Milieu::getBestiolesVues( IBestiole &b ) {
    std::vector<IBestiole*> listeVoisins;
+   listeVoisins.push_back(listeBestioles.at(0));
+
    return listeVoisins;
 }
 

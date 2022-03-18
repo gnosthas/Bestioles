@@ -21,7 +21,8 @@ int main()
    }
    ecosysteme.run();
 
-      
+   delete peur;
+
    return 0;
 
 }
