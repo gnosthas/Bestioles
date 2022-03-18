@@ -22,7 +22,7 @@ public :                                           // Forme canonique :
    
    ~Bestiole();                             // Destructeur
 
-   Bestiole* clone() const override; //DP Prototype
+   IBestiole* clone() const override; //DP Prototype
 
    void bouge(Milieu &milieu) override;
 };

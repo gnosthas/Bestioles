@@ -14,7 +14,7 @@ Bestiole::Bestiole(const Bestiole & b):IBestiole(b){}
 
 Bestiole::~Bestiole(){cout << "Destruction bestiole" << endl;}
 
-Bestiole* Bestiole::clone() const{
+IBestiole* Bestiole::clone() const{
     return new Bestiole(*this);
 }
 
