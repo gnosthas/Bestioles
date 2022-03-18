@@ -11,6 +11,6 @@
 class Bestiole;
 class IBestiole;
 
-void bougeNormalement( Bestiole& b, int xLim, int yLim );
+void bougeNormalement( Bestiole& b, Milieu& m );
 
 #endif
