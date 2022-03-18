@@ -2,6 +2,7 @@
 
 #include "../Bestiole.h"
 #include "../Milieu.h"
+#include "Deplacements.h"
 #include <cmath>
 #include <cstdlib>
 
@@ -10,33 +11,33 @@ void bougeNormalement( Bestiole &b, Milieu &m )
     int xLim = m.getWidth();
     int yLim = m.getHeight(); 
     double         nx, ny;
-    double         dx = cos( b.orientation )*b.vitesse;
-    double         dy = -sin( b.orientation )*b.vitesse;
+    double         dx = cos( b.getOrientation() )*b.get_vitesse();
+    double         dy = -sin( b.getOrientation() )*b.get_vitesse();
     int            cx, cy;
 
 
-    cx = static_cast<int>( b.cumulX ); b.cumulX -= cx;
-    cy = static_cast<int>( b.cumulY ); b.cumulY -= cy;
+    cx = static_cast<int>( b.getCumulX() ); b.getCumulX() -= cx;
+    cy = static_cast<int>( b.getCumulY() ); b.getCumulY() -= cy;
 
-    nx = b.x + dx + cx;
-    ny = b.y + dy + cy;
+    nx = b.getX() + dx + cx;
+    ny = b.getY() + dy + cy;
 
     if ( (nx < 0) || (nx > xLim - 1) ) {
-        b.orientation = M_PI - b.orientation;
-        b.cumulX = 0.;
+        b.getOrientation() = M_PI - b.getOrientation();
+        b.getCumulX() = 0.;
     }
     else {
-        b.x = static_cast<int>( nx );
-        b.cumulX += nx - b.x;
+        b.getX() = static_cast<int>( nx );
+        b.getCumulX() += nx - b.getX();
     }
 
     if ( (ny < 0) || (ny > yLim - 1) ) {
-        b.orientation = -b.orientation;
-        b.cumulY = 0.;
+        b.getOrientation() = -b.getOrientation();
+        b.getCumulY() = 0.;
     }
     else {
-        b.y = static_cast<int>( ny );
-        b.cumulY += ny - b.y;
+        b.getY() = static_cast<int>( ny );
+        b.getCumulY() += ny - b.getY();
     }
 
 }

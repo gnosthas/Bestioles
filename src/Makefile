@@ -22,7 +22,7 @@ Milieu.o : Milieu.h Milieu.cpp
 ComportementPeureuse.o: ComportementPeureuse.h ComportementPeureuse.cpp IComportement.h 
 	$(CC) -Wall -std=c++11  -c ComportementPeureuse.cpp -I .
 
-Deplacements.o: Deplacements.h Deplacements.cpp Milieu.h Bestiole.h
+Deplacements.o: Deplacements.h Deplacements.cpp
 	$(CC) -Wall -std=c++11  -c Deplacements.cpp -I .
 
 # capteurFactory.o : capteur.h yeux.h corps.h oreilles.h capteurFactory.cpp
