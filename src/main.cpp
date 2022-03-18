@@ -21,8 +21,22 @@ int main()
       ecosysteme.getMilieu().addBestiole(bestiole);
    }
    ecosysteme.run();
+   //delete peur;
 
-   delete peur;
+
+      //////////////TEST//////////////
+   // Bestiole* bestiole = creator_bestiole.createBestiole(peur);
+   // ecosysteme.getMilieu().addBestiole(bestiole);
+  
+   // IBestiole* clone_bestiole = bestiole->clone();
+   // ecosysteme.getMilieu().addBestiole(clone_bestiole);
+
+   // std::cout << clone_bestiole->get_vitesse()<<std::endl;
+
+   // delete bestiole;
+   // delete clone_bestiole;
+
+   cout <<"fin du programme"<<endl;
 
    return 0;
 

@@ -36,10 +36,14 @@ void Milieu::step( void )
 
    for (auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it)
    {
-      (*it)->action(*this, appendBestioles);
-
+      if ( (*it)->getBoolClone() == true)
+      {
+         addBestiole((*it)->clone());
+         cout << "BETE AJOUTEE"<<endl;
+      }
+      (*it)->action(*this);
       (*it)->draw( *this );
-
+      cout << "step fonctione bien"<<endl;
 
    }
    // if(!appendBestioles.empty()){ 
@@ -75,7 +79,10 @@ std::vector<IBestiole*> Milieu::getBestiolesVues( IBestiole &b ) {
    return listeVoisins;
 }
 
-void Milieu::addBestiole( IBestiole* ib ) { listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); };
+void Milieu::addBestiole( IBestiole* ib ) { 
+   listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); 
+   cout <<"J'ajoute une BETE add bestiole"<<endl;
+};
 
 int Milieu::getWidth( void ) const { return width; };
 int Milieu::getHeight( void ) const { return height; };

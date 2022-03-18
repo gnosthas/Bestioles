@@ -23,7 +23,7 @@ void IBestiole::initBestiole(){
    this->identite = ++next;
    this->x = this->y = 0;
    this->cumulX = this->cumulY = 0.;
-
+   this->isCloned = false;
    //Orientation initiale aléatoire
    this->orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
    // vitesse initiale aléatoire
@@ -60,39 +60,38 @@ IBestiole::IBestiole(){
 ///////////////////////// Constructeur par copie de la bestiole /////////////////////////////
 
 ////////// TEMPORAIRE POUR TEST COMPILATION
-IBestiole::IBestiole( const IBestiole & b )
-{
-
-   identite = ++next;
-
-   cout << "const Bestiole (" << identite << ") par copie" << endl;
-
-   x = b.x;
-   y = b.y;
-   cumulX = cumulY = 0.;
-   orientation = b.orientation;
-   vitesse = b.vitesse;
-   couleur = new T[ 3 ];
-   memcpy( couleur, b.couleur, 3*sizeof(T) );
-
-}
-
-// IBestiole::IBestiole( const IBestiole & ib ) : identite(++next), x(ib.x), y(ib.y), 
-// cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
-// proba_death(ib.proba_death), age(ib.age), proba_clone(ib.proba_clone), listCapteurs(ib.listCapteurs),
-//  listAccessoires(ib.listAccessoires),comportement(ib.comportement)
+// IBestiole::IBestiole( const IBestiole & b )
 // {
-//    cout << "const IBestiole (" << this->identite << ") par copie" << endl;
+
+//    identite = ++next;
+
+//    cout << "const Bestiole (" << identite << ") par copie" << endl;
+
+//    x = b.x;
+//    y = b.y;
+//    cumulX = cumulY = 0.;
+//    orientation = b.orientation;
+//    vitesse = b.vitesse;
 //    couleur = new T[ 3 ];
-//    memcpy( couleur, ib.couleur, 3*sizeof(T) );
+//    memcpy( couleur, b.couleur, 3*sizeof(T) );
+
 // }
+
+IBestiole::IBestiole( const IBestiole & ib ) : identite(++next), x(ib.x), y(ib.y), 
+cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
+proba_death(ib.proba_death), duree_vie(ib.duree_vie), proba_clone(ib.proba_clone),comportement(ib.comportement)
+{
+   cout << "const IBestiole (" << this->identite << ") par copie (last en date)" << endl;
+   couleur = new T[ 3 ];
+   memcpy( couleur, ib.couleur, 3*sizeof(T) );
+}
 
 ///////////////////////// Destructeur /////////////////////////////
 IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
    delete[] this->couleur;
-   delete this->comportement;
+   //delete this->comportement; WARNING SEGMENTATION FAULT
    
 }
 ////////////////// Initialise aléatoire la position de la bestiole ///////////////
@@ -130,7 +129,7 @@ double IBestiole::get_vitesse() const{return this-> vitesse;}
 double IBestiole::getCumulX() const{return this-> cumulX;}
 double IBestiole::getCumulY() const{return this-> cumulY;}
 double IBestiole::getOrientation() const{return this->orientation;}
-
+bool IBestiole::getBoolClone() const{return this->isCloned;}
 
 /////////////////////////////////SETTEURS //////////////////////////////
 void IBestiole::setVitesse(double v){
@@ -157,13 +156,12 @@ void IBestiole::setOrientation(double o){this->orientation =o;}
 // }
 
 //////////////// Méthode appelée sur la bestiole à chaque pas de simulation /////////////////////////
-void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestioles){ 
+void IBestiole::action(Milieu & milieu){ 
 
    ///////// Clonage /////////////
    double clonnage = ((rand() % 1001) + 1) / 1000.0;
    if(clonnage <= this->proba_clone){
-      IBestiole* best_clone = clone(); //fait appel au clone() de IBestiole ou de Bestiole ?
-      appendBestioles.push_back(best_clone);
+      this->isCloned = true;
    }
    
    bouge(milieu);

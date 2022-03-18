@@ -35,6 +35,7 @@ protected :
    // std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
    // std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
    IComportement* comportement; //Comportement de la bestiole
+   bool isCloned;
 
 
 
@@ -64,7 +65,7 @@ public :
    ////////// TEMPORAIRE POUR TEST COMPILATION
    IBestiole(const IBestiole &ib); //Constructeur par copie d'une bestiole
 
-   void action( Milieu & monMilieu, std::vector<IBestiole*> & appendBestioles ); //Méthode appelée sur la bestiole à chaque pas de simul
+   void action( Milieu & monMilieu); //Méthode appelée sur la bestiole à chaque pas de simul
 
    virtual IBestiole* clone() const = 0; //DP Prototype  
 
@@ -90,6 +91,7 @@ public :
    int getIdentite(void) const;
    IComportement* getComportement(void) const;
    int getDureeVie(void) const;
+   bool getBoolClone(void) const;
 
    void setColor(int r, int g, int b);
    void setX(int x);
