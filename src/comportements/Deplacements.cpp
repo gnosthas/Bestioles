@@ -17,8 +17,8 @@ void bougeNormalement( Bestiole &b, Milieu &m )
     int            cx, cy;
 
 
-    cx = static_cast<int>( b.getCumulX() ); b.getCumulX() -= cx;
-    cy = static_cast<int>( b.getCumulY() ); b.getCumulY() -= cy;
+    cx = static_cast<int>( b.getCumulX() ); b.setCumulX(b.getCumulX() - cx);
+    cy = static_cast<int>( b.getCumulY() ); b.setCumulY(b.getCumulY() - cy);
 
     nx = b.getX() + dx + cx;
     ny = b.getY() + dy + cy;
@@ -38,7 +38,7 @@ void bougeNormalement( Bestiole &b, Milieu &m )
     }
     else {
         b.setY(static_cast<int>( ny ));
-        b.setCumulY(b.getCumulY + ny - b.getY());
+        b.setCumulY(b.getCumulY() + ny - b.getY());
     }
 
 }
