@@ -4,6 +4,7 @@
 #include "Milieu.h"
 #include "UImg.h"
 #include "IBestiole.h"
+#include "comportements/IComportement.h"
 
 #include <cstdlib>
 #include <cmath>
@@ -108,6 +109,9 @@ bool operator==( const IBestiole & ib1, const IBestiole & ib2 )
    return ( ib1.identite == ib2.identite );
 }
 
+void IBestiole::incr_age(){
+   ++age;
+}
 /// Savoir si la bestiole passée en argument est dans le champ de vision de la bestiole courante ///
 bool IBestiole::jeTeVois( const IBestiole & ib ) const
 {

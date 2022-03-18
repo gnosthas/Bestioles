@@ -1,5 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "Bestiole.h"
+#include "IBestiole.h"
 
 using namespace std;
 
@@ -8,6 +10,8 @@ Bestiole::Bestiole():IBestiole(){
    cout << "Création nouvelle bestiole" << endl;
 }
 Bestiole::Bestiole(const Bestiole & b):IBestiole(b){}
+
+Bestiole::~Bestiole(){cout << "Destruction bestiole" << endl;}
 
 Bestiole* Bestiole::clone() const{
     return new Bestiole(*this);

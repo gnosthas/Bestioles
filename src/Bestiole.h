@@ -7,6 +7,8 @@
 #include <iostream>
 using namespace std;
 
+class IComportement;
+class Milieu;
 
 class Bestiole : public IBestiole
 {
@@ -18,7 +20,7 @@ public :                                           // Forme canonique :
 
    Bestiole(const Bestiole & b);//fait appel au constructeur par copie de IBestiole
    
-   ~Bestiole(){cout << "Destruction bestiole" << endl;};                             // Destructeur
+   ~Bestiole();                             // Destructeur
 
    Bestiole* clone() const override; //DP Prototype
 

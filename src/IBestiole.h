@@ -4,16 +4,14 @@
 #include <iostream>
 // #include <vector>
 // #include "Accessoires/IAccessoire.h"
-#include "comportements/IComportement.h"
-#include "UImg.h"
-#include "Milieu.h"
 
 using namespace std;
 
 // class ICapteur; //capteurs
 
 class Milieu;
-
+class UImg;
+class IComportement;
 class IBestiole{
 
 protected : 
@@ -51,7 +49,7 @@ private :
    void collision(Milieu &milieu);
 
    //Augmente l'age de la bestiole --> appelé à chaque pas de simulation
-   void incr_age(void){++age;};
+   void incr_age(void);
 
    void initBestiole(void);
 
