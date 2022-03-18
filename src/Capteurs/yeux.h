@@ -3,13 +3,11 @@
 
 // Implémente les méthodes de l'interfacce ICapteur
 
-#include "capteur.h"
+class ICapteur;
 
 class Yeux : public ICapteur {
     public:
         void detection() const override;
-
-
 
 };
 
