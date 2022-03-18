@@ -127,6 +127,8 @@ int IBestiole::getAge() const{return this->age;};
 IComportement* IBestiole::getComportement() const {return this->comportement;}
 double IBestiole::get_proba_death() const{return this->proba_death;}
 double IBestiole::get_vitesse() const{return this-> vitesse;}
+double IBestiole::getCumulX() const{return this-> cumulX;}
+double IBestiole::getCumulY() const{return this-> cumulY;}
 double IBestiole::getOrientation() const{return this->orientation;}
 
 
