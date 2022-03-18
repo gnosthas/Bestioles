@@ -1,4 +1,4 @@
-OBJ = main.cpp Aquarium.o Bestiole.o IBestiole.o ConcreteCreatorBestiole.o Milieu.o comportements/ComportementPeureuse.o
+OBJ = main.cpp Aquarium.o Bestiole.o IBestiole.o ConcreteCreatorBestiole.o Milieu.o comportements/ComportementPeureuse.o Capteurs/capteurFactory.o
 CC = g++
 
 main : $(OBJ)
@@ -22,6 +22,8 @@ Milieu.o : Milieu.h Milieu.cpp IBestiole.h Bestiole.h
 ComportementPeureuse.o: ComportementPeureuse.h ComportementPeureuse.cpp IComportement.h 
 	$(CC) -Wall -std=c++11  -c ComportementPeureuse.cpp -I .
 
+capteurFactory.o : capteur.h yeux.h corps.h oreilles.h capteurFactory.cpp
+	$(CC) -Wall -std=c++11  -c capteurFactory.cpp -I .
 clean:
 	rm -f *.o ./Accessoires/*.o ./main
 
