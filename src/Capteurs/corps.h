@@ -1,5 +1,5 @@
-#ifndef CORPS.H
-#define CORPS.H
+#ifndef CORPS
+#define CORPS
 
 // Implémente les méthodes de l'interfacce ICapteur
 

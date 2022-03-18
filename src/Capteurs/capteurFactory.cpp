@@ -1,25 +1,9 @@
-#ifndef CAPTEURFACTORY.H
-#define CAPTEURFACTORY.H
-
-#include <iostream>
-using namespace std;
-
-#include "capteur.h"
+#include "capteurFactory.h"
 #include "yeux.h"
 #include "corps.h"
 #include "oreilles.h"
 
-enum TypeCapteur{
-    TC_Yeux, TC_Oreilles, TC_Corps
-};
-
-class CapteurFactory {
-    public:
-        ~CapteurFactory(){cout<<"Destruction capteur factory"<<endl;};
-        static ICapteur* createCapteur(TypeCapteur type, int id);
-};
-
-ICapteur* createCapteur(TypeCapteur type, int id){
+ICapteur* CapteurFactory::createCapteur(TypeCapteur type, int id){
         if(type == TC_Yeux){
             return new Yeux();
         } else if (type = TC_Oreilles) {
@@ -28,10 +12,6 @@ ICapteur* createCapteur(TypeCapteur type, int id){
             return new Corps();
         } else return NULL;
 
-}
-
-
-
-#endif
+};
 
 

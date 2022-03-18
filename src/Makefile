@@ -5,7 +5,7 @@ CAP = Capteurs
 BESTIOLES = Bestiole.o IBestiole.o ConcreteCreatorBestiole.o
 COMPORTEMENTS = $(COM)/Deplacements.o $(COM)/ComportementPeureuse.o $(COM)/ComportementGregaire.o $(COM)/ComportementKamikaze.o $(COM)/ComportementPersMultiple.o $(COM)/ComportementPrevoyante.o
 ACCESSOIRES = #$(ACC)/ConcreteCreatorCamouflage.o $(ACC)/ConcreteCreatorCarapace.o $(ACC)/ConcreteCreatorNageoire.o $(ACC)/Camouflage.o $(ACC)/Carapace.o $(ACC)/Nageoire.o
-CAPTEURS = #$(CAP)/capteurFactory.o
+CAPTEURS = $(CAP)/capteurFactory.o $(CAP)/corps.o $(CAP)/oreilles.o $(CAP)/yeux.o
 OBJ = main.cpp Aquarium.o Milieu.o  $(BESTIOLES) $(COMPORTEMENTS) $(ACCESSOIRES) $(CAPTEURS)
 
 main : $(OBJ)
@@ -66,9 +66,21 @@ ConcreteCreatorNageoire.o: ConcreteCreatorNageoire.cpp ConcreteCreatorNageoire.h
 	$(CC) -Wall -std=c++11 -c ConcreteCreatorNageoire.cpp -I
 
 ##### Capteurs
-# capteurFactory.o : capteur.h yeux.h corps.h oreilles.h capteurFactory.cpp
-# 	$(CC) -Wall -std=c++11  -c capteurFactory.cpp -I .
+capteurFactory.o: capteurFactory.h capteurFactory.cpp capteur.h
+	$(CC) -Wall -std=c++11  -c capteurFactory.cpp -I .
 
+corps.o: corps.h corps.cpp capteur.h
+	$(CC) -Wall -std=c++11  -c corps.cpp -I .
+
+oreilles.o: oreilles.h oreilles.cpp capteur.h
+	$(CC) -Wall -std=c++11  -c oreilles.cpp -I .
+
+yeux.o: yeux.h yeux.cpp capteur.h
+	$(CC) -Wall -std=c++11  -c yeux.cpp -I .
+
+
+
+##### CLEAN
 clean:
 	rm -f *.o ./$(ACC)/*.o ./$(COM)/*.o ./$(CAP)/*.o ./main
 
