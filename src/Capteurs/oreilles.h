@@ -3,7 +3,7 @@
 
 // Implémente les méthodes de l'interfacce ICapteur
 
-class ICapteur;
+#include "capteur.h"
 
 class Oreilles : public ICapteur {
     public:
