@@ -156,9 +156,15 @@ void IBestiole::setOrientation(double o){this->orientation =o;}
 // }
 
 //////////////// Méthode appelée sur la bestiole à chaque pas de simulation /////////////////////////
-void IBestiole::action(Milieu & milieu ){ 
+void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestioles){ 
 
    ///////// Clonage /////////////
+   double clonnage = ((rand() % 1001) + 1) / 1000.0;
+   if(clonnage <= this->proba_clone){
+      IBestiole* best_clone = clone(); //fait appel au clone() de IBestiole ou de Bestiole ?
+      appendBestioles.push_back(best_clone);
+   }
+   
    bouge(milieu);
    
 
