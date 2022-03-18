@@ -3,7 +3,7 @@
 
 
 #include "UImg.h"
-#include "Bestiole.h"
+#include "IBestiole.h"
 
 #include <iostream>
 #include <vector>

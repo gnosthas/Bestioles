@@ -1,9 +1,11 @@
 #ifndef _COMPORTEMENT_H_
 #define _COMPORTEMENT_H_
 
-#include "Bestiole.h"
-#include "Milieu.h"
-#include "Deplacements.cpp"
+#include <vector>
+#include <iostream>
+// #include "Bestiole.h"
+// #include "IBestiole.h"
+// #include "Milieu.h"
 
 // VISITOR DESIGN PATTERN
 
@@ -12,12 +14,13 @@
 /* Est-ce qu'il faut mettre les comportements en const ? */
 /* Est-ce qu'il faut redef les fonctions */
 
+class IBestiole;
 class Bestiole;
 class Milieu;
 
 class IComportement {
     public:
-        virtual ~IComportement(){cout<<"Destruction comportement"<<endl;};
+        virtual ~IComportement(){};
         virtual void bougeSelonComportement(Milieu &m, Bestiole &b) const = 0;
         virtual void adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const = 0;
 };
