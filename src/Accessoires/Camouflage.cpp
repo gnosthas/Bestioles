@@ -1,5 +1,5 @@
-#include <iostream>
 #include "Camouflage.h"
+#include <iostream>
 using namespace std;
 
 double Camouflage::getCamouflage() const{
