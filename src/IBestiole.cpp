@@ -157,15 +157,22 @@ void IBestiole::setOrientation(double o){this->orientation =o;}
 // }
 
 //////////////// Méthode appelée sur la bestiole à chaque pas de simulation /////////////////////////
-void IBestiole::action(Milieu & milieu ){ 
+void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestioles){ 
 
    ///////// Clonage /////////////
-   bouge(milieu);
+   double clonnage = ((rand() % 1001) + 1) / 1000.0;
+   if(clonnage <= this->proba_clone){
+      IBestiole* best_clone = clone(); //fait appel au clone() de IBestiole ou de Bestiole ?
+      appendBestioles.push_back(best_clone);
+   }
    
+   bouge(milieu);
 
    ///////// Collision ////////////
    collision(milieu);
+
    decrDureeVie();
+   cout << "Action fonctionne bestiole" << endl;
 }; 
 
 
@@ -204,7 +211,7 @@ void IBestiole::draw( UImg & support )
 void IBestiole::collision(Milieu &milieu){
    std::vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
    double         distance_bestioles;
-   for (std::vector<IBestiole*>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it)
+   for (auto it = bestioles.begin() ; it != bestioles.end() ; ++it)
    {
       if(*it != this){
          distance_bestioles = sqrt( pow(this->x-(*it)->x,2)+ pow(this->y-(*it)->y,2) );
