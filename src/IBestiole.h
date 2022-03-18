@@ -90,6 +90,8 @@ public :
    int getAge(void) const;
    void setColor(int r, int g, int b);
    virtual void setVitesse(double v);
+   double getCumulX() const;
+   double getCumulY() const;
 
 };
 
