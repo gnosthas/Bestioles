@@ -24,7 +24,7 @@ public :
    Aquarium( int width, int height, int _delay );
    ~Aquarium( void );
 
-   Milieu & getMilieu( void ) { return *flotte; }
+   Milieu & getMilieu( void );
 
    void run( void );
 
