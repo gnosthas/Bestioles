@@ -3,13 +3,13 @@
 
 
 #include "UImg.h"
-#include "IBestiole.h"
 
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
+class IBestiole;
 
 class Milieu : public UImg
 {
@@ -25,13 +25,13 @@ public :
    Milieu( int _width, int _height );
    ~Milieu( void );
 
-   int getWidth( void ) const { return width; };
-   int getHeight( void ) const { return height; };
-   std::vector<IBestiole*>& getListeBestiole() {return listeBestioles;};
+   int getWidth( void ) const;
+   int getHeight( void ) const;
+   std::vector<IBestiole*>& getListeBestiole();
    void step( void );
 
    // void addMember( const Bestiole & b ) { listeBestioles.push_back(b); listeBestioles.back().initCoords(width, height); }
-   void addBestiole( IBestiole* ib ) { listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); };
+   void addBestiole( IBestiole* ib );
    int nbVoisins( const IBestiole & ib );
 
    std::vector<IBestiole*>& getBestiolesVues( IBestiole &b );

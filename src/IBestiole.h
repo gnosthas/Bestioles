@@ -4,13 +4,13 @@
 #include <iostream>
 // #include <vector>
 // #include "Accessoires/IAccessoire.h"
+#include "UImg.h"
 
 using namespace std;
 
 // class ICapteur; //capteurs
 
 class Milieu;
-class UImg;
 class IComportement;
 class IBestiole{
 

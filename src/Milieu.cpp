@@ -1,4 +1,5 @@
 #include "Milieu.h"
+#include "IBestiole.h"
 
 #include <cstdlib>
 #include <ctime>
@@ -55,7 +56,14 @@ int Milieu::nbVoisins( const IBestiole & ib )
 
 }
 
+std::vector<IBestiole*>& Milieu::getListeBestiole() {return listeBestioles;};
+
 std::vector<IBestiole*>& Milieu::getBestiolesVues( IBestiole &b ) {
    std::vector<IBestiole*> listeVoisins;
    return listeVoisins;
 }
+
+void Milieu::addBestiole( IBestiole* ib ) { listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); };
+
+int Milieu::getWidth( void ) const { return width; };
+int Milieu::getHeight( void ) const { return height; };

@@ -2,7 +2,6 @@
 #include <vector>
 
 #include "Milieu.h"
-#include "UImg.h"
 #include "IBestiole.h"
 #include "comportements/IComportement.h"
 
