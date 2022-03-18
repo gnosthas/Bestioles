@@ -223,6 +223,20 @@ void IBestiole::draw( UImg & support )
    Parcours la liste de toutes les autres créatures ?
    En cas de collision, 1] proba mort 2] changement d'orientation à l'opposée */
 void IBestiole::collision(Milieu &milieu){
+   std::vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
+   double         distance_bestioles;
+   for (std::vector<IBestiole*>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it)
+   {
+      if(*it != this){
+         distance_bestioles = sqrt( pow(this->x-(*it)->x,2)+ pow(this->y-(*it)->y,2) );
+
+         if (distance_bestioles <= AFF_SIZE) 
+         {
+            this-> orientation = - orientation;
+         }
+      }
+   } 
+
 };
 
 
