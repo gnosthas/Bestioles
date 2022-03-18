@@ -30,6 +30,9 @@
 *.exe
 *.out
 *.app
+<<<<<<< HEAD
 
 #VSCODE
+=======
+>>>>>>> dcbe566669497c526346d3f5885bdaae58e554cf
 .vscode/
