@@ -3,7 +3,8 @@
 
 // Implémente les méthodes de l'interfacce ICapteur
 
-class ICapteur;
+#include "capteur.h"
+
 
 class Yeux : public ICapteur {
     public:
