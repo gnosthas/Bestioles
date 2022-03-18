@@ -12,4 +12,3 @@ class ConcreteCreatorNageoire : public AccessoiresFactory {
 };
 
 #endif
-

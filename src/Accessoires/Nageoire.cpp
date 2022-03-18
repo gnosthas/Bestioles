@@ -1,5 +1,5 @@
-#include <iostream>
 #include "Nageoire.h"
+#include <iostream>
 using namespace std;
 
 double Nageoire::getMultvitesse() const{

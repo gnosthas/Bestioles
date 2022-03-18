@@ -1,5 +1,5 @@
-#include <iostream>
 #include "Carapace.h"
+#include <iostream>
 using namespace std;
 
 double Carapace::getResistance() const{
