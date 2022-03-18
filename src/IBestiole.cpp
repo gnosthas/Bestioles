@@ -142,6 +142,11 @@ void IBestiole::setColor(int r, int g, int b){
    this->couleur[2] = b;
 }
 
+void IBestiole::setX(int x){this->x =x;}
+void IBestiole::setY(int y){this->y =y;}
+void IBestiole::setCumulX(double cx){this->cumulX = cx;}
+void IBestiole::setCumulY(double cy){this->cumulY = cy;}
+void IBestiole::setOrientation(double o){this->orientation =o;}
 
 ////////////////////////Les Méthodes qu'il reste à implémenter ////////////////
 

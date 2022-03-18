@@ -93,6 +93,11 @@ public :
    double getCumulX() const;
    double getCumulY() const;
 
+   void setX(int x);
+   void setY(int y);
+   void setCumulX(double cx);
+   void setCumulY(double cy);
+   void setOrientation(double o);
 };
 
 
