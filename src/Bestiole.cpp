@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include "Bestiole.h"
-#include "IBestiole.h"
 #include "Milieu.h"
 #include "comportements/IComportement.h"
 

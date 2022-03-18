@@ -29,7 +29,7 @@ protected :
    double            vitesse; 
 
    T               * couleur;
-   int age; //Age de la bestiole qui augmente à chaque pas de simulation
+   int duree_vie; //Age de la bestiole qui augmente à chaque pas de simulation
    double proba_clone; //proba de se cloner à chaque pas de simul
    double proba_death; //proba de mort lors d'une collision
    // std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
@@ -49,7 +49,7 @@ private :
    void collision(Milieu &milieu);
 
    //Augmente l'age de la bestiole --> appelé à chaque pas de simulation
-   void incr_age(void);
+   void decrDureeVie(void);
 
    void initBestiole(void);
 
@@ -83,20 +83,21 @@ public :
    virtual double get_proba_death(void) const;
    int getX() const;
    int getY() const;
+   double getCumulX() const;
+   double getCumulY() const;
    virtual double get_vitesse(void) const;
    virtual double getOrientation(void) const;
    int getIdentite(void) const;
    IComportement* getComportement(void) const;
-   int getAge(void) const;
-   void setColor(int r, int g, int b);
-   virtual void setVitesse(double v);
-   double getCumulX() const;
-   double getCumulY() const;
+   int getDureeVie(void) const;
 
+   void setColor(int r, int g, int b);
    void setX(int x);
    void setY(int y);
    void setCumulX(double cx);
    void setCumulY(double cy);
+   virtual void setVitesse(double v);
+   void setDureeVie(int duree_vie);
    void setOrientation(double o);
 };
 
