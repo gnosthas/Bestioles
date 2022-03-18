@@ -29,7 +29,7 @@ Deplacements.o: Deplacements.h Deplacements.cpp
 # 	$(CC) -Wall -std=c++11  -c capteurFactory.cpp -I .
 
 clean:
-	rm -f *.o ./Accessoires/*.o ./main
+	rm -f *.o ./Accessoires/*.o ./comportements/*.o ./Capteurs/*.o ./main
 
 # main : main.cpp Aquarium.o Bestiole.o Milieu.o
 # 	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o Bestiole.o Milieu.o -I . -lX11 -lpthread
