@@ -3,7 +3,6 @@
 #include "Deplacements.h"
 #include "../Bestiole.h"
 #include "../Milieu.h"
-#include "Deplacements.h"
 #include <cmath>
 #include <cstdlib>
 

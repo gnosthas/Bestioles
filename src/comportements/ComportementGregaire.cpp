@@ -1,7 +1,7 @@
 #include "ComportementGregaire.h"
-#include "Milieu.h"
-#include "Bestiole.h"
-#include "IBestiole.h"
+#include "../Milieu.h"
+#include "../Bestiole.h"
+#include "../IBestiole.h"
 #include "Deplacements.h"
 
 

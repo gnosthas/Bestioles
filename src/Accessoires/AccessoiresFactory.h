@@ -7,9 +7,7 @@
 // AccessoiresFactory est une Classe virtuelle : aucun accessoire ne peut être crée par appel à cet classe
 // Les classes filles de AccessoiresFactory créent un accessoir spécifique
 
-// #include "IAccessoire.h"
-
-class IAcessoire;
+#include "IAccessoire.h"
 
 class AccessoiresFactory {
     public:

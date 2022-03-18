@@ -1,5 +1,5 @@
-#ifndef OREILLES
-#define OREILLES
+#ifndef OREILLES.H
+#define OREILLES.H
 
 // Implémente les méthodes de l'interfacce ICapteur
 

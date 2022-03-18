@@ -1,5 +1,5 @@
-#ifndef CAPTEUR
-#define CAPTEUR
+#ifndef CAPTEUR.H
+#define CAPTEUR.H
 
 #include <iostream>
 using namespace std;

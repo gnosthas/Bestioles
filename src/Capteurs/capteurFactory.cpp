@@ -1,5 +1,5 @@
-#ifndef CAPTEURFACTORY
-#define CAPTEURFACTORY
+#ifndef CAPTEURFACTORY.H
+#define CAPTEURFACTORY.H
 
 #include <iostream>
 using namespace std;

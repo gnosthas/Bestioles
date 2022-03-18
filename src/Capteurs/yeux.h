@@ -1,5 +1,5 @@
-#ifndef YEUX
-#define YEUX
+#ifndef YEUX.H
+#define YEUX.H
 
 // Implémente les méthodes de l'interfacce ICapteur
 
