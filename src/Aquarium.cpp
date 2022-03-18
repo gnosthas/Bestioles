@@ -29,7 +29,7 @@ Aquarium::~Aquarium( void )
 
 }
 
-
+Milieu& Aquarium::getMilieu( void ) { return *flotte; }
 void Aquarium::run( void )
 {
 

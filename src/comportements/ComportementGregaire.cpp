@@ -4,12 +4,14 @@
 #include "../IBestiole.h"
 #include "Deplacements.h"
 
-
 void ComportementGregaire::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const
 {
+    double orientationAll = 0;
     for (IBestiole* b: listeVoisins) {
-
+        orientationAll = orientationAll + b->getOrientation();
     }
+    orientationAll = orientationAll/listeVoisins.size();
+    b.setOrientation(orientationAll);
 }
 
 void ComportementGregaire::bougeSelonComportement(Milieu &m, Bestiole &b) const
