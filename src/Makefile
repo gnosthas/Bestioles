@@ -13,10 +13,10 @@ IBestiole.o : IBestiole.h IBestiole.cpp
 Bestiole.o : Bestiole.h Bestiole.cpp IBestiole.h
 	$(CC) -Wall -std=c++11  -c Bestiole.cpp -I .
 
-ConcreteCreatorBestiole.o: ConcreteCreatorBestiole.cpp ConcreteCreatorBestiole.h Bestiole.h
+ConcreteCreatorBestiole.o: ConcreteCreatorBestiole.cpp ConcreteCreatorBestiole.h BestiolesFactory.h Bestiole.h
 	$(CC) -Wall -std=c++11 -c ConcreteCreatorBestiole.cpp -I .
 
-Milieu.o : Milieu.h Milieu.cpp IBestiole.h Bestiole.h
+Milieu.o : Milieu.h Milieu.cpp
 	$(CC) -Wall -std=c++11  -c Milieu.cpp -I .
 
 ComportementPeureuse.o: ComportementPeureuse.h ComportementPeureuse.cpp IComportement.h 
@@ -24,6 +24,7 @@ ComportementPeureuse.o: ComportementPeureuse.h ComportementPeureuse.cpp IComport
 
 capteurFactory.o : capteur.h yeux.h corps.h oreilles.h capteurFactory.cpp
 	$(CC) -Wall -std=c++11  -c capteurFactory.cpp -I .
+	
 clean:
 	rm -f *.o ./Accessoires/*.o ./main
 
