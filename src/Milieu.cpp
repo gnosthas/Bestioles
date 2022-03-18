@@ -42,16 +42,12 @@ void Milieu::step( void )
 
 
    }
-
-
-   if(!appendBestioles.empty()){ 
-      for(auto it = appendBestioles.begin() ; it != appendBestioles.end() ; ++it){
-         addBestiole(*it);
-         cout << "ADDED BESTIOLE" << endl;
-      }
-   }
- 
-   cout << "step fonctionne correctement" <<endl;
+   // if(!appendBestioles.empty()){ 
+   //    for(auto it = appendBestioles.begin() ; it != appendBestioles.end() ; ++it){
+   //       addBestiole(*it);
+   //       cout << "ADDED BESTIOLE" << endl;
+   //    }
+   // }
       
 }
 
