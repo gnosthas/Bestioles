@@ -1,8 +1,8 @@
 #define _USE_MATH_DEFINES
 
 #include "Deplacements.h"
-#include "Bestiole.h"
-#include "Milieu.h"
+#include "../Bestiole.h"
+#include "../Milieu.h"
 #include <cmath>
 #include <cstdlib>
 

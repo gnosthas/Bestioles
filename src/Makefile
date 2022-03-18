@@ -1,4 +1,4 @@
-OBJ = main.cpp Aquarium.o Bestiole.o IBestiole.o ConcreteCreatorBestiole.o Milieu.o comportements/ComportementPeureuse.o #Capteurs/capteurFactory.o
+OBJ = main.cpp Aquarium.o Bestiole.o IBestiole.o ConcreteCreatorBestiole.o Milieu.o comportements/ComportementPeureuse.o comportements/Deplacements.o #Capteurs/capteurFactory.o
 CC = g++
 
 main : $(OBJ)
@@ -14,7 +14,7 @@ Bestiole.o : Bestiole.h Bestiole.cpp IBestiole.h
 	$(CC) -Wall -std=c++11  -c Bestiole.cpp -I .
 
 ConcreteCreatorBestiole.o: ConcreteCreatorBestiole.cpp ConcreteCreatorBestiole.h BestiolesFactory.h Bestiole.h
-	$(CC) -Wall -std=c++11 -c ConcreteCreatorBestiole.cpp -I .
+	$(CC) -Wall -std=c++11  -c ConcreteCreatorBestiole.cpp -I .
 
 Milieu.o : Milieu.h Milieu.cpp
 	$(CC) -Wall -std=c++11  -c Milieu.cpp -I .
@@ -22,9 +22,12 @@ Milieu.o : Milieu.h Milieu.cpp
 ComportementPeureuse.o: ComportementPeureuse.h ComportementPeureuse.cpp IComportement.h 
 	$(CC) -Wall -std=c++11  -c ComportementPeureuse.cpp -I .
 
+Deplacements.o: Deplacements.h Deplacements.cpp Milieu.h Bestiole.h
+	$(CC) -Wall -std=c++11  -c Deplacements.cpp -I .
+
 # capteurFactory.o : capteur.h yeux.h corps.h oreilles.h capteurFactory.cpp
-#	 $(CC) -Wall -std=c++11  -c capteurFactory.cpp -I .
-	
+# 	$(CC) -Wall -std=c++11  -c capteurFactory.cpp -I .
+
 clean:
 	rm -f *.o ./Accessoires/*.o ./main
 
