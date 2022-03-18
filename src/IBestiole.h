@@ -41,7 +41,7 @@ protected :
 private :
 
    //Déplace la créature dans le milieu
-   virtual void bouge(Milieu &milieu); 
+   virtual void bouge(Milieu &milieu) = 0; 
    
    /*Gère la collision entre les créatures. La collision se fait entre deux cercles ? deux ellipses ?
    Parcours la liste de toutes les autres créatures ?
