@@ -185,6 +185,7 @@ void IBestiole::draw( UImg & support, Milieu & milieu ){
    Parcours la liste de toutes les autres créatures ?
    En cas de collision, 1] proba mort 2] changement d'orientation à l'opposée */
 void IBestiole::collision(Milieu &milieu){
+
 };
 
 

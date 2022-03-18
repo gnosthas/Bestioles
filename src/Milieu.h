@@ -30,8 +30,9 @@ public :
    void step( void );
 
    
-   void addBestiole( IBestiole* ib ) { listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); };
-   
+   void addBestiole(IBestiole* ib) {listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); };
+   void removeBestiole (IBestiole* ib);
+
    int nbVoisins( const IBestiole & ib );
    
    // std::vector<Bestiole>& getBestiolesVues(const Bestiole& b);

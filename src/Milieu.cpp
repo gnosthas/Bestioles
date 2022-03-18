@@ -14,6 +14,10 @@ using namespace std;
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
 
 
+
+
+
+
 Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
                                             width(_width), height(_height)
 {
@@ -50,10 +54,7 @@ void Milieu::step( void )
 
 int Milieu::nbVoisins(const IBestiole & ib)
 {
-
    int         nb = 0;
-
-
    for ( std::vector<IBestiole*>::iterator it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it )
       if ( !((**it) == ib) && ib.jeTeVois(**it) ) //idem modif
          ++nb;
