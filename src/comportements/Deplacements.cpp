@@ -25,20 +25,20 @@ void bougeNormalement( Bestiole &b, Milieu &m )
 
     if ( (nx < 0) || (nx > xLim - 1) ) {
         b.setOrientation(M_PI - b.getOrientation());
-        b.getCumulX() = 0.;
+        b.setCumulX(0.);
     }
     else {
         b.setX(static_cast<int>( nx ));
-        b.getCumulX() += nx - b.getX();
+        b.setCumulX( b.getCumulX() + nx - b.getX());
     }
 
     if ( (ny < 0) || (ny > yLim - 1) ) {
         b.setOrientation(-b.getOrientation());
-        b.getCumulY() = 0.;
+        b.setCumulX(0.);
     }
     else {
         b.setY(static_cast<int>( ny ));
-        b.getCumulY() += ny - b.getY();
+        b.setCumulY(b.getCumulY + ny - b.getY());
     }
 
 }
