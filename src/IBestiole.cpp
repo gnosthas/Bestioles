@@ -36,7 +36,7 @@ void IBestiole::initBestiole(){
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
 
    this->proba_death = ((rand() % 101))/100.0 ;// valeur entre 0 et 1
-   this->age = 0; //Toute bestiole même durée de vie du coup ? ou alors crée champ durée de vie et on l'initialise aléatoirement puis il décroit à chaque pas de simul
+   this->duree_vie = rand() % 201; 
    this->proba_clone= 0.01; 
 }
 
@@ -108,8 +108,8 @@ bool operator==( const IBestiole & ib1, const IBestiole & ib2 )
    return ( ib1.identite == ib2.identite );
 }
 
-void IBestiole::incr_age(){
-   ++age;
+void IBestiole::decrDureeVie(){
+   -- this->duree_vie;
 }
 /// Savoir si la bestiole passée en argument est dans le champ de vision de la bestiole courante ///
 bool IBestiole::jeTeVois( const IBestiole & ib ) const
@@ -123,7 +123,7 @@ bool IBestiole::jeTeVois( const IBestiole & ib ) const
 int IBestiole::getX() const {return x;}
 int IBestiole::getY() const {return y;}
 int IBestiole::getIdentite() const {return this->identite;}
-int IBestiole::getAge() const{return this->age;};
+int IBestiole::getDureeVie() const{return this->duree_vie;};
 IComportement* IBestiole::getComportement() const {return this->comportement;}
 double IBestiole::get_proba_death() const{return this->proba_death;}
 double IBestiole::get_vitesse() const{return this-> vitesse;}
@@ -146,6 +146,7 @@ void IBestiole::setX(int x){this->x =x;}
 void IBestiole::setY(int y){this->y =y;}
 void IBestiole::setCumulX(double cx){this->cumulX = cx;}
 void IBestiole::setCumulY(double cy){this->cumulY = cy;}
+void IBestiole::setDureeVie(int duree_vie){this->duree_vie = duree_vie;};
 void IBestiole::setOrientation(double o){this->orientation =o;}
 
 ////////////////////////Les Méthodes qu'il reste à implémenter ////////////////
@@ -164,7 +165,7 @@ void IBestiole::action(Milieu & milieu ){
 
    ///////// Collision ////////////
    collision(milieu);
-   incr_age();
+   decrDureeVie();
 }; 
 
 
