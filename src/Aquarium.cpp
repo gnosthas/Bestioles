@@ -34,25 +34,27 @@ void Aquarium::run( void )
 {
 
    cout << "running Aquarium" << endl;
+   bool pause = false;
 
    while ( ! is_closed() )
    {
 
       // cout << "iteration de la simulation" << endl;
-
       if ( is_key() ) {
          cout << "Vous avez presse la touche " << static_cast<unsigned char>( key() );
          cout << " (" << key() << ")" << endl;
          if ( is_keyESC() ) close();
+         if ( is_keySPACE() ) pause = !pause;
       }
-      flotte->step();
+      if (!pause) {
+         flotte->step();
 
-      display( *flotte );
+         display( *flotte );
+         cout << "Nombre de Bestioles : " << flotte->getListeBestiole().size() << endl;
+      }
+      
 
       wait( delay );
 
    } // while
-   for (IBestiole* b : flotte->getListeBestiole()) {
-      delete b;
-   }
 }

@@ -1,13 +1,13 @@
 #define _USE_MATH_DEFINES
+#include <cmath>
+#include <cstdlib>
 
 #include "Deplacements.h"
 #include "../Bestiole.h"
 #include "../Milieu.h"
-#include <cmath>
-#include <cstdlib>
 
 void bougeNormalement( Bestiole &b, Milieu &m )
-{
+{   
     int xLim = m.getWidth();
     int yLim = m.getHeight(); 
     double         nx, ny;
@@ -21,7 +21,7 @@ void bougeNormalement( Bestiole &b, Milieu &m )
 
     nx = b.getX() + dx + cx;
     ny = b.getY() + dy + cy;
-
+    
     if ( (nx < 0) || (nx > xLim - 1) ) {
         b.setOrientation(M_PI - b.getOrientation());
         b.setCumulX(0.);

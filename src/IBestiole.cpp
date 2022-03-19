@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+
 #include <iostream>
 #include <vector>
 
@@ -36,7 +38,7 @@ void IBestiole::initBestiole(){
 
    this->proba_death = ((rand() % 101))/100.0 ;// valeur entre 0 et 1
    this->duree_vie = rand() % 201; 
-   this->proba_clone= 0.01; 
+   this->proba_clone= 0.001; 
 }
 
 ///////////////////////// Constructeur d'une bestiole /////////////////////////////
@@ -140,12 +142,21 @@ void IBestiole::setColor(int r, int g, int b){
    this->couleur[2] = b;
 }
 
-void IBestiole::setX(int x){this->x =x;}
+void IBestiole::setX(int x){
+   this->x =x;
+   }
 void IBestiole::setY(int y){this->y =y;}
 void IBestiole::setCumulX(double cx){this->cumulX = cx;}
 void IBestiole::setCumulY(double cy){this->cumulY = cy;}
 void IBestiole::setDureeVie(int duree_vie){this->duree_vie = duree_vie;};
-void IBestiole::setOrientation(double o){this->orientation =o;}
+void IBestiole::setOrientation(double o){
+   if (o > 2*M_PI) {
+      double intpart,fracpart;
+      fracpart = std::modf(o/(2*M_PI), &intpart);
+      o = 2*M_PI*fracpart;
+   } 
+   this->orientation =o;
+   }
 
 ////////////////////////Les Méthodes qu'il reste à implémenter ////////////////
 
@@ -170,7 +181,7 @@ void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestiole
    collision(milieu);
 
    decrDureeVie();
-   cout << "Action fonctionne bestiole" << endl;
+   // cout << "Action fonctionne bestiole" << endl;
 }; 
 
 

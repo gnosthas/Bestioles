@@ -22,7 +22,10 @@ Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
 
 Milieu::~Milieu( void )
 {
-
+   for (IBestiole* b : listeBestioles) {
+      delete b;
+   }
+   listeBestioles.clear();
    cout << "dest Milieu" << endl;
 
 }
@@ -33,7 +36,11 @@ void Milieu::step( void )
    std::vector<IBestiole*> appendBestioles; //Bestioles à ajouter à chaque pas de simulation
 
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
-
+   // if (!listeBestioles.empty()) {
+   //    std::cout << "pos premiere bestiole : " << listeBestioles.at(0)->getX() << " , " << listeBestioles.at(0)->getY() << std::endl;
+   //    std::cout << "age premiere bestiole : " << listeBestioles.at(0)->getDureeVie() << std::endl;
+   //    std::cout << "identite premiere bestiole : " << listeBestioles.at(0)->getIdentite() << std::endl;
+   // }
    for (auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it)
    {
       (*it)->action(*this, appendBestioles);
@@ -70,7 +77,12 @@ std::vector<IBestiole*>& Milieu::getListeBestiole() {return listeBestioles;};
 
 std::vector<IBestiole*> Milieu::getBestiolesVues( IBestiole &b ) {
    std::vector<IBestiole*> listeVoisins;
-   listeVoisins.push_back(listeBestioles.at(0));
+   // listeVoisins.push_back(listeBestioles.at(0));
+   for (IBestiole* b2 : listeBestioles) {
+      if (b.getIdentite() != b2->getIdentite() && b.jeTeVois(*b2)) {
+         listeVoisins.push_back(b2);
+      }
+   }
 
    return listeVoisins;
 }

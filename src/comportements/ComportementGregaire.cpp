@@ -6,22 +6,20 @@
 
 void ComportementGregaire::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const
 {
-    double orientationAll = 0;
-    for (IBestiole* b: listeVoisins) {
-        orientationAll = orientationAll + b->getOrientation();
+    if (!listeVoisins.empty()) {
+        double orientationAll = 0;
+        for (IBestiole* b2: listeVoisins) {
+            orientationAll = orientationAll + b2->getOrientation();
+        }
+        orientationAll = orientationAll/listeVoisins.size();
+        b.setOrientation(orientationAll);
     }
-    orientationAll = orientationAll/listeVoisins.size();
-    b.setOrientation(orientationAll);
+    
 }
 
 void ComportementGregaire::bougeSelonComportement(Milieu &m, Bestiole &b) const
 {
     std::vector<IBestiole*> listeVoisins = m.getBestiolesVues(b);
     adapterBestioleAVoisins(b, listeVoisins);
-    if (listeVoisins.size() == 0) {
-        bougeNormalement(b, m);
-    }
-    else {
-        bougeNormalement(b, m);
-    }
+    bougeNormalement(b, m);
 }
