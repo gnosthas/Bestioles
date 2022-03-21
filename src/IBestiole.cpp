@@ -23,7 +23,6 @@ void IBestiole::initBestiole(){
    this->identite = ++next;
    this->x = this->y = 0;
    this->cumulX = this->cumulY = 0.;
-   this->isCloned = false;
    //Orientation initiale aléatoire
    this->orientation = static_cast<double>( rand() )/RAND_MAX*2.*M_PI;
    // vitesse initiale aléatoire
@@ -91,7 +90,7 @@ IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
    delete[] this->couleur;
-   //delete this->comportement; WARNING SEGMENTATION FAULT
+   delete this->comportement; //Warning Segment error
    
 }
 ////////////////// Initialise aléatoire la position de la bestiole ///////////////
@@ -148,7 +147,7 @@ void IBestiole::setCumulY(double cy){this->cumulY = cy;}
 void IBestiole::setDureeVie(int duree_vie){this->duree_vie = duree_vie;};
 void IBestiole::setOrientation(double o){this->orientation =o;}
 
-////////////////////////Les Méthodes qu'il reste à implémenter ////////////////
+//////////////////////w//Les Méthodes qu'il reste à implémenter ////////////////
 
  ///////////////////////////// Déplacement de la bestiole dans le milieu ////////////////////////
 // void IBestiole::bouge(Milieu &milieu){
@@ -156,12 +155,13 @@ void IBestiole::setOrientation(double o){this->orientation =o;}
 // }
 
 //////////////// Méthode appelée sur la bestiole à chaque pas de simulation /////////////////////////
-void IBestiole::action(Milieu & milieu){ 
+void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> appendBestioles){ 
 
    ///////// Clonage /////////////
    double clonnage = ((rand() % 1001) + 1) / 1000.0;
    if(clonnage <= this->proba_clone){
-      this->isCloned = true;
+      IBestiole* best_clone = clone(); 
+      appendBestioles.push_back(best_clone);
    }
    
    bouge(milieu);
