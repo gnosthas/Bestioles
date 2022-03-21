@@ -65,7 +65,7 @@ public :
    ////////// TEMPORAIRE POUR TEST COMPILATION
    IBestiole(const IBestiole &ib); //Constructeur par copie d'une bestiole
 
-   void action( Milieu & monMilieu); //Méthode appelée sur la bestiole à chaque pas de simul
+   void action( Milieu & monMilieu, std::vector<IBestiole*> appendBestioles); //Méthode appelée sur la bestiole à chaque pas de simul
 
    virtual IBestiole* clone() const = 0; //DP Prototype  
 

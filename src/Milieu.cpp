@@ -36,15 +36,10 @@ void Milieu::step( void )
 
    for (auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it)
    {
-      if ( (*it)->getBoolClone() == true)
-      {
-         addBestiole((*it)->clone());
-         cout << "BETE AJOUTEE"<<endl;
-      }
-      (*it)->action(*this);
+      
+      (*it)->action(*this, appendBestioles);
       (*it)->draw( *this );
-      cout << "step fonctione bien"<<endl;
-
+     
    }
    if(!appendBestioles.empty()){ 
       for(auto it = appendBestioles.begin() ; it != appendBestioles.end() ; ++it){
@@ -52,7 +47,7 @@ void Milieu::step( void )
          cout << "ADDED BESTIOLE" << endl;
       }
    }
-      
+   cout << "step fonctione bien"<<endl; 
 }
 
 
