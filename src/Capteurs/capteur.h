@@ -8,8 +8,9 @@ using namespace std;
 // 
 
 
-class ICapteur {
-    private:    
+class ICapteur {   
+
+    public:
         double alpha_m;
         double alpha_M;
         double delta_m;
@@ -19,8 +20,6 @@ class ICapteur {
         float posX;
         float posY;
 
-    public:
-        int id;
         virtual ~ICapteur(){cout<<"Destruction capteur"<<endl;};
         virtual void detection() const = 0;
 };

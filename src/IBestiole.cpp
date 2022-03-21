@@ -226,7 +226,23 @@ void IBestiole::collision(Milieu &milieu){
 };
 
 
+void IBestiole::genererCapteurs(Milieu & monMilieu){
+   listCapteurs.push(monMilieu.createCapteur(TC_Corps));
+   int n = rand() % 2;
+   switch(n){
+      case 0 :
+         listCapteurs.push(monMilieu.createCapteur(TC_Oreilles));
+         break;
+      case 1 :
+         listCapteurs.push(monMilieu.createCapteur(TC_Yeux));
+         break;
+      case 2 : 
+         listCapteurs.push(monMilieu.createCapteur(TC_Yeux));
+         listCapteurs.push(monMilieu.createCapteur(TC_Oreilles));
+         break;
+   }
 
+}
 
 
 
