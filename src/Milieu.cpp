@@ -46,10 +46,7 @@ void Milieu::step( void )
    for (auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it)
    {
       (*it)->action(*this, appendBestioles, removeBestioles);
-
       (*it)->draw( *this );
-
-
    }
    if(!appendBestioles.empty()){ 
       for(auto it = appendBestioles.begin() ; it != appendBestioles.end() ; ++it){

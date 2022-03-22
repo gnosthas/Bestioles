@@ -38,7 +38,7 @@ void IBestiole::initBestiole(){
 
    // this->proba_death = ((rand() % 101))/100.0 ;// valeur entre 0 et 1
    this->proba_death = 0.1;
-   this->duree_vie = rand() % 201; 
+   this->duree_vie = rand() % 201; // Durée de vie entre 0 et 200 aléatoire
    this->proba_clone= 0.003; 
 }
 
@@ -177,12 +177,22 @@ void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestiole
    }
    
    bouge(milieu);
-
+   
    ///////// Collision ////////////
    collision(milieu, removeBestioles);
-
+   
    decrDureeVie();
-   // cout << "Action fonctionne bestiole" << endl;
+
+   if (this->getDureeVie() == 0)
+   {  
+   // On utilise find pour vérifier que la bestiole qui meurt de vieillesse n'est pas déjà morte de collision
+      if(find(removeBestioles.begin(),removeBestioles.end(),this) == removeBestioles.end())
+      {
+         removeBestioles.push_back(this);
+         cout << "Une bestiole va mourrir de vieillesse" << endl;
+      }
+   }
+
 }; 
 
 
