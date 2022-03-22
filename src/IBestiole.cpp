@@ -38,7 +38,7 @@ void IBestiole::initBestiole(){
 
    // this->proba_death = ((rand() % 101))/100.0 ;// valeur entre 0 et 1
    this->proba_death = 0.1;
-   this->duree_vie = rand() % 201; // Durée de vie entre 0 et 200 aléatoire
+   this->duree_vie = 200 + rand() % 201; // Durée de vie entre 200 et 400 aléatoire
    this->proba_clone= 0.003; 
 }
 
@@ -137,6 +137,8 @@ double IBestiole::getOrientation() const{return this->orientation;}
 void IBestiole::setVitesse(double v){
    this->vitesse = v;
 };
+
+//Pour créer des bestioles différentes en fonction de leur couleur
 void IBestiole::setColor(int r, int g, int b){
    this->couleur[0] = r;
    this->couleur[1] = g;
@@ -246,7 +248,7 @@ void IBestiole::collision(Milieu &milieu, std::vector<IBestiole*> & removeBestio
             if (proba_death > proba_survive) //Si la proba de mort est supérieure à la proba de survie tirée aléatoirement
             {
                removeBestioles.push_back(this);
-               cout << "Une Bestiole meurt et va être retirée de l'environnement" << endl;
+               cout << "Une Bestiole va mourrir de collision" << endl;
             }
             this-> orientation = - orientation;
          }

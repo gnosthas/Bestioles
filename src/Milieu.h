@@ -18,15 +18,29 @@ private :
    static const T          white[];
 
    int                     width, height;
+
+   double                  propGreg, propPeur, propKamik, propPrev, propMult;
+   
+   int                     nb_Bestioles;
+
    
    std::vector<IBestiole*>   listeBestioles;
 
 public :
-   Milieu( int _width, int _height );
+   Milieu( int _width, int _height, int nb_Bestioles, double Greg, double Peur, double Kamik, double Prev, double Mult);
    ~Milieu( void );
 
    int getWidth( void ) const;
    int getHeight( void ) const;
+   int getNbBest( void ) const;
+   double getPropGreg( void ) const;
+   double getPropPeur( void ) const;
+   double getPropKamik( void ) const;
+   double getPropPrev( void ) const;
+   double getPropMult( void ) const;
+   
+
+
    std::vector<IBestiole*>& getListeBestiole();
    void step( void );
 
@@ -36,6 +50,9 @@ public :
    int nbVoisins( const IBestiole & ib );
 
    std::vector<IBestiole*> getBestiolesVues( IBestiole &b );
+
+
+
 };
 
 

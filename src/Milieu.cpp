@@ -9,9 +9,11 @@ using namespace std;
 
 const T    Milieu::white[] = { (T)255, (T)255, (T)255 };
 
-
-Milieu::Milieu( int _width, int _height ) : UImg( _width, _height, 1, 3 ),
-                                            width(_width), height(_height)
+Milieu::Milieu( int _width, int _height, int nb_Bestioles, double Greg, 
+double Peur, double Kamik, double Prev, double Mult ) : UImg( _width, _height, 1, 3 ),
+                                            width(_width), height(_height),
+                                            nb_Bestioles(nb_Bestioles), propGreg(Greg),
+                                            propPeur(Peur), propKamik(Kamik), propPrev(Prev), propMult(Mult)
 {
 
    cout << "const Milieu" << endl;
@@ -104,3 +106,9 @@ void Milieu::removeBestiole(IBestiole* ib){
 
 int Milieu::getWidth( void ) const { return width; };
 int Milieu::getHeight( void ) const { return height; };
+int Milieu::getNbBest( void ) const { return this->nb_Bestioles;};
+double Milieu::getPropGreg( void ) const {return this->propGreg;};
+double Milieu::getPropPeur( void ) const {return this->propPeur;};
+double Milieu::getPropKamik( void ) const {return this->propKamik;};
+double Milieu::getPropPrev( void ) const {return this->propPrev;};
+double Milieu::getPropMult( void ) const {return this->propMult;};

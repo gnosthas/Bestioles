@@ -21,7 +21,7 @@ private :
    int            delay;
 
 public :
-   Aquarium( int width, int height, int _delay );
+   Aquarium( int width, int height, int _delay, int nb_Bestioles, double Greg, double Peur, double Kamik, double Prev, double Mult );
    ~Aquarium( void );
 
    Milieu & getMilieu( void );
