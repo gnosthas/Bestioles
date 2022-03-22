@@ -33,7 +33,9 @@ protected :
    int age; //Age de la bestiole qui augmente à chaque pas de simulation
    double proba_clone; //proba de se cloner à chaque pas de simul
    double proba_death; //proba de mort lors d'une collision
-   // std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
+   std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
+
+
    // std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
    // IComportement* comportement; //Comportement de la bestiole
 
@@ -92,6 +94,9 @@ public :
    void setColor(int r, int g, int b);
    virtual void setVitesse(double v);
 
+
+   ///////////////////// CAPTEURS ////////////////////////
+   void genererCapteurs(Milieu & monMilieu);
 };
 
 

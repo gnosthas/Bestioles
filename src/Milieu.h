@@ -21,7 +21,7 @@ private :
    
    std::vector<IBestiole*>   listeBestioles;
 
-   CapteurFactory factory;
+   CapteurFactory            factory;
 
 public :
    Milieu( int _width, int _height );

@@ -30,7 +30,7 @@ Milieu.o : Milieu.h Milieu.cpp IBestiole.h Bestiole.h
 	$(CC) -Wall -std=c++11  -c Milieu.cpp -I .
 
 clean:
-	rm -f *.o ./Accessoires/*.o ./main
+	rm -f *.o ./Accessoires/*.o ./main ./Capteurs/*.o
 
 # main : main.cpp Aquarium.o Bestiole.o Milieu.o
 # 	g++ -Wall -std=c++11 -o main main.cpp Aquarium.o Bestiole.o Milieu.o -I . -lX11 -lpthread
