@@ -5,8 +5,8 @@
 
 class ComportementGregaire : public IComportement {
     public:
-        void bougeSelonComportement(Milieu &m, Bestiole &b) const override;
-        void adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const override;
+        void bougeSelonComportement(Milieu &m, Bestiole &b) override;
+        void adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) override;
 };
 
 #endif

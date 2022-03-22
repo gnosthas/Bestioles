@@ -6,7 +6,7 @@
 #include "Deplacements.h"
 #include <cmath>
 
-void ComportementPrevoyante::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const
+void ComportementPrevoyante::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins)
 {
     if (!listeVoisins.empty()) {
         double xb = b.getX() + b.getCumulX();
@@ -31,7 +31,7 @@ void ComportementPrevoyante::adapterBestioleAVoisins(Bestiole &b, std::vector<IB
     }
 }
 
-void ComportementPrevoyante::bougeSelonComportement(Milieu &m, Bestiole &b) const
+void ComportementPrevoyante::bougeSelonComportement(Milieu &m, Bestiole &b)
 {
     std::vector<IBestiole*> listeVoisins = m.getBestiolesVues(b);
     adapterBestioleAVoisins(b, listeVoisins);
