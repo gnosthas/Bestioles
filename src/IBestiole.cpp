@@ -92,7 +92,6 @@ IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
    delete[] this->couleur;
-   delete this->comportement; //Warning Segment error
    
 }
 ////////////////// Initialise aléatoire la position de la bestiole ///////////////

@@ -4,7 +4,7 @@
 #include "../IBestiole.h"
 #include "Deplacements.h"
 
-void ComportementGregaire::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const
+void ComportementGregaire::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins)
 {
     if (!listeVoisins.empty()) {
         double orientationAll = 0;
@@ -17,7 +17,7 @@ void ComportementGregaire::adapterBestioleAVoisins(Bestiole &b, std::vector<IBes
     
 }
 
-void ComportementGregaire::bougeSelonComportement(Milieu &m, Bestiole &b) const
+void ComportementGregaire::bougeSelonComportement(Milieu &m, Bestiole &b)
 {
     std::vector<IBestiole*> listeVoisins = m.getBestiolesVues(b);
     adapterBestioleAVoisins(b, listeVoisins);

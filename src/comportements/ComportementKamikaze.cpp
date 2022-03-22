@@ -11,7 +11,7 @@
     Elle fonce en permanace en direction de la bestiole la plus proche environnante.
 */
 
-void ComportementKamikaze::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const
+void ComportementKamikaze::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins)
 {
     if (!listeVoisins.empty()) {
         double xb = b.getX() + b.getCumulX();
@@ -38,7 +38,7 @@ void ComportementKamikaze::adapterBestioleAVoisins(Bestiole &b, std::vector<IBes
     
 }
 
-void ComportementKamikaze::bougeSelonComportement(Milieu &m, Bestiole &b) const
+void ComportementKamikaze::bougeSelonComportement(Milieu &m, Bestiole &b)
 {
     std::vector<IBestiole*> listeVoisins = m.getBestiolesVues(b);
     adapterBestioleAVoisins(b, listeVoisins);

@@ -1,6 +1,7 @@
 #include "Aquarium.h"
 
 #include "Milieu.h"
+#include "IBestiole.h"
 
 
 Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
@@ -50,11 +51,11 @@ void Aquarium::run( void )
          flotte->step();
 
          display( *flotte );
-         cout << "Nombre de Bestioles : " << flotte->getListeBestiole().size() << endl;
+         // cout << "Nombre de Bestioles : " << flotte->getListeBestiole().size() << endl;
       }
       
 
       wait( delay );
 
-   } // while
+   }
 }

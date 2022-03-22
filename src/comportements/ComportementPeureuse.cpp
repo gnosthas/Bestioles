@@ -3,7 +3,6 @@
 #include "../Bestiole.h"
 #include "../IBestiole.h"
 #include "Deplacements.h"
-#include <map>
 
 /*
     Soit une bestiole.
@@ -13,14 +12,7 @@
         lors d'une step, son etat peur est prolonge d'une step.
 */
 
-
-
-int              peurDesNbBestioles = 1; //La bestiole a peur des que le nombre de bestioles environnantes dépasse ce nombre
-int              accelerationPeur = 2; //La bestiole a peur des que le nombre de bestioles environnantes dépasse ce nombre
-int              dureeEtatPeur = 15; //La bestiole a peur des que le nombre de bestioles environnantes dépasse ce nombre
-std::map<int,int> dureePeur;
-
-void ComportementPeureuse::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) const
+void ComportementPeureuse::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins)
 {
     if (listeVoisins.size() >= peurDesNbBestioles) {
         if (dureePeur.find(b.getIdentite()) != dureePeur.end()) {
@@ -44,7 +36,7 @@ void ComportementPeureuse::adapterBestioleAVoisins(Bestiole &b, std::vector<IBes
     }
 }
 
-void ComportementPeureuse::bougeSelonComportement(Milieu &m, Bestiole &b) const
+void ComportementPeureuse::bougeSelonComportement(Milieu &m, Bestiole &b)
 {
     std::vector<IBestiole*> listeVoisins = m.getBestiolesVues(b);
     adapterBestioleAVoisins(b, listeVoisins);
