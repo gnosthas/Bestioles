@@ -31,6 +31,8 @@ public :
    void step( void );
 
    void addBestiole( IBestiole* ib );
+   void removeBestiole(IBestiole* ib);
+
    int nbVoisins( const IBestiole & ib );
 
    std::vector<IBestiole*> getBestiolesVues( IBestiole &b );

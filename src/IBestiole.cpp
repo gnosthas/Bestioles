@@ -36,9 +36,10 @@ void IBestiole::initBestiole(){
    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
 
-   this->proba_death = ((rand() % 101))/100.0 ;// valeur entre 0 et 1
+   // this->proba_death = ((rand() % 101))/100.0 ;// valeur entre 0 et 1
+   this->proba_death = 0.1;
    this->duree_vie = rand() % 201; 
-   this->proba_clone= 0.001; 
+   this->proba_clone= 0.003; 
 }
 
 ///////////////////////// Constructeur d'une bestiole /////////////////////////////
@@ -92,7 +93,7 @@ IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
    delete[] this->couleur;
-   delete this->comportement; //Warning Segment error
+   //delete this->comportement; //Warning Segment error
    
 }
 ////////////////// Initialise aléatoire la position de la bestiole ///////////////
@@ -166,7 +167,7 @@ void IBestiole::setOrientation(double o){
 // }
 
 //////////////// Méthode appelée sur la bestiole à chaque pas de simulation /////////////////////////
-void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestioles){ 
+void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestioles, std::vector<IBestiole*> & removeBestioles){ 
 
    ///////// Clonage /////////////
    double clonnage = ((rand() % 1001) + 1) / 1000.0;
@@ -178,7 +179,7 @@ void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestiole
    bouge(milieu);
 
    ///////// Collision ////////////
-   collision(milieu);
+   collision(milieu, removeBestioles);
 
    decrDureeVie();
    // cout << "Action fonctionne bestiole" << endl;
@@ -217,19 +218,30 @@ void IBestiole::draw( UImg & support )
  /*Gère la collision entre les créatures. La collision se fait entre deux cercles ? deux ellipses ?
    Parcours la liste de toutes les autres créatures ?
    En cas de collision, 1] proba mort 2] changement d'orientation à l'opposée */
-void IBestiole::collision(Milieu &milieu){
+
+void IBestiole::collision(Milieu &milieu, std::vector<IBestiole*> & removeBestioles){
    std::vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
    double         distance_bestioles;
    for (auto it = bestioles.begin() ; it != bestioles.end() ; ++it)
    {
-      if(*it != this){
+      if(*it != this)
+      {
          distance_bestioles = sqrt( pow(this->x-(*it)->x,2)+ pow(this->y-(*it)->y,2) );
-
+         
          if (distance_bestioles <= AFF_SIZE) 
          {
+            double proba_survive = (rand() % 101)/100.0;
+            double proba_death = this->get_proba_death();
+
+            if (proba_death > proba_survive) //Si la proba de mort est supérieure à la proba de survie tirée aléatoirement
+            {
+               removeBestioles.push_back(this);
+               cout << "Une Bestiole meurt et va être retirée de l'environnement" << endl;
+            }
             this-> orientation = - orientation;
          }
       }
+
    } 
 
 };

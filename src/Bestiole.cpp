@@ -15,7 +15,9 @@ Bestiole::Bestiole(const Bestiole & b):IBestiole(b){}
 Bestiole::~Bestiole(){cout << "Destruction bestiole" << endl;}
 
 IBestiole* Bestiole::clone() const{
+   cout << "Je suis issu d'un clonage" << endl;
     return new Bestiole(*this);
+    
 }
 
 void Bestiole::bouge(Milieu &milieu){

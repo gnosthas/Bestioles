@@ -17,6 +17,7 @@ using namespace std;
 int main()
 {
 
+///////////////////////////////////////////////LOIC COMPILATION ////////////////////////
    Aquarium       ecosysteme( 640, 480, 120 );
    ConcreteCreatorBestiole creator_bestiole;
    IComportement *prev = new ComportementPrevoyante();
@@ -58,8 +59,25 @@ int main()
       ecosysteme.getMilieu().addBestiole(bestiole);
    }
    ecosysteme.run();
-
    delete peur;
+
+
+
+
+//////////////////////////////////CLEMENT COMPILATION POUR CLONAGE ET MORT DES BESTIOLES ///////////
+   // Aquarium       ecosysteme( 640, 480, 30 );
+   // ConcreteCreatorBestiole creator_bestiole;
+   // ComportementGregaire *peur = new ComportementGregaire();
+   // for ( int i = 1; i <= 20; ++i ){
+   //    Bestiole* bestiole = creator_bestiole.createBestiole(peur);
+   //    ecosysteme.getMilieu().addBestiole(bestiole);
+   // }
+   // ecosysteme.run();
+   //delete peur;
+
+
+
+
 
    return 0;
 

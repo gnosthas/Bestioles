@@ -46,7 +46,7 @@ private :
    /*Gère la collision entre les créatures. La collision se fait entre deux cercles ? deux ellipses ?
    Parcours la liste de toutes les autres créatures ?
    En cas de collision, 1] proba mort 2] changement d'orientation à l'opposée */
-   void collision(Milieu &milieu);
+   void collision(Milieu &milieu, std::vector<IBestiole*> & removeBestioles);
 
    //Augmente l'age de la bestiole --> appelé à chaque pas de simulation
    void decrDureeVie(void);
@@ -64,7 +64,7 @@ public :
    ////////// TEMPORAIRE POUR TEST COMPILATION
    IBestiole(const IBestiole &ib); //Constructeur par copie d'une bestiole
 
-   void action( Milieu & monMilieu, std::vector<IBestiole*> & appendBestioles ); //Méthode appelée sur la bestiole à chaque pas de simul
+   void action( Milieu & monMilieu, std::vector<IBestiole*> & appendBestioles, std::vector<IBestiole*> & removeBestioles ); //Méthode appelée sur la bestiole à chaque pas de simul
 
    virtual IBestiole* clone() const = 0; //DP Prototype  
 
