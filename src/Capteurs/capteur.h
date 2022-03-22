@@ -6,7 +6,7 @@ using namespace std;
 
 // Déclare les operations que les capteurs concretes devront implémenter
 // 
-
+#include"../Milieu.h"
 
 class ICapteur {
     private:    
@@ -22,7 +22,7 @@ class ICapteur {
     public:
         int id;
         virtual ~ICapteur(){cout<<"Destruction capteur"<<endl;};
-        virtual void detection() const = 0;
+        virtual void detection(Milieu milieu) const = 0;
 };
 
 #endif

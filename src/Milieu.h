@@ -4,7 +4,7 @@
 
 #include "UImg.h"
 #include "Bestiole.h"
-
+#include "Capteurs/capteurFactory.h"
 #include <iostream>
 #include <vector>
 
@@ -20,6 +20,8 @@ private :
    int                     width, height;
    
    std::vector<IBestiole*>   listeBestioles;
+
+   CapteurFactory factory;
 
 public :
    Milieu( int _width, int _height );

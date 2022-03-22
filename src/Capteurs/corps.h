@@ -5,9 +5,11 @@
 
 #include "capteur.h"
 
+class Milieu;
+
 class Corps : public ICapteur {
     public:
-        void detection() const override;
+        void detection(Milieu milieu) const override;
 
 
 

@@ -8,7 +8,7 @@
 class Oreilles : public ICapteur {
     public:
 
-        void detection() const override;
+        void detection(Milieu milieu) const override;
 
 
 
