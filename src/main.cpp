@@ -60,10 +60,6 @@ int main()
    }
    ecosysteme.run();
    delete peur;
-   delete prev;
-   delete greg;
-   delete kami;
-   delete pers;
 
 
 

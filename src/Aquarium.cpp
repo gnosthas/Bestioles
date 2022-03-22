@@ -51,7 +51,7 @@ void Aquarium::run( void )
          flotte->step();
 
          display( *flotte );
-         // cout << "Nombre de Bestioles : " << flotte->getListeBestiole().size() << endl;
+         cout << "Nombre de Bestioles : " << flotte->getListeBestiole().size() << endl;
       }
       
 
