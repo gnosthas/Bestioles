@@ -8,7 +8,7 @@
 
 class ConcreteCreatorCarapace : public AccessoiresFactory {
     public:
-        Carapace* createAccessoire() override;
+        Carapace* createAccessoire() const override;
 };
 
 #endif

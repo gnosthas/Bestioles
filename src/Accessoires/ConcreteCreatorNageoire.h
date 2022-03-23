@@ -8,7 +8,7 @@
 
 class ConcreteCreatorNageoire : public AccessoiresFactory {
     public:
-        Nageoire* createAccessoire() override;
+        Nageoire* createAccessoire() const override;
 };
 
 #endif
