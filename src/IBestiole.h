@@ -30,6 +30,9 @@ protected :
    double            orientation; 
    double            vitesse; 
 
+   // bool has_nageoires;
+   // bool has_carapace;
+
    T               * couleur;
    int duree_vie; //Age de la bestiole qui augmente à chaque pas de simulation
    double proba_clone; //proba de se cloner à chaque pas de simul

@@ -13,3 +13,4 @@ double Nageoire::getMultvitesse() const{
 // };
 
 Nageoire::Nageoire(double nu): nu(nu) {};
+

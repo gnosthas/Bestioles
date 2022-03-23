@@ -13,6 +13,7 @@ class Nageoire : public IAccessoire {
         Nageoire(double nu);
         double getMultvitesse() const;
         // void setMultvitesse(double nu);
+        
 };
 
 #endif
