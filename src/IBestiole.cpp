@@ -34,7 +34,8 @@ IBestiole::IBestiole( const IBestiole & ib) : identite(++next), x(ib.x), y(ib.y)
 cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
 proba_death(ib.proba_death), proba_clone(ib.proba_clone),comportement(ib.comportement), milieu(ib.milieu)//, listAccessoires(listAccessoires)
 {
-   cout << "const IBestiole (" << this->identite << ") par copie" << endl;
+   //cout << "const IBestiole (" << this->identite << ") par copie" << endl;
+   
    /*On fait le choix de réinitialiser la durée de vie lors du clonage sinon la bestiole clonnée 
    meurt en meme temps que sa version originale, ce qui provoque des "sauts" dans la simulation*/
    duree_vie = 200 + rand() % 201; 
