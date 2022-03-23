@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "Milieu.h"
 #include "IBestiole.h"
@@ -48,14 +49,37 @@ void IBestiole::initBestiole(){
 
 
 void IBestiole::ajout_Accessoires(){
-   // std::vector<IAccessoire*> listAccessoires;
+   // Ajout de nageoires avec une probabilité de 10%
    int rand_nag = rand() % 100;
-   if (rand_nag <= 5){
-
+   if (rand_nag <= 10){
+      // this->has_nageoires = true;
       Nageoire* nageoire = this->milieu.createNageoire();
       listAccessoires.push_back(nageoire);
       this->vitesse = this->vitesse * nageoire->getMultvitesse();
+   }else{
+      // this->has_nageoires=false;
+      listAccessoires.push_back(nullptr);
    }
+
+   // Ajout d'une carapace avec une probabilité de 10%
+   int rand_car = rand() % 100;
+   if (rand_car <= 10){
+      // this->has_carapace = true;
+      Carapace* carapace = this->milieu.createCarapace();
+      
+      listAccessoires.push_back(carapace);
+      this->vitesse = this->vitesse / carapace->getReducVitesse();
+      this->proba_death = this->proba_death / carapace->getResistance();
+   }
+   else{
+      // this->has_carapace = true;
+      listAccessoires.push_back(nullptr);
+   }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> d59648951c8a62e82699725feb833d218f24e8cf
 }
 
 //Constructeur 
@@ -67,7 +91,7 @@ IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milie
 //Constructeur par copie
 IBestiole::IBestiole( const IBestiole & ib) : identite(++next), x(ib.x), y(ib.y), 
 cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
-proba_death(ib.proba_death), proba_clone(ib.proba_clone),comportement(ib.comportement), milieu(ib.milieu)
+proba_death(ib.proba_death), proba_clone(ib.proba_clone),comportement(ib.comportement), milieu(ib.milieu)//, listAccessoires(listAccessoires)
 {
    cout << "const IBestiole (" << this->identite << ") par copie" << endl;
    /*On fait le choix de réinitialiser la durée de vie lors du clonage sinon la bestiole clonnée 
@@ -76,6 +100,8 @@ proba_death(ib.proba_death), proba_clone(ib.proba_clone),comportement(ib.comport
    couleur = new T[ 3 ];
    memcpy( couleur, ib.couleur, 3*sizeof(T) );
    this->duree_vie = 200 + rand() % 201;
+
+   this->ajout_Accessoires();
 }
 
 //Destructeur
@@ -230,6 +256,21 @@ double IBestiole::getCumulX() const{return this-> cumulX;}
 double IBestiole::getCumulY() const{return this-> cumulY;}
 double IBestiole::getOrientation() const{return this->orientation;}
 
+<<<<<<< HEAD
+=======
+void IBestiole::collision(vector<IBestiole*> & removeBestioles){
+   vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
+   double         distance_bestioles;
+   for (auto it = bestioles.begin() ; it != bestioles.end() ; ++it)
+   {
+      if(*it != this)
+      {
+         distance_bestioles = sqrt( pow(this->x-(*it)->x,2)+ pow(this->y-(*it)->y,2) );
+         
+         if (distance_bestioles <= AFF_SIZE) 
+         {
+            double proba_survive = (rand() % 101)/100.0;            
+>>>>>>> d59648951c8a62e82699725feb833d218f24e8cf
 
 /////////////////////////////////SETTEURS //////////////////////////////
 void IBestiole::setVitesse(double v){

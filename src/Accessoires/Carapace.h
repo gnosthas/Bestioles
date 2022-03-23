@@ -1,8 +1,6 @@
 #ifndef CARAPACE
 #define CARAPACE
 
-// Implémente les méthodes de l'interfacce Mob
-
 #include "IAccessoire.h"
 
 class Carapace : public IAccessoire {
@@ -11,10 +9,9 @@ class Carapace : public IAccessoire {
         double eta;
 
     public:
+        Carapace(double omega, double eta);
         double getResistance() const;
-        void setResistance(double omega);
         double getReducVitesse() const;
-        void setReducVitesse(double eta);
 };
 
 #endif

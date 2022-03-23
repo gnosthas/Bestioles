@@ -9,8 +9,8 @@ class Camouflage : public IAccessoire {
     private:
         double psi;
     public:
+        Camouflage(double psi);
         double getCamouflage() const;
-        void setCamouflage(double psi);
 };
 
 #endif

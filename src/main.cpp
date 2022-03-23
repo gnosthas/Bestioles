@@ -7,6 +7,7 @@
 #include "comportements/ComportementPrevoyante.h"
 #include "comportements/ComportementPersMultiple.h"
 #include "Accessoires/ConcreteCreatorNageoire.h"
+#include "Accessoires/ConcreteCreatorCarapace.h"
 
 #include <iostream>
 #include <vector>

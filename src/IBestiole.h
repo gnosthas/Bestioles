@@ -29,6 +29,7 @@ protected :
    double            orientation; //Orientation de la Bestiole
    double            vitesse; //Vitesse de déplacement de la Besitole
 
+
    T               * couleur;
    int duree_vie; //Durée de vie de la Besitole
    double proba_clone; //Probabilité de se cloner à chaque pas de simul
