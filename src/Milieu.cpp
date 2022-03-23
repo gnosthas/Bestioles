@@ -48,11 +48,7 @@ void Milieu::step( void )
    std::vector<IBestiole*> removeBestioles; //Bestioles à retirer à chaque pas de simulation
 
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
-   // if (!listeBestioles.empty()) {
-   //    std::cout << "pos premiere bestiole : " << listeBestioles.at(0)->getX() << " , " << listeBestioles.at(0)->getY() << std::endl;
-   //    std::cout << "age premiere bestiole : " << listeBestioles.at(0)->getDureeVie() << std::endl;
-   //    std::cout << "identite premiere bestiole : " << listeBestioles.at(0)->getIdentite() << std::endl;
-   // }
+
    for (auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it)
    {  
       (*it)->action(appendBestioles, removeBestioles);
@@ -130,15 +126,15 @@ void Milieu::naissanceSpontanee( void ){
    {
       addBestiole(creator_bestiole.createBestiole(*this, new ComportementGregaire()));
    }
-   else if (this->getPropGreg()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPeur()*100)
+   else if (this->getPropGreg()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPeur()*100 + this->getPropGreg()*100)
    {
       addBestiole(creator_bestiole.createBestiole(*this, new ComportementPeureuse()));
    }
-   else if (this->getPropPeur()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropKamik()*100)
+   else if (this->getPropPeur()*100 + this->getPropGreg()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPeur()*100 + this->getPropGreg()*100 + this->getPropKamik()*100)
    {
       addBestiole(creator_bestiole.createBestiole(*this, new ComportementKamikaze()));
    }
-   else if (this->getPropKamik()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPrev()*100)
+   else if (this->getPropPeur()*100 + this->getPropGreg()*100 + this->getPropKamik()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPeur()*100 + this->getPropGreg()*100 + this->getPropKamik()*100 + this->getPropPrev()*100)
    {
       addBestiole(creator_bestiole.createBestiole(*this, new ComportementPrevoyante()));
    }
