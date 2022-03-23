@@ -51,6 +51,8 @@ public :
    void addBestiole( IBestiole* ib );
    void removeBestiole(IBestiole* ib);
 
+   void naissanceSpontanee(void);
+
    int nbVoisins( const IBestiole & ib );
 
    std::vector<IBestiole*> getBestiolesVues( IBestiole &b );

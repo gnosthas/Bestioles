@@ -66,7 +66,7 @@ int main()
 
 
 ////////////////////////////////CLEMENT COMPILATION POUR CLONAGE ET MORT DES BESTIOLES ///////////
-   // Aquarium       ecosysteme( 640, 480, 30 , 20, 0.25, 0.25, 0.25, 0.25);
+   // Aquarium       ecosysteme( 640, 480, 30,  30, 0.20, 0.20, 0.20, 0.20, 0.20);
    // ConcreteCreatorBestiole creator_bestiole;
    // ComportementGregaire *peur = new ComportementGregaire();
    // for ( int i = 1; i <= ecosysteme.getMilieu().getNbBest(); ++i ){
