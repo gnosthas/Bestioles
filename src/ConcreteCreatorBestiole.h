@@ -3,7 +3,6 @@
 
 #include "Bestiole.h"
 #include "BestiolesFactory.h"
-// #include "comportements/IComportement.h"
 #include <iostream>
 using namespace std;
 
@@ -15,12 +14,12 @@ class ConcreteCreatorBestiole : public BestiolesFactory {
 
 public:
     
-    ConcreteCreatorBestiole(); //Constructeur
+    ConcreteCreatorBestiole(); 
 
-    ~ConcreteCreatorBestiole(){cout << "dest Creator bestiole" << endl;}; //Destructeur
+    ~ConcreteCreatorBestiole(){cout << "dest Creator bestiole" << endl;}; 
 
+    // DP Factory Method - Override de la méthode de création de Bestiole 
     Bestiole* createBestiole(Milieu& milieu, IComportement* comportement) const override; 
-    Bestiole* createBestiole(Milieu& milieu) const override;
 };
 
 #endif

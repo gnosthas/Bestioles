@@ -67,16 +67,10 @@ IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milie
 
    initBestiole();
    this->ajout_Accessoires();
-   // switch (comportement->getComportementType())
-   // {
-   // couleur en fonction du comportement ? setColor(r,g,b) mais il faut un enumtype des comportements !
-   // }
-}
-
-IBestiole::IBestiole(Milieu &milieu): milieu(milieu){
-   initBestiole();
  
 }
+
+
 
 ///////////////////////// Constructeur par copie de la bestiole /////////////////////////////
 
