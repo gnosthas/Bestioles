@@ -168,10 +168,10 @@ int main()
       Bestiole* bestiole = creator_bestiole.createBestiole(prev);
       ecosysteme.getMilieu().addBestiole(bestiole);
    }
-   for ( int i = 1; i <= floor(ecosysteme.getMilieu().getNbBest()*ecosysteme.getMilieu().getPropMult()); ++i ){
-      Bestiole* bestiole = creator_bestiole.createBestiole(pers);
-      ecosysteme.getMilieu().addBestiole(bestiole);
-   }
+   // for ( int i = 1; i <= floor(ecosysteme.getMilieu().getNbBest()*ecosysteme.getMilieu().getPropMult()); ++i ){
+   //    Bestiole* bestiole = creator_bestiole.createBestiole(pers);
+   //    ecosysteme.getMilieu().addBestiole(bestiole);
+   // }
    ecosysteme.run();
 
    delete prev;

@@ -51,13 +51,12 @@ void Aquarium::run( void )
          if ( is_keySPACE() ) pause = !pause;
       }
       if (!pause) {
-         cout << "------------ New step -----------" << endl;
+         cout << "------------ Nouveau pas : il y a " << flotte->getListeBestiole().size() << " bestioles dans l'aquarium ------------"<< endl;
          flotte->step();
 
          display( *flotte );
 
          
-         // cout << "Nombre de Bestioles : " << flotte->getListeBestiole().size() << endl;
       }
       
 

@@ -105,13 +105,15 @@ proba_death(ib.proba_death), duree_vie(ib.duree_vie), proba_clone(ib.proba_clone
 IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
-   delete[] this->couleur;
    
    for (IAccessoire* a : this->listAccessoires) {
       delete a;
    }
    this->listAccessoires.clear();
-   //delete this->comportement; //Warning Segment error
+
+
+   // delete[] this->couleur;
+   //delete this->comportement; //Warning Segment error ===> C'est normal : on a cette erreur car les comportements ne sont pas associé à une bestiole en particulier.
    
 }
 ////////////////// Initialise aléatoire la position de la bestiole ///////////////
