@@ -8,7 +8,6 @@
 #include "IBestiole.h"
 #include "comportements/IComportement.h"
 #include "Accessoires/IAccessoire.h"
-#include "Accessoires/Nageoire.h"
 #include "Capteurs/capteur.h"
 #include "Capteurs/capteurFactory.h"
 

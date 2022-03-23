@@ -66,7 +66,7 @@ public :
    ICapteur* createCapteur(TypeCapteur type);
    Nageoire* createNageoire();
    Carapace* createCarapace();
-
+   
    
 };
 
