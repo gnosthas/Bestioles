@@ -7,7 +7,20 @@
 #include <random>
 
 
-ComportementPersMultiple::ComportementPersMultiple(std::vector<IComportement*> listeComportements):comportements(listeComportements) {}
+ComportementPersMultiple::ComportementPersMultiple(std::vector<IComportement*> listeComportements):comportements(listeComportements) {
+    couleur = new T[ 3 ];
+    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+}
+
+ComportementPersMultiple::~ComportementPersMultiple() {
+    delete[] couleur;
+}
+
+T* ComportementPersMultiple::getCouleur() const {
+    return couleur;
+}
 
 void ComportementPersMultiple::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins)
 {
@@ -27,7 +40,7 @@ void ComportementPersMultiple::bougeSelonComportement(Milieu &m, Bestiole &b)
         if (prob(rng) < proba_changer_comportement*100) {
             std::uniform_int_distribution<std::mt19937::result_type> distCompSiz(0,comportements.size()-1);
             auto a = distCompSiz(rng);
-            std::cout << "New comportement : " << a << std::endl;
+            std::cout << "La bestiole " << b.getIdentite() << " a le nouveau comportement : " << a << std::endl;
             comportementBestioles[b.getIdentite()] = a;
         }
     }

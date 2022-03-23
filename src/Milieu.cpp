@@ -54,7 +54,7 @@ void Milieu::step( void )
    //    std::cout << "identite premiere bestiole : " << listeBestioles.at(0)->getIdentite() << std::endl;
    // }
    for (auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it)
-   {
+   {  
       (*it)->action(*this, appendBestioles, removeBestioles);
       (*it)->draw( *this );
    }

@@ -12,6 +12,21 @@
         lors d'une step, son etat peur est prolonge d'une step.
 */
 
+ComportementPeureuse::ComportementPeureuse() {
+    couleur = new T[ 3 ];
+    couleur[ 0 ] = 0;
+    couleur[ 1 ] = 0;
+    couleur[ 2 ] = 230;
+}
+
+ComportementPeureuse::~ComportementPeureuse() {
+    delete[] couleur;
+}
+
+T* ComportementPeureuse::getCouleur() const {
+    return couleur;
+}
+
 void ComportementPeureuse::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins)
 {
     if (listeVoisins.size() >= peurDesNbBestioles) {

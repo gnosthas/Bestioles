@@ -11,6 +11,21 @@
     Elle fonce en permanace en direction de la bestiole la plus proche environnante.
 */
 
+ComportementKamikaze::ComportementKamikaze() {
+    couleur = new T[ 3 ];
+    couleur[ 0 ] = 230;
+    couleur[ 1 ] = 0;
+    couleur[ 2 ] = 0;
+}
+
+ComportementKamikaze::~ComportementKamikaze() {
+    delete[] couleur;
+}
+
+T* ComportementKamikaze::getCouleur() const {
+    return couleur;
+}
+
 void ComportementKamikaze::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins)
 {
     if (!listeVoisins.empty()) {

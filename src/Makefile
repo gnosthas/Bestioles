@@ -4,7 +4,7 @@ ACC = Accessoires
 CAP = Capteurs
 BESTIOLES = Bestiole.o IBestiole.o ConcreteCreatorBestiole.o
 COMPORTEMENTS = $(COM)/Deplacements.o $(COM)/ComportementPeureuse.o $(COM)/ComportementGregaire.o $(COM)/ComportementKamikaze.o $(COM)/ComportementPersMultiple.o $(COM)/ComportementPrevoyante.o
-ACCESSOIRES = #$(ACC)/ConcreteCreatorCamouflage.o $(ACC)/ConcreteCreatorCarapace.o $(ACC)/ConcreteCreatorNageoire.o $(ACC)/Camouflage.o $(ACC)/Carapace.o $(ACC)/Nageoire.o
+ACCESSOIRES = $(ACC)/ConcreteCreatorCamouflage.o $(ACC)/ConcreteCreatorCarapace.o $(ACC)/ConcreteCreatorNageoire.o $(ACC)/Camouflage.o $(ACC)/Carapace.o $(ACC)/Nageoire.o
 CAPTEURS = $(CAP)/capteurFactory.o $(CAP)/corps.o $(CAP)/oreilles.o $(CAP)/yeux.o
 OBJ = main.cpp Aquarium.o Milieu.o  $(BESTIOLES) $(COMPORTEMENTS) $(ACCESSOIRES) $(CAPTEURS)
 

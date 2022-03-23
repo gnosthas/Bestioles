@@ -6,6 +6,8 @@
 #include "Milieu.h"
 #include "IBestiole.h"
 #include "comportements/IComportement.h"
+#include "Accessoires/IAccessoire.h"
+#include "Accessoires/ConcreteCreatorNageoire.h"
 
 #include <cstdlib>
 #include <cmath>
@@ -31,15 +33,26 @@ void IBestiole::initBestiole(){
    this->vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
    // définit la couleur de la bestiole r , g , b
-   couleur = new T[ 3 ];
-   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur = comportement->getCouleur();
 
    // this->proba_death = ((rand() % 101))/100.0 ;// valeur entre 0 et 1
    this->proba_death = 0.1;
    this->duree_vie = 200 + rand() % 201; // Durée de vie entre 200 et 400 aléatoire
    this->proba_clone= 0.003; 
+   std::vector<IAccessoire*> listAccessoires = this->ajout_Accessoires();
+}
+
+
+std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
+   std::vector<IAccessoire*> listAccessoires;
+   int rand_nag = rand() % 100;
+   if (rand_nag <= 5){
+      ConcreteCreatorNageoire creator_nageoire;
+      Nageoire* nageoire = creator_nageoire.createAccessoire();
+      listAccessoires.push_back(nageoire);
+      this->vitesse = this->vitesse * nageoire->getMultvitesse();
+   }
+   return listAccessoires;
 }
 
 ///////////////////////// Constructeur d'une bestiole /////////////////////////////
@@ -92,8 +105,15 @@ proba_death(ib.proba_death), duree_vie(ib.duree_vie), proba_clone(ib.proba_clone
 IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
-   delete[] this->couleur;
-   //delete this->comportement; //Warning Segment error
+   
+   for (IAccessoire* a : this->listAccessoires) {
+      delete a;
+   }
+   this->listAccessoires.clear();
+
+
+   // delete[] this->couleur;
+   //delete this->comportement; //Warning Segment error ===> C'est normal : on a cette erreur car les comportements ne sont pas associé à une bestiole en particulier.
    
 }
 ////////////////// Initialise aléatoire la position de la bestiole ///////////////
@@ -112,6 +132,7 @@ bool operator==( const IBestiole & ib1, const IBestiole & ib2 )
 void IBestiole::decrDureeVie(){
    -- this->duree_vie;
 }
+
 /// Savoir si la bestiole passée en argument est dans le champ de vision de la bestiole courante ///
 bool IBestiole::jeTeVois( const IBestiole & ib ) const
 {
@@ -216,7 +237,6 @@ void IBestiole::draw( UImg & support )
 
    double         xt = x + cos( orientation )*AFF_SIZE/2.1;
    double         yt = y - sin( orientation )*AFF_SIZE/2.1;
-
 
    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
