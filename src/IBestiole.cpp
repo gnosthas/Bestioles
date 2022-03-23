@@ -47,8 +47,8 @@ void IBestiole::initBestiole(){
 }
 
 
-std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
-   std::vector<IAccessoire*> listAccessoires;
+void IBestiole::ajout_Accessoires(){
+   // std::vector<IAccessoire*> listAccessoires;
    int rand_nag = rand() % 100;
    if (rand_nag <= 5){
 
@@ -56,7 +56,7 @@ std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
       listAccessoires.push_back(nageoire);
       this->vitesse = this->vitesse * nageoire->getMultvitesse();
    }
-   return listAccessoires;
+   // return listAccessoires;
 }
 
 ///////////////////////// Constructeur d'une bestiole /////////////////////////////
@@ -66,7 +66,7 @@ std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
 IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milieu), comportement(comportement){
 
    initBestiole();
-   std::vector<IAccessoire*> listAccessoires = this->ajout_Accessoires();
+   this->ajout_Accessoires();
    // switch (comportement->getComportementType())
    // {
    // couleur en fonction du comportement ? setColor(r,g,b) mais il faut un enumtype des comportements !
@@ -98,16 +98,13 @@ IBestiole::~IBestiole( void )
    cout << "dest IBestiole" << endl;
       
    for (IAccessoire* a : this->listAccessoires) {
-      cout << "Dans boucle for destruction accessoire" << endl;  
       delete a;
-      
    }
-  this->listAccessoires.clear();
+   
    for (ICapteur* c : this->listCapteurs) {
       delete c;
-      
    }
-   this->listCapteurs.clear();
+   // this->listCapteurs.clear();
 
    //delete[] this->couleur;
    //delete this->comportement; //Warning Segment error ===> C'est normal : on a cette erreur car les comportements ne sont pas associé à une bestiole en particulier.
