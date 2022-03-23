@@ -39,7 +39,7 @@ protected :
    IComportement* comportement; //Comportement de la bestiole
    std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
 
-
+   Milieu& milieu;
    // std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
    // IComportement* comportement; //Comportement de la bestiole
 
@@ -48,17 +48,17 @@ protected :
 private :
 
    //Déplace la créature dans le milieu
-   virtual void bouge(Milieu &milieu) = 0; 
+   virtual void bouge() = 0; 
    
    /*Gère la collision entre les créatures. La collision se fait entre deux cercles ? deux ellipses ?
    Parcours la liste de toutes les autres créatures ?
    En cas de collision, 1] proba mort 2] changement d'orientation à l'opposée */
-   void collision(Milieu &milieu, std::vector<IBestiole*> & removeBestioles);
+   void collision(std::vector<IBestiole*> & removeBestioles);
 
    //Augmente l'age de la bestiole --> appelé à chaque pas de simulation
    void decrDureeVie(void);
 
-   void initBestiole(void);
+   void initBestiole();
 
    std::vector<IAccessoire*> ajout_Accessoires();
 
@@ -66,13 +66,13 @@ public :
 
    virtual ~IBestiole( void );                              // Destructeur
    
-   IBestiole(); ////////// TEMPORAIRE POUR TEST COMPILATION
-   IBestiole(IComportement* comportement); //Constructeur d'une bestiole
+   IBestiole(Milieu& milieu); ////////// TEMPORAIRE POUR TEST COMPILATION
+   IBestiole(Milieu& milieu, IComportement* comportement); //Constructeur d'une bestiole
 
    ////////// TEMPORAIRE POUR TEST COMPILATION
    IBestiole(const IBestiole &ib); //Constructeur par copie d'une bestiole
 
-   void action( Milieu & monMilieu, std::vector<IBestiole*> & appendBestioles, std::vector<IBestiole*> & removeBestioles ); //Méthode appelée sur la bestiole à chaque pas de simul
+   void action(std::vector<IBestiole*> & appendBestioles, std::vector<IBestiole*> & removeBestioles ); //Méthode appelée sur la bestiole à chaque pas de simul
 
    virtual IBestiole* clone() const = 0; //DP Prototype  
 
@@ -112,7 +112,7 @@ public :
 
 
    ///////////////////// CAPTEURS ////////////////////////
-   void genererCapteurs(Milieu & monMilieu);
+   void genererCapteurs();
 };
 
 

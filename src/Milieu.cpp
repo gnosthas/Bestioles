@@ -51,7 +51,7 @@ void Milieu::step( void )
 
    for (auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it)
    {  
-      (*it)->action(*this, appendBestioles, removeBestioles);
+      (*it)->action(appendBestioles, removeBestioles);
       (*it)->draw( *this );
    }
    if(!appendBestioles.empty()){ 
@@ -124,19 +124,19 @@ void Milieu::naissanceSpontanee( void ){
    std::uniform_int_distribution<std::mt19937::result_type> proba_naissance(0,100);
    if (0 < proba_naissance(rng) && proba_naissance(rng) < this->getPropGreg()*100)
    {
-      addBestiole(creator_bestiole.createBestiole(new ComportementGregaire()));
+      addBestiole(creator_bestiole.createBestiole(*this, new ComportementGregaire()));
    }
    else if (this->getPropGreg()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPeur()*100)
    {
-      addBestiole(creator_bestiole.createBestiole(new ComportementPeureuse()));
+      addBestiole(creator_bestiole.createBestiole(*this, new ComportementPeureuse()));
    }
    else if (this->getPropPeur()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropKamik()*100)
    {
-      addBestiole(creator_bestiole.createBestiole(new ComportementKamikaze()));
+      addBestiole(creator_bestiole.createBestiole(*this, new ComportementKamikaze()));
    }
    else if (this->getPropKamik()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPrev()*100)
    {
-      addBestiole(creator_bestiole.createBestiole(new ComportementPrevoyante()));
+      addBestiole(creator_bestiole.createBestiole(*this, new ComportementPrevoyante()));
    }
   
 }

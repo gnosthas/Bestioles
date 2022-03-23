@@ -14,9 +14,9 @@ class Bestiole : public IBestiole
 {
 
 public :                                           // Forme canonique :
-   Bestiole();                               // Constructeur par defaut
+   Bestiole(Milieu &milieu);                               // Constructeur par defaut
 
-   Bestiole(IComportement* comportement);//fait appel au constructeur de IBestiole
+   Bestiole(Milieu &milieu, IComportement* comportement);//fait appel au constructeur de IBestiole
 
    Bestiole(const Bestiole & b);//fait appel au constructeur par copie de IBestiole
    
@@ -24,7 +24,7 @@ public :                                           // Forme canonique :
 
    IBestiole* clone() const override; //DP Prototype
 
-   void bouge(Milieu &milieu) override;
+   void bouge() override;
 };
 
 
