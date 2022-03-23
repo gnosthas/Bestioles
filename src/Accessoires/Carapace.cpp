@@ -7,19 +7,9 @@ double Carapace::getResistance() const{
     return this->omega;   
 };
 
-// void Carapace::setResistance(double omega){
-//     cout << "Mise à jour de la probabilité de mort grâce à la carapace" << this->omega << endl;
-//     this->omega = omega; 
-// };
-
 double Carapace::getReducVitesse() const{
     // cout << "La réduction de vitesse est de " << this->eta << endl;
     return this->eta;   
 };
-
-// void Carapace::setReducVitesse(double eta){
-//     cout << "Mise à jour de la réduction de la vitesse" << this->eta << endl;
-//     this->eta = eta; 
-// };
 
 Carapace::Carapace(double omega, double eta): omega(omega), eta(eta) {};

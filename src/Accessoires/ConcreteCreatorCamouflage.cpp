@@ -1,11 +1,10 @@
 #include "iostream"
 #include "ConcreteCreatorCamouflage.h"
 
-using namespace std;
-
-
-Camouflage* ConcreteCreatorCamouflage::createAccessoire() const{
-            cout << "Création d'un camouflage" << endl;
-            return new Camouflage();
+Camouflage* ConcreteCreatorCamouflage::createAccessoire(){
+            double psi;
+            psi =  ((double) rand() / (RAND_MAX))*(PSI_MAX-1) + 1; // Génération d'un nombre aléatoire entre [1;PSI_MAX]
+            std::cout << "const Camouflage - coef " << psi << std::endl;
+            return new Camouflage(psi);
 };
 
