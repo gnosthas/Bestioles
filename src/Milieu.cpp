@@ -1,9 +1,17 @@
 #include "Milieu.h"
 #include "IBestiole.h"
+#include "ConcreteCreatorBestiole.h"
+#include "comportements/ComportementGregaire.h"
+#include "comportements/ComportementKamikaze.h"
+#include "comportements/ComportementPeureuse.h"
+#include "comportements/ComportementPrevoyante.h"
+#include "comportements/ComportementPersMultiple.h"
 
+#include <random>
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -63,6 +71,14 @@ void Milieu::step( void )
       }
    }
       
+   std::random_device dev;
+   std::mt19937 rng(dev());
+   std::uniform_int_distribution<std::mt19937::result_type> proba_naiss_sponta(0,100);
+   if (proba_naiss_sponta(rng) < 3) //On considère un taux prédéfini de 3% de naissance
+   {
+      this->naissanceSpontanee();
+      cout << "Naissance spontanée d'une Bestiole"<<endl;
+   }
 }
 
 
@@ -103,6 +119,32 @@ void Milieu::removeBestiole(IBestiole* ib){
    cout << "removeBestiole appelée"<<endl;
    delete ib;
 }
+
+
+void Milieu::naissanceSpontanee( void ){
+   ConcreteCreatorBestiole creator_bestiole;
+   std::random_device dev;
+   std::mt19937 rng(dev());
+   std::uniform_int_distribution<std::mt19937::result_type> proba_naissance(0,100);
+   if (0 < proba_naissance(rng) && proba_naissance(rng) < this->getPropGreg()*100)
+   {
+      addBestiole(creator_bestiole.createBestiole(new ComportementGregaire()));
+   }
+   else if (this->getPropGreg()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPeur()*100)
+   {
+      addBestiole(creator_bestiole.createBestiole(new ComportementPeureuse()));
+   }
+   else if (this->getPropPeur()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropKamik()*100)
+   {
+      addBestiole(creator_bestiole.createBestiole(new ComportementKamikaze()));
+   }
+   else if (this->getPropKamik()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPrev()*100)
+   {
+      addBestiole(creator_bestiole.createBestiole(new ComportementPrevoyante()));
+   }
+  
+}
+
 
 int Milieu::getWidth( void ) const { return width; };
 int Milieu::getHeight( void ) const { return height; };

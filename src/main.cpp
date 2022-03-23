@@ -66,7 +66,7 @@ int main()
 
 
 ////////////////////////////////CLEMENT COMPILATION POUR CLONAGE ET MORT DES BESTIOLES ///////////
-   // Aquarium       ecosysteme( 640, 480, 30 , 20, 0.25, 0.25, 0.25, 0.25);
+   // Aquarium       ecosysteme( 640, 480, 30,  30, 0.20, 0.20, 0.20, 0.20, 0.20);
    // ConcreteCreatorBestiole creator_bestiole;
    // ComportementGregaire *peur = new ComportementGregaire();
    // for ( int i = 1; i <= ecosysteme.getMilieu().getNbBest(); ++i ){
@@ -92,13 +92,13 @@ int main()
    comportements.push_back(peur);
    ComportementPersMultiple *pers = new ComportementPersMultiple(comportements);
    comportements.push_back(pers);
-   std::cout<<"taille vect persmult : " << pers->comportements.size() << std::endl;;
+   std::cout<<"taille vect persmult : " << pers->comportements.size() << std::endl;
 
 
    ///////////////////////// CREATION DE LA CONFIGURATION DE LA POPULATION INITIALE//////////////////
    // Nombre Bestioles = 30
    // Proportion gregaire = kamikaze = peureuse = prevoyante = personnalités mult = 0.20
-   Aquarium       ecosysteme( 640, 480, 120,  30, 0.20, 0.20, 0.20, 0.20, 0.20);
+   Aquarium       ecosysteme( 640, 480, 30,  30, 0.20, 0.20, 0.20, 0.20, 0.20);
    ConcreteCreatorBestiole creator_bestiole;
 
    for ( int i = 1; i <= floor(ecosysteme.getMilieu().getNbBest()*ecosysteme.getMilieu().getPropGreg()); ++i ){
@@ -123,7 +123,9 @@ int main()
    }
    ecosysteme.run();
    delete peur;
-
+   delete greg;
+   delete kami;
+   delete prev;
 
 
 
