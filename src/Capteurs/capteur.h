@@ -20,7 +20,7 @@ class ICapteur {
         float posX;
         float posY;
 
-        virtual ~ICapteur(){cout<<"Destruction capteur"<<endl;};
+        virtual ~ICapteur(){std::cout<<"Destruction capteur"<<std::endl;};
         virtual bool detection(Milieu milieu) const = 0;
        // virtual bool proximity(double d_min, double d_max, Milieu milieu);
 };

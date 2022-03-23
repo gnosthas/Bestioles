@@ -153,3 +153,7 @@ double Milieu::getPropMult( void ) const {return this->propMult;};
 ICapteur* Milieu::createCapteur(TypeCapteur type){
       return factory.createCapteur(type);
 }
+
+Nageoire* Milieu::createNageoire(){
+   return createur_nageoire.createAccessoire();
+};

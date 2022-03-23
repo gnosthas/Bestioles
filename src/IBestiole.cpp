@@ -7,7 +7,7 @@
 #include "IBestiole.h"
 #include "comportements/IComportement.h"
 #include "Accessoires/IAccessoire.h"
-#include "Accessoires/ConcreteCreatorNageoire.h"
+#include "Accessoires/Nageoire.h"
 #include "Capteurs/capteur.h"
 #include "Capteurs/capteurFactory.h"
 
@@ -43,21 +43,20 @@ void IBestiole::initBestiole(){
    this->duree_vie = 200 + rand() % 201; // Durée de vie entre 200 et 400 aléatoire
    this->proba_clone= 0.003; 
    bool capteursInit = 0;
+   this->genererCapteurs();
 }
 
 
-std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
-   std::vector<IAccessoire*> listAccessoires;
+void IBestiole::ajout_Accessoires(){
+   // std::vector<IAccessoire*> listAccessoires;
    int rand_nag = rand() % 100;
    if (rand_nag <= 5){
 
-      /// Appeler le creator dans milieu
-      ConcreteCreatorNageoire creator_nageoire;
-      Nageoire* nageoire = creator_nageoire.createAccessoire();
+      Nageoire* nageoire = this->milieu.createNageoire();
       listAccessoires.push_back(nageoire);
       this->vitesse = this->vitesse * nageoire->getMultvitesse();
    }
-   return listAccessoires;
+   // return listAccessoires;
 }
 
 ///////////////////////// Constructeur d'une bestiole /////////////////////////////
@@ -67,7 +66,7 @@ std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
 IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milieu), comportement(comportement){
 
    initBestiole();
-   std::vector<IAccessoire*> listAccessoires = this->ajout_Accessoires();
+   this->ajout_Accessoires();
    // switch (comportement->getComportementType())
    // {
    // couleur en fonction du comportement ? setColor(r,g,b) mais il faut un enumtype des comportements !
@@ -76,6 +75,7 @@ IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milie
 
 IBestiole::IBestiole(Milieu &milieu): milieu(milieu){
    initBestiole();
+ 
 }
 
 ///////////////////////// Constructeur par copie de la bestiole /////////////////////////////
@@ -98,11 +98,13 @@ IBestiole::~IBestiole( void )
    cout << "dest IBestiole" << endl;
       
    for (IAccessoire* a : this->listAccessoires) {
-      cout << "Dans boucle for destruction accessoire" << endl;  
       delete a;
-      
    }
-   this->listAccessoires.clear();
+   
+   for (ICapteur* c : this->listCapteurs) {
+      delete c;
+   }
+   // this->listCapteurs.clear();
 
    //delete[] this->couleur;
    //delete this->comportement; //Warning Segment error ===> C'est normal : on a cette erreur car les comportements ne sont pas associé à une bestiole en particulier.
@@ -239,20 +241,26 @@ void IBestiole::draw( UImg & support )
 
 // IL FAUT REUSSIR A PASSER UNE REFERENCE AU MILIEU À L'INIT DE CHAQUE IBESTIOLE POUR QUE CELA MARCHE
 void IBestiole::genererCapteurs(){
+
    listCapteurs.push_back(this->milieu.createCapteur(TC_Corps));
-   int n = rand() % 2;
+   int n = rand() % 4;
    switch(n){
       case 0 :
          listCapteurs.push_back(this->milieu.createCapteur(TC_Oreilles));
+         std::cout<<"Bestiole avec des oreilles"<<std::endl;
          break;
       case 1 :
          listCapteurs.push_back(this->milieu.createCapteur(TC_Yeux));
+         std::cout<<"Bestiole avec des yeux"<<std::endl;
          break;
       case 2 : 
          listCapteurs.push_back(this->milieu.createCapteur(TC_Yeux));
          listCapteurs.push_back(this->milieu.createCapteur(TC_Oreilles));
+         std::cout<<"Bestiole avec des oreilles ET des yeux"<<std::endl;
          break;
-
+      case 3 :
+         std::cout<<"Bestiole sans capteurs :("<<std::endl;
+         break;
    }
 
 }

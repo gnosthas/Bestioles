@@ -60,7 +60,7 @@ private :
 
    void initBestiole();
 
-   std::vector<IAccessoire*> ajout_Accessoires();
+   void ajout_Accessoires();
 
 public :         
 
