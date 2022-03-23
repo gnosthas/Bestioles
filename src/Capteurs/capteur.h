@@ -6,24 +6,26 @@ using namespace std;
 
 // Déclare les operations que les capteurs concretes devront implémenter
 // 
+#include"../Milieu.h"
 
+class ICapteur {   
 
-class ICapteur {
-    private:    
-        double alpha_m;
-        double alpha_M;
-        double delta_m;
-        double delta_M;
+    public:
+        double alpha_min;
+        double alpha_max;
+        double delta_min;
+        double delta_max;
         double gamma_m;
         double gamma_M ;
         float posX;
         float posY;
 
-    public:
-        int id;
         virtual ~ICapteur(){cout<<"Destruction capteur"<<endl;};
-        virtual void detection() const = 0;
+        virtual bool detection(Milieu milieu) const = 0;
+       // virtual bool proximity(double d_min, double d_max, Milieu milieu);
 };
+
+
 
 #endif
 

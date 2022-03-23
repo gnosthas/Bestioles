@@ -8,7 +8,8 @@
 
 using namespace std;
 
-// class ICapteur; //capteurs
+class ICapteur; //capteurs
+
 
 class Milieu;
 class IComportement;
@@ -36,6 +37,11 @@ protected :
    // std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
    std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
    IComportement* comportement; //Comportement de la bestiole
+   std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
+
+
+   // std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
+   // IComportement* comportement; //Comportement de la bestiole
 
 
 
@@ -59,7 +65,6 @@ private :
 public :         
 
    virtual ~IBestiole( void );                              // Destructeur
-
    
    IBestiole(); ////////// TEMPORAIRE POUR TEST COMPILATION
    IBestiole(IComportement* comportement); //Constructeur d'une bestiole
@@ -81,6 +86,8 @@ public :
 
    friend bool operator==( const IBestiole & b1, const IBestiole & b2 ); //Est-ce utile ? ou directement le faire pour les bestioles
 
+
+   /////// Pointeur vers le milieu, 
    /////////////////////////  GETTEURS / SETTEURS //////////////////////////////
 
    virtual double get_proba_death(void) const;
@@ -102,6 +109,10 @@ public :
    virtual void setVitesse(double v);
    void setDureeVie(int duree_vie);
    void setOrientation(double o);
+
+
+   ///////////////////// CAPTEURS ////////////////////////
+   void genererCapteurs(Milieu & monMilieu);
 };
 
 

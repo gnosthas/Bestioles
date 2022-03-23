@@ -5,10 +5,9 @@
 
 #include "capteur.h"
 
-
 class Yeux : public ICapteur {
     public:
-        void detection() const override;
+        bool detection(Milieu milieu) const override;
 
 };
 

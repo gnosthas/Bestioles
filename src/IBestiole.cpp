@@ -8,9 +8,12 @@
 #include "comportements/IComportement.h"
 #include "Accessoires/IAccessoire.h"
 #include "Accessoires/ConcreteCreatorNageoire.h"
+#include "Capteurs/capteur.h"
+#include "Capteurs/capteurFactory.h"
 
 #include <cstdlib>
 #include <cmath>
+
 using namespace std;
 
 const double      IBestiole::AFF_SIZE = 8.0;
@@ -39,6 +42,7 @@ void IBestiole::initBestiole(){
    this->proba_death = 0.1;
    this->duree_vie = 200 + rand() % 201; // Durée de vie entre 200 et 400 aléatoire
    this->proba_clone= 0.003; 
+   bool capteursInit = 0;
 }
 
 
@@ -216,7 +220,6 @@ void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestiole
          cout << "Une bestiole va mourrir de vieillesse" << endl;
       }
    }
-
 }; 
 
 
@@ -247,10 +250,26 @@ void IBestiole::draw( UImg & support )
 
 
 
+// IL FAUT REUSSIR A PASSER UNE REFERENCE AU MILIEU À L'INIT DE CHAQUE IBESTIOLE POUR QUE CELA MARCHE
+void IBestiole::genererCapteurs(Milieu & monMilieu){
+   listCapteurs.push_back(monMilieu.createCapteur(TC_Corps));
+   int n = rand() % 2;
+   switch(n){
+      case 0 :
+         listCapteurs.push_back(monMilieu.createCapteur(TC_Oreilles));
+         break;
+      case 1 :
+         listCapteurs.push_back(monMilieu.createCapteur(TC_Yeux));
+         break;
+      case 2 : 
+         listCapteurs.push_back(monMilieu.createCapteur(TC_Yeux));
+         listCapteurs.push_back(monMilieu.createCapteur(TC_Oreilles));
+         break;
 
- /*Gère la collision entre les créatures. La collision se fait entre deux cercles ? deux ellipses ?
-   Parcours la liste de toutes les autres créatures ?
-   En cas de collision, 1] proba mort 2] changement d'orientation à l'opposée */
+   }
+
+}
+
 
 void IBestiole::collision(Milieu &milieu, std::vector<IBestiole*> & removeBestioles){
    std::vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 

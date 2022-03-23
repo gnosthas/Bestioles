@@ -112,3 +112,6 @@ double Milieu::getPropPeur( void ) const {return this->propPeur;};
 double Milieu::getPropKamik( void ) const {return this->propKamik;};
 double Milieu::getPropPrev( void ) const {return this->propPrev;};
 double Milieu::getPropMult( void ) const {return this->propMult;};
+ICapteur* Milieu::createCapteur(TypeCapteur type){
+      return factory.createCapteur(type);
+}

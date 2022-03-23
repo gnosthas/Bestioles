@@ -1,7 +1,9 @@
 #ifndef CAPTEURFACTORY
 #define CAPTEURFACTORY
 
-#include "capteur.h"
+#include <iostream>
+
+class ICapteur;
 
 enum TypeCapteur{
     TC_Yeux, TC_Oreilles, TC_Corps
@@ -9,9 +11,7 @@ enum TypeCapteur{
 
 class CapteurFactory {
     public:
-        ~CapteurFactory(){};
-        ICapteur* createCapteur(TypeCapteur type, int id);
+        ~CapteurFactory(){std::cout<<"Destruction capteur factory"<<std::endl;};
+        static ICapteur* createCapteur(TypeCapteur type);
 };
-
-
 #endif

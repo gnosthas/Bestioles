@@ -4,6 +4,8 @@
 
 #include "UImg.h"
 
+#include "Bestiole.h"
+#include "Capteurs/capteurFactory.h"
 #include <iostream>
 #include <vector>
 
@@ -25,6 +27,8 @@ private :
 
    
    std::vector<IBestiole*>   listeBestioles;
+ 
+   CapteurFactory            factory;
 
 public :
    Milieu( int _width, int _height, int nb_Bestioles, double Greg, double Peur, double Kamik, double Prev, double Mult);
@@ -53,6 +57,7 @@ public :
 
 
 
+   ICapteur* createCapteur(TypeCapteur type);
 };
 
 
