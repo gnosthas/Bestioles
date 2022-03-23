@@ -29,16 +29,14 @@ protected :
    double            orientation; //Orientation de la Bestiole
    double            vitesse; //Vitesse de déplacement de la Besitole
 
-   // bool has_nageoires;
-   // bool has_carapace;
 
    T               * couleur;
    int duree_vie; //Durée de vie de la Besitole
-   double proba_clone; //probabilité de se cloner à chaque pas de simul
-   double proba_death; //probabilité de mort lors d'une collision
-   std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
+   double proba_clone; //Probabilité de se cloner à chaque pas de simul
+   double proba_death; //Probabilité de mort lors d'une collision
+   std::vector<IAccessoire*> listAccessoires; //Liste d'accessoires associée à la bestiole
    IComportement* comportement; //Comportement de la bestiole
-   std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
+   std::vector<ICapteur*> listCapteurs; //Liste de capteurs associée à la bestiole
 
    Milieu& milieu;
 
@@ -62,7 +60,7 @@ private :
    void ajout_Accessoires();
 
 public :         
-
+   //Destructeur
    virtual ~IBestiole( void );                              
    
    //Constructeur 
@@ -71,24 +69,26 @@ public :
    //Constructeur par copie d'une bestiole
    IBestiole(const IBestiole &ib); 
 
-
+   //Réalise le clonage, la collision et le mouvement des Bestioles
    void action(std::vector<IBestiole*> & appendBestioles, std::vector<IBestiole*> & removeBestioles ); //Méthode appelée sur la bestiole à chaque pas de simul
 
-   virtual IBestiole* clone() const = 0; //DP Prototype  
+   //DP Prototype - Méthode virtuelle pure  
+   virtual IBestiole* clone() const = 0; 
 
    //Affichage d'une créature
    void draw( UImg & support );
 
-   bool jeTeVois( const IBestiole & b ) const; //détermine si la créature détecte la créature passée en argument
+   //Détermine si la bestiole détecte la bestiole passée en argument
+   bool jeTeVois( const IBestiole & b ) const; 
 
-   void initCoords( int xLim, int yLim ); //Place la bestiole à un endroit aléatoire avec limite horyzontale & verticale
+   //Place la bestiole à un endroit aléatoire avec limite horyzontale & verticale
+   void initCoords( int xLim, int yLim ); 
 
-   friend bool operator==( const IBestiole & b1, const IBestiole & b2 ); //Est-ce utile ? ou directement le faire pour les bestioles
+   //Surcharge de l'opérateur pour test d'égalité entre deux bestioles
+   friend bool operator==( const IBestiole & b1, const IBestiole & b2 ); 
 
 
-   /////// Pointeur vers le milieu, 
    /////////////////////////  GETTEURS / SETTEURS //////////////////////////////
-
    virtual double get_proba_death(void) const;
    int getX() const;
    int getY() const;

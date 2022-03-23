@@ -20,12 +20,50 @@ const double      IBestiole::AFF_SIZE = 8.0;
 const double      IBestiole::MAX_VITESSE = 10.0;
 const double      IBestiole::LIMITE_VUE = 30.0;
 
-
 int               IBestiole::next = 0;
 
+//Constructeur 
+IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milieu), comportement(comportement){
+   initBestiole();
+   this->ajout_Accessoires();
+}
 
+//Constructeur par copie
+IBestiole::IBestiole( const IBestiole & ib) : identite(++next), x(ib.x), y(ib.y), 
+cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
+proba_death(ib.proba_death), proba_clone(ib.proba_clone),comportement(ib.comportement), milieu(ib.milieu)//, listAccessoires(listAccessoires)
+{
+   cout << "const IBestiole (" << this->identite << ") par copie" << endl;
+   /*On fait le choix de réinitialiser la durée de vie lors du clonage sinon la bestiole clonnée 
+   meurt en meme temps que sa version originale, ce qui provoque des "sauts" dans la simulation*/
+   duree_vie = 200 + rand() % 201; 
+   couleur = new T[ 3 ];
+   memcpy( couleur, ib.couleur, 3*sizeof(T) );
+   this->duree_vie = 200 + rand() % 201;
 
-///////////// Initialise la bestiole : Id, position, vitesse, couleur, ... /////////////////
+   this->ajout_Accessoires();
+}
+
+//Destructeur
+IBestiole::~IBestiole( void )
+{
+   cout << "dest IBestiole" << endl;
+      
+   for (IAccessoire* a : this->listAccessoires) {
+      delete a;
+   }
+   
+   for (ICapteur* c : this->listCapteurs) {
+      delete c;
+   }
+   // this->listCapteurs.clear();
+
+   //delete[] this->couleur;
+   //delete this->comportement; //Warning Segment error ===> C'est normal : on a cette erreur car les comportements ne sont pas associé à une bestiole en particulier.
+   
+}
+
+//Initialise la bestiole : (Id, position, vitesse, ...) - Appelée dans le Constructeur
 void IBestiole::initBestiole(){
    this->identite = ++next;
    this->x = this->y = 0;
@@ -35,15 +73,16 @@ void IBestiole::initBestiole(){
    // vitesse initiale aléatoire
    this->vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
-   // définit la couleur de la bestiole r , g , b
    couleur = comportement->getCouleur();
 
    // this->proba_death = ((rand() % 101))/100.0 ;// valeur entre 0 et 1
-   this->proba_death = 0.1;
+   this->proba_death = 0.1; 
    this->duree_vie = 200 + rand() % 201; // Durée de vie entre 200 et 400 aléatoire
    this->proba_clone= 0.003; 
-   bool capteursInit = 0;
    this->genererCapteurs();
+   /*Probabilités de mort et de clonage fixées à 0.1 et 0.003 pour des raisons 
+   d'autorégulation de la population lors de la simulation. Une initialisation aléatoire fonctionne
+   parfaitement mais est moins pertinente pour l'observation d'une simulation. */
 }
 
 
@@ -78,61 +117,14 @@ void IBestiole::ajout_Accessoires(){
 
 }
 
-///////////////////////// Constructeur d'une bestiole /////////////////////////////
-
-////////// TEMPORAIRE POUR TEST COMPILATION
-
-IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milieu), comportement(comportement){
-
-   initBestiole();
-   this->ajout_Accessoires();
- 
-}
-
-
-
-///////////////////////// Constructeur par copie de la bestiole /////////////////////////////
-
-
-IBestiole::IBestiole( const IBestiole & ib) : identite(++next), x(ib.x), y(ib.y), 
-cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
-proba_death(ib.proba_death), proba_clone(ib.proba_clone),comportement(ib.comportement), milieu(ib.milieu)//, listAccessoires(listAccessoires)
-{
-   cout << "const IBestiole (" << this->identite << ") par copie" << endl;
-   duree_vie = 200 + rand() % 201; // Il faut réinitialiser la durée de vie sinon la bestiole clonnée meurt en meme temps que sa version originale
-   couleur = new T[ 3 ];
-   memcpy( couleur, ib.couleur, 3*sizeof(T) );
-   this->duree_vie = 200 + rand() % 201;
-
-   this->ajout_Accessoires();
-}
-
-///////////////////////// Destructeur /////////////////////////////
-IBestiole::~IBestiole( void )
-{
-   cout << "dest IBestiole" << endl;
-      
-   for (IAccessoire* a : this->listAccessoires) {
-      delete a;
-   }
-   
-   for (ICapteur* c : this->listCapteurs) {
-      delete c;
-   }
-   // this->listCapteurs.clear();
-
-   //delete[] this->couleur;
-   //delete this->comportement; //Warning Segment error ===> C'est normal : on a cette erreur car les comportements ne sont pas associé à une bestiole en particulier.
-   
-}
-////////////////// Initialise aléatoire la position de la bestiole ///////////////
+////Place la bestiole à un endroit aléatoire avec limite horyzontale & verticale
 void IBestiole::initCoords( int xLim, int yLim )
 {
    this->x = rand() % xLim;
    this->y = rand() % yLim;
 }
 
-////////////////////// Est-ce nécessaire ou alors le faire dans bestiole car on n'instancie pas de IBestiole ?////////////////////
+//Surcharge de l'opérateur pour test d'égalité entre deux bestioles
 bool operator==( const IBestiole & ib1, const IBestiole & ib2 )
 {
    return ( ib1.identite == ib2.identite );
@@ -142,7 +134,7 @@ void IBestiole::decrDureeVie(){
    -- this->duree_vie;
 }
 
-/// Savoir si la bestiole passée en argument est dans le champ de vision de la bestiole courante ///
+//Détermine si la bestiole détecte la bestiole passée en argument
 bool IBestiole::jeTeVois( const IBestiole & ib ) const
 {
    double         distance_bestioles;
@@ -150,67 +142,19 @@ bool IBestiole::jeTeVois( const IBestiole & ib ) const
    return ( distance_bestioles <= LIMITE_VUE );
 }
 
-///////////////////////////// GETTEURS ///////////////////////////////////
-int IBestiole::getX() const {return x;}
-int IBestiole::getY() const {return y;}
-int IBestiole::getIdentite() const {return this->identite;}
-int IBestiole::getDureeVie() const{return this->duree_vie;};
-IComportement* IBestiole::getComportement() const {return this->comportement;}
-double IBestiole::get_proba_death() const{return this->proba_death;}
-double IBestiole::get_vitesse() const{return this-> vitesse;}
-double IBestiole::getCumulX() const{return this-> cumulX;}
-double IBestiole::getCumulY() const{return this-> cumulY;}
-double IBestiole::getOrientation() const{return this->orientation;}
-
-
-/////////////////////////////////SETTEURS //////////////////////////////
-void IBestiole::setVitesse(double v){
-   this->vitesse = v;
-};
-
-//Pour créer des bestioles différentes en fonction de leur couleur
-void IBestiole::setColor(int r, int g, int b){
-   this->couleur[0] = r;
-   this->couleur[1] = g;
-   this->couleur[2] = b;
-}
-
-void IBestiole::setX(int x){
-   this->x =x;
-   }
-void IBestiole::setY(int y){this->y =y;}
-void IBestiole::setCumulX(double cx){this->cumulX = cx;}
-void IBestiole::setCumulY(double cy){this->cumulY = cy;}
-void IBestiole::setDureeVie(int duree_vie){this->duree_vie = duree_vie;};
-void IBestiole::setOrientation(double o){
-   if (o > 2*M_PI) {
-      double intpart,fracpart;
-      fracpart = std::modf(o/(2*M_PI), &intpart);
-      o = 2*M_PI*fracpart;
-   } 
-   this->orientation =o;
-   }
-
-////////////////////////Les Méthodes qu'il reste à implémenter ////////////////
-
- ///////////////////////////// Déplacement de la bestiole dans le milieu ////////////////////////
-// void IBestiole::bouge(Milieu &milieu){
-//    comportement->bougeSelonComportement(milieu, &this);
-// }
-
-//////////////// Méthode appelée sur la bestiole à chaque pas de simulation /////////////////////////
+//Réalise le clonage, la collision et le mouvement des Bestioles
 void IBestiole::action(std::vector<IBestiole*> & appendBestioles, std::vector<IBestiole*> & removeBestioles){ 
 
-   ///////// Clonage /////////////
+   //Clonage aléatoire d'une Bestiole
    double clonnage = ((rand() % 1001) + 1) / 1000.0;
    if(clonnage <= this->proba_clone){
       IBestiole* best_clone = clone(); 
       appendBestioles.push_back(best_clone);
    }
-   
+   //Mouvement
    bouge();
    
-   ///////// Collision ////////////
+   //Collision 
    collision(removeBestioles);
    
    decrDureeVie();
@@ -226,20 +170,38 @@ void IBestiole::action(std::vector<IBestiole*> & appendBestioles, std::vector<IB
    }
 }; 
 
+/*Gère la Collision entre les Bestioles : On va remplir une liste removeBestioles à supprimer de
+l'environnement dans le cas d'une collision mortelle pour la Bestiole courante et dans le cas
+contraire, inverser la direction de la Bestiole*/
+void IBestiole::collision(std::vector<IBestiole*> & removeBestioles){
+   std::vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
+   double         distance_bestioles;
+   for (auto it = bestioles.begin() ; it != bestioles.end() ; ++it) //Parcours des Bestioles du milieu
+   {
+      if(*it != this) //On ne considère pas l'interraction de la Bestiole avec elle-même
+      {
+         distance_bestioles = sqrt( pow(this->x-(*it)->x,2)+ pow(this->y-(*it)->y,2) );
+         
+         if (distance_bestioles <= AFF_SIZE) //Choix simple et naïf de considérer simplement le diamètre pour la collision
+         {
+            double proba_survive = (rand() % 101)/100.0;
+            double proba_death = this->get_proba_death();
 
-//////////////////////////// Affichage d'une créature /////////////////////////////////////////
-// void IBestiole::draw( UImg & support, Milieu & milieu ){
+            if (proba_death > proba_survive) //Si la proba de mort est supérieure à la proba de survie tirée aléatoirement
+            {
+               removeBestioles.push_back(this);
+               cout << "Une Bestiole va mourrir de collision" << endl;
+            }
+            this-> orientation = - orientation;
+         }
+      }
 
-//    double         xt = x + cos( orientation )*AFF_SIZE/2.1;
-//    double         yt = y - sin( orientation )*AFF_SIZE/2.1;
+   } 
+
+};
 
 
-//    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
-//    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
-
-// }; 
-
-////////// TEMPORAIRE POUR TEST COMPILATION
+//Affichage d'une créature
 void IBestiole::draw( UImg & support )
 {
 
@@ -251,10 +213,6 @@ void IBestiole::draw( UImg & support )
 
 }
 
-
-
-
-// IL FAUT REUSSIR A PASSER UNE REFERENCE AU MILIEU À L'INIT DE CHAQUE IBESTIOLE POUR QUE CELA MARCHE
 void IBestiole::genererCapteurs(){
 
    listCapteurs.push_back(this->milieu.createCapteur(TC_Corps));
@@ -280,36 +238,41 @@ void IBestiole::genererCapteurs(){
 
 }
 
+///////////////////////////// GETTEURS ///////////////////////////////////
+int IBestiole::getX() const {return x;}
+int IBestiole::getY() const {return y;}
+int IBestiole::getIdentite() const {return this->identite;}
+int IBestiole::getDureeVie() const{return this->duree_vie;};
+IComportement* IBestiole::getComportement() const {return this->comportement;}
+double IBestiole::get_proba_death() const{return this->proba_death;}
+double IBestiole::get_vitesse() const{return this-> vitesse;}
+double IBestiole::getCumulX() const{return this-> cumulX;}
+double IBestiole::getCumulY() const{return this-> cumulY;}
+double IBestiole::getOrientation() const{return this->orientation;}
 
-void IBestiole::collision(vector<IBestiole*> & removeBestioles){
-   vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
-   double         distance_bestioles;
-   for (auto it = bestioles.begin() ; it != bestioles.end() ; ++it)
-   {
-      if(*it != this)
-      {
-         distance_bestioles = sqrt( pow(this->x-(*it)->x,2)+ pow(this->y-(*it)->y,2) );
-         
-         if (distance_bestioles <= AFF_SIZE) 
-         {
-            double proba_survive = (rand() % 101)/100.0;            
 
-            if (proba_death > proba_survive) //Si la proba de mort est supérieure à la proba de survie tirée aléatoirement
-            {
-               removeBestioles.push_back(this);
-               cout << "Une Bestiole va mourrir de collision" << endl;
-            }
-            this-> orientation = - orientation;
-         }
-      }
+/////////////////////////////////SETTEURS //////////////////////////////
 
-   } 
-
+void IBestiole::setVitesse(double v){
+   this->vitesse = v;
 };
 
+void IBestiole::setColor(int r, int g, int b){
+   this->couleur[0] = r;
+   this->couleur[1] = g;
+   this->couleur[2] = b;
+}
 
-
-
-
-
-
+void IBestiole::setX(int x){this->x =x;}
+void IBestiole::setY(int y){this->y =y;}
+void IBestiole::setCumulX(double cx){this->cumulX = cx;}
+void IBestiole::setCumulY(double cy){this->cumulY = cy;}
+void IBestiole::setDureeVie(int duree_vie){this->duree_vie = duree_vie;};
+void IBestiole::setOrientation(double o){
+   if (o > 2*M_PI) {
+      double intpart,fracpart;
+      fracpart = std::modf(o/(2*M_PI), &intpart);
+      o = 2*M_PI*fracpart;
+   } 
+   this->orientation =o;
+   }
