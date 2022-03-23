@@ -2,8 +2,6 @@
 #define _BESTIOLES_H_
 
 #include "IBestiole.h"
-
-
 #include <iostream>
 using namespace std;
 
@@ -13,17 +11,23 @@ class Milieu;
 class Bestiole : public IBestiole
 {
 
-public :                                           // Forme canonique :
-   Bestiole(Milieu &milieu);                               // Constructeur par defaut
+public :          
+   // Constructeur non utilisé en pratique                                
+   Bestiole(Milieu &milieu);  
 
-   Bestiole(Milieu &milieu, IComportement* comportement);//fait appel au constructeur de IBestiole
+   // Constructeur
+   Bestiole(Milieu &milieu, IComportement* comportement);
 
-   Bestiole(const Bestiole & b);//fait appel au constructeur par copie de IBestiole
+   // Constructeur par copie
+   Bestiole(const Bestiole & b);
    
-   ~Bestiole();                             // Destructeur
+   // Destructeur
+   ~Bestiole();                             
 
-   IBestiole* clone() const override; //DP Prototype
+   //DP Prototype - override de la méthode clone() issue de IBestiole
+   IBestiole* clone() const override; 
 
+   //override de la méthode bouge() issue de IBestiole
    void bouge() override;
 };
 
