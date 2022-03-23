@@ -11,9 +11,9 @@ ConcreteCreatorBestiole::ConcreteCreatorBestiole() : BestiolesFactory(){cout << 
 
 //On fait le choix de renvoyer un pointeur de Bestiole plutôt qu'un pointeur de IBestiole pour des 
 //raisons de clarté (& utilisation du type covariant)
-Bestiole* ConcreteCreatorBestiole::createBestiole(IComportement* comportement) const {
+Bestiole* ConcreteCreatorBestiole::createBestiole(Milieu& milieu, IComportement* comportement) const {
 
-        Bestiole* bestiole = new Bestiole(comportement);
+        Bestiole* bestiole = new Bestiole(milieu, comportement);
         
         //Random ajout d'accessoires et de capteurs i.e appel aux fabriques de capteurs et d'accessoires
         // Associé yeux/oreilles/nageoires/camouflage/carapace...
@@ -22,8 +22,8 @@ Bestiole* ConcreteCreatorBestiole::createBestiole(IComportement* comportement) c
 }
 
 ////////// TEMPORAIRE POUR TEST COMPILATION
-Bestiole* ConcreteCreatorBestiole::createBestiole() const {
-        Bestiole* bestiole = new Bestiole();
+Bestiole* ConcreteCreatorBestiole::createBestiole(Milieu& milieu) const {
+        Bestiole* bestiole = new Bestiole(milieu);
         return bestiole;
 }
 

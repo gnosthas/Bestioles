@@ -6,8 +6,8 @@
 
 using namespace std;
 
-Bestiole::Bestiole(IComportement* comportement):IBestiole(comportement){}
-Bestiole::Bestiole():IBestiole(){
+Bestiole::Bestiole(Milieu &milieu, IComportement* comportement):IBestiole(milieu, comportement){}
+Bestiole::Bestiole(Milieu &milieu):IBestiole(milieu){
    cout << "Création nouvelle bestiole" << endl;
 }
 Bestiole::Bestiole(const Bestiole & b):IBestiole(b){}
@@ -20,6 +20,6 @@ IBestiole* Bestiole::clone() const{
     
 }
 
-void Bestiole::bouge(Milieu &milieu){
-   comportement->bougeSelonComportement(milieu, *this);
+void Bestiole::bouge(){
+   comportement->bougeSelonComportement(this->milieu, *this);
 }

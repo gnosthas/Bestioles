@@ -149,19 +149,19 @@ int main()
    ConcreteCreatorBestiole creator_bestiole;
 
    for ( int i = 1; i <= floor(ecosysteme.getMilieu().getNbBest()*ecosysteme.getMilieu().getPropGreg()); ++i ){
-      Bestiole* bestiole = creator_bestiole.createBestiole(greg);
+      Bestiole* bestiole = creator_bestiole.createBestiole(ecosysteme.getMilieu(),greg);
       ecosysteme.getMilieu().addBestiole(bestiole);
    }
    for ( int i = 1; i <= floor(ecosysteme.getMilieu().getNbBest()*ecosysteme.getMilieu().getPropPeur()); ++i ){
-      Bestiole* bestiole = creator_bestiole.createBestiole(peur);
+      Bestiole* bestiole = creator_bestiole.createBestiole(ecosysteme.getMilieu(),peur);
       ecosysteme.getMilieu().addBestiole(bestiole);
    }
    for ( int i = 1; i <= floor(ecosysteme.getMilieu().getNbBest()*ecosysteme.getMilieu().getPropKamik()); ++i ){
-      Bestiole* bestiole = creator_bestiole.createBestiole(kami);
+      Bestiole* bestiole = creator_bestiole.createBestiole(ecosysteme.getMilieu(),kami);
       ecosysteme.getMilieu().addBestiole(bestiole);
    }
    for ( int i = 1; i <= floor(ecosysteme.getMilieu().getNbBest()*ecosysteme.getMilieu().getPropPrev()); ++i ){
-      Bestiole* bestiole = creator_bestiole.createBestiole(prev);
+      Bestiole* bestiole = creator_bestiole.createBestiole(ecosysteme.getMilieu(),prev);
       ecosysteme.getMilieu().addBestiole(bestiole);
    }
    // for ( int i = 1; i <= floor(ecosysteme.getMilieu().getNbBest()*ecosysteme.getMilieu().getPropMult()); ++i ){

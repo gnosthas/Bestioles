@@ -50,6 +50,8 @@ std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
    std::vector<IAccessoire*> listAccessoires;
    int rand_nag = rand() % 100;
    if (rand_nag <= 5){
+
+      /// Appeler le creator dans milieu
       ConcreteCreatorNageoire creator_nageoire;
       Nageoire* nageoire = creator_nageoire.createAccessoire();
       listAccessoires.push_back(nageoire);
@@ -62,7 +64,7 @@ std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
 
 ////////// TEMPORAIRE POUR TEST COMPILATION
 
-IBestiole::IBestiole(IComportement* comportement) : comportement(comportement){
+IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milieu), comportement(comportement){
 
    initBestiole();
    std::vector<IAccessoire*> listAccessoires = this->ajout_Accessoires();
@@ -72,7 +74,7 @@ IBestiole::IBestiole(IComportement* comportement) : comportement(comportement){
    // }
 }
 
-IBestiole::IBestiole(){
+IBestiole::IBestiole(Milieu &milieu): milieu(milieu){
    initBestiole();
 }
 
@@ -96,9 +98,9 @@ IBestiole::IBestiole(){
 
 // }
 
-IBestiole::IBestiole( const IBestiole & ib ) : identite(++next), x(ib.x), y(ib.y), 
+IBestiole::IBestiole( const IBestiole & ib) : identite(++next), x(ib.x), y(ib.y), 
 cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
-proba_death(ib.proba_death), duree_vie(ib.duree_vie), proba_clone(ib.proba_clone),comportement(ib.comportement)
+proba_death(ib.proba_death), duree_vie(ib.duree_vie), proba_clone(ib.proba_clone),comportement(ib.comportement), milieu(ib.milieu)
 {
    cout << "const IBestiole (" << this->identite << ") par copie" << endl;
    couleur = new T[ 3 ];
@@ -195,7 +197,7 @@ void IBestiole::setOrientation(double o){
 // }
 
 //////////////// Méthode appelée sur la bestiole à chaque pas de simulation /////////////////////////
-void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestioles, std::vector<IBestiole*> & removeBestioles){ 
+void IBestiole::action(std::vector<IBestiole*> & appendBestioles, std::vector<IBestiole*> & removeBestioles){ 
 
    ///////// Clonage /////////////
    double clonnage = ((rand() % 1001) + 1) / 1000.0;
@@ -204,10 +206,10 @@ void IBestiole::action(Milieu & milieu, std::vector<IBestiole*> & appendBestiole
       appendBestioles.push_back(best_clone);
    }
    
-   bouge(milieu);
+   bouge();
    
    ///////// Collision ////////////
-   collision(milieu, removeBestioles);
+   collision(removeBestioles);
    
    decrDureeVie();
 
@@ -251,19 +253,19 @@ void IBestiole::draw( UImg & support )
 
 
 // IL FAUT REUSSIR A PASSER UNE REFERENCE AU MILIEU À L'INIT DE CHAQUE IBESTIOLE POUR QUE CELA MARCHE
-void IBestiole::genererCapteurs(Milieu & monMilieu){
-   listCapteurs.push_back(monMilieu.createCapteur(TC_Corps));
+void IBestiole::genererCapteurs(){
+   listCapteurs.push_back(this->milieu.createCapteur(TC_Corps));
    int n = rand() % 2;
    switch(n){
       case 0 :
-         listCapteurs.push_back(monMilieu.createCapteur(TC_Oreilles));
+         listCapteurs.push_back(this->milieu.createCapteur(TC_Oreilles));
          break;
       case 1 :
-         listCapteurs.push_back(monMilieu.createCapteur(TC_Yeux));
+         listCapteurs.push_back(this->milieu.createCapteur(TC_Yeux));
          break;
       case 2 : 
-         listCapteurs.push_back(monMilieu.createCapteur(TC_Yeux));
-         listCapteurs.push_back(monMilieu.createCapteur(TC_Oreilles));
+         listCapteurs.push_back(this->milieu.createCapteur(TC_Yeux));
+         listCapteurs.push_back(this->milieu.createCapteur(TC_Oreilles));
          break;
 
    }
@@ -271,7 +273,7 @@ void IBestiole::genererCapteurs(Milieu & monMilieu){
 }
 
 
-void IBestiole::collision(Milieu &milieu, std::vector<IBestiole*> & removeBestioles){
+void IBestiole::collision(std::vector<IBestiole*> & removeBestioles){
    std::vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
    double         distance_bestioles;
    for (auto it = bestioles.begin() ; it != bestioles.end() ; ++it)
