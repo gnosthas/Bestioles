@@ -7,7 +7,6 @@
 using namespace std;
 
 Bestiole::Bestiole(Milieu &milieu, IComportement* comportement):IBestiole(milieu, comportement){}
-// Bestiole::Bestiole(Milieu &milieu):IBestiole(milieu){}
 Bestiole::Bestiole(const Bestiole & b):IBestiole(b){}
 
 Bestiole::~Bestiole(){}

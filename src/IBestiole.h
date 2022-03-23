@@ -3,12 +3,11 @@
 
 #include <iostream>
 #include <vector>
-// #include "Accessoires/IAccessoire.h"
 #include "UImg.h"
 
 using namespace std;
 
-class ICapteur; //capteurs
+class ICapteur; 
 
 
 class Milieu;
@@ -17,70 +16,67 @@ class IAccessoire;
 class IBestiole{
 
 protected : 
-   static const double     AFF_SIZE; //diamètre
-   static const double     MAX_VITESSE; //vitesse max
-   static const double     LIMITE_VUE; //vue max
+   static const double     AFF_SIZE; //Diamètre
+   static const double     MAX_VITESSE; //Vitesse max
+   static const double     LIMITE_VUE; //Vue max
    
-   static int              next; //permet d'incrémenter l'Id des bestioles
+   static int              next; //Permet d'incrémenter l'Id des bestioles
 
 protected :
    int               identite;  //Id unique d'une bestiole
    int               x, y; //Position de la bestiole sur le cadrillage
    double            cumulX, cumulY; //Position réelle de la bestiole
-   double            orientation; 
-   double            vitesse; 
+   double            orientation; //Orientation de la Bestiole
+   double            vitesse; //Vitesse de déplacement de la Besitole
 
    // bool has_nageoires;
    // bool has_carapace;
 
    T               * couleur;
-   int duree_vie; //Age de la bestiole qui augmente à chaque pas de simulation
-   double proba_clone; //proba de se cloner à chaque pas de simul
-   double proba_death; //proba de mort lors d'une collision
-   // std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
+   int duree_vie; //Durée de vie de la Besitole
+   double proba_clone; //probabilité de se cloner à chaque pas de simul
+   double proba_death; //probabilité de mort lors d'une collision
    std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
    IComportement* comportement; //Comportement de la bestiole
    std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
 
    Milieu& milieu;
-   // std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
-   // IComportement* comportement; //Comportement de la bestiole
 
 
 
 private :
 
-   //Déplace la créature dans le milieu
+   //Méthode virtuelle pure redéfinie dans Bestiole - Déplacement d'une bestiole
    virtual void bouge() = 0; 
    
-   /*Gère la collision entre les créatures. La collision se fait entre deux cercles ? deux ellipses ?
-   Parcours la liste de toutes les autres créatures ?
-   En cas de collision, 1] proba mort 2] changement d'orientation à l'opposée */
+   //Gère la collision entre les Bestioles.
    void collision(std::vector<IBestiole*> & removeBestioles);
 
-   //Augmente l'age de la bestiole --> appelé à chaque pas de simulation
+   //Décrémente l'âge de la Bestiole
    void decrDureeVie(void);
 
+   //Initialise les paramètres de la Bestiole (Vitesse, Orientation, ....) - Appelée dans le Constructeur
    void initBestiole();
 
+   //Permet l'ajout d'accessoire à la liste d'accessoires de la Bestiole
    void ajout_Accessoires();
 
 public :         
 
-   virtual ~IBestiole( void );                              // Destructeur
+   virtual ~IBestiole( void );                              
    
-   IBestiole(Milieu& milieu); ////////// TEMPORAIRE POUR TEST COMPILATION
-   IBestiole(Milieu& milieu, IComportement* comportement); //Constructeur d'une bestiole
+   //Constructeur 
+   IBestiole(Milieu& milieu, IComportement* comportement); 
 
-   ////////// TEMPORAIRE POUR TEST COMPILATION
-   IBestiole(const IBestiole &ib); //Constructeur par copie d'une bestiole
+   //Constructeur par copie d'une bestiole
+   IBestiole(const IBestiole &ib); 
+
 
    void action(std::vector<IBestiole*> & appendBestioles, std::vector<IBestiole*> & removeBestioles ); //Méthode appelée sur la bestiole à chaque pas de simul
 
    virtual IBestiole* clone() const = 0; //DP Prototype  
 
-   ////////// TEMPORAIRE POUR TEST COMPILATION
-   // void draw( UImg & support, Milieu & milieu ); //Affichage d'une créature
+   //Affichage d'une créature
    void draw( UImg & support );
 
    bool jeTeVois( const IBestiole & b ) const; //détermine si la créature détecte la créature passée en argument
