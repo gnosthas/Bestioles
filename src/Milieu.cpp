@@ -48,11 +48,7 @@ void Milieu::step( void )
    std::vector<IBestiole*> removeBestioles; //Bestioles à retirer à chaque pas de simulation
 
    cimg_forXY( *this, x, y ) fillC( x, y, 0, white[0], white[1], white[2] );
-   // if (!listeBestioles.empty()) {
-   //    std::cout << "pos premiere bestiole : " << listeBestioles.at(0)->getX() << " , " << listeBestioles.at(0)->getY() << std::endl;
-   //    std::cout << "age premiere bestiole : " << listeBestioles.at(0)->getDureeVie() << std::endl;
-   //    std::cout << "identite premiere bestiole : " << listeBestioles.at(0)->getIdentite() << std::endl;
-   // }
+
    for (auto it = listeBestioles.begin() ; it != listeBestioles.end() ; ++it)
    {  
       (*it)->action(*this, appendBestioles, removeBestioles);

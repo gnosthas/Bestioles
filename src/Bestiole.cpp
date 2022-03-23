@@ -6,14 +6,18 @@
 
 using namespace std;
 
+//////////////////////////// Constructeur Bestiole //////////////////////////////////////////
 Bestiole::Bestiole(IComportement* comportement):IBestiole(comportement){}
-Bestiole::Bestiole():IBestiole(){
+
+Bestiole::Bestiole():IBestiole()
+{
    cout << "Création nouvelle bestiole" << endl;
 }
 Bestiole::Bestiole(const Bestiole & b):IBestiole(b){}
 
-Bestiole::~Bestiole(){}//cout << "Destruction bestiole" << endl;}
+Bestiole::~Bestiole(){}
 
+// Implémentation du DP Prototype par override //
 IBestiole* Bestiole::clone() const{
    cout << "Je suis issu d'un clonage" << endl;
     return new Bestiole(*this);
