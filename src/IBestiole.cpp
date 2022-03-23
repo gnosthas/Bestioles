@@ -43,6 +43,7 @@ void IBestiole::initBestiole(){
    this->duree_vie = 200 + rand() % 201; // Durée de vie entre 200 et 400 aléatoire
    this->proba_clone= 0.003; 
    bool capteursInit = 0;
+   this->genererCapteurs();
 }
 
 
@@ -74,6 +75,7 @@ IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milie
 
 IBestiole::IBestiole(Milieu &milieu): milieu(milieu){
    initBestiole();
+ 
 }
 
 ///////////////////////// Constructeur par copie de la bestiole /////////////////////////////
@@ -100,7 +102,12 @@ IBestiole::~IBestiole( void )
       delete a;
       
    }
-   this->listAccessoires.clear();
+  this->listAccessoires.clear();
+   for (ICapteur* c : this->listCapteurs) {
+      delete c;
+      
+   }
+   this->listCapteurs.clear();
 
    //delete[] this->couleur;
    //delete this->comportement; //Warning Segment error ===> C'est normal : on a cette erreur car les comportements ne sont pas associé à une bestiole en particulier.
@@ -237,20 +244,26 @@ void IBestiole::draw( UImg & support )
 
 // IL FAUT REUSSIR A PASSER UNE REFERENCE AU MILIEU À L'INIT DE CHAQUE IBESTIOLE POUR QUE CELA MARCHE
 void IBestiole::genererCapteurs(){
+
    listCapteurs.push_back(this->milieu.createCapteur(TC_Corps));
-   int n = rand() % 2;
+   int n = rand() % 4;
    switch(n){
       case 0 :
          listCapteurs.push_back(this->milieu.createCapteur(TC_Oreilles));
+         std::cout<<"Bestiole avec des oreilles"<<std::endl;
          break;
       case 1 :
          listCapteurs.push_back(this->milieu.createCapteur(TC_Yeux));
+         std::cout<<"Bestiole avec des yeux"<<std::endl;
          break;
       case 2 : 
          listCapteurs.push_back(this->milieu.createCapteur(TC_Yeux));
          listCapteurs.push_back(this->milieu.createCapteur(TC_Oreilles));
+         std::cout<<"Bestiole avec des oreilles ET des yeux"<<std::endl;
          break;
-
+      case 3 :
+         std::cout<<"Bestiole sans capteurs :("<<std::endl;
+         break;
    }
 
 }
