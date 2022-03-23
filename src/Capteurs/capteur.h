@@ -11,12 +11,6 @@ using namespace std;
 class ICapteur {   
 
     public:
-        double alpha_min;
-        double alpha_max;
-        double delta_min;
-        double delta_max;
-        double gamma_m;
-        double gamma_M ;
         float posX;
         float posY;
 

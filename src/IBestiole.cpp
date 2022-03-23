@@ -213,9 +213,14 @@ void IBestiole::draw( UImg & support )
 
 }
 
-void IBestiole::genererCapteurs(){
-
-   listCapteurs.push_back(this->milieu.createCapteur(TC_Corps));
+void IBestiole::genererCapteurs(){ // cette methode permet de generer des capteurs aléatoirement avec les probablités suivantes:
+/*
+P = 25%  de bestiole sans capteurs
+P = 25%  de bestiole avec yeux
+P = 25%  de bestiole avec oreilles
+P = 25%  de bestiole avec yeux ET oreilles
+*/
+   listCapteurs.push_back(this->milieu.createCapteur(TC_Corps)); // toutes les bestioles ont des capteurs corps pour permettre les collisions
    int n = rand() % 4;
    switch(n){
       case 0 :

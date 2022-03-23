@@ -4,7 +4,8 @@
 #include <iostream>
 
 class ICapteur;
-
+ 
+ // nos 3 types de capteurs, facilement extensible
 enum TypeCapteur{
     TC_Yeux, TC_Oreilles, TC_Corps
 };
