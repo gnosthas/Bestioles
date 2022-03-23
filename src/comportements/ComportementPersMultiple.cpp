@@ -7,7 +7,20 @@
 #include <random>
 
 
-ComportementPersMultiple::ComportementPersMultiple(std::vector<IComportement*> listeComportements):comportements(listeComportements) {}
+ComportementPersMultiple::ComportementPersMultiple(std::vector<IComportement*> listeComportements):comportements(listeComportements) {
+    couleur = new T[ 3 ];
+    couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+    couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+    couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+}
+
+ComportementPersMultiple::~ComportementPersMultiple() {
+    delete[] couleur;
+}
+
+T* ComportementPersMultiple::getCouleur() const {
+    return couleur;
+}
 
 void ComportementPersMultiple::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins)
 {

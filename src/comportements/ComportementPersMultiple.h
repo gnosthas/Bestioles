@@ -6,9 +6,13 @@
 
 class ComportementPersMultiple : public IComportement {
     private :
+        T* couleur;
         double proba_changer_comportement = 0.05;
         std::map<int,int> comportementBestioles;
     public:
+        ComportementPersMultiple();
+        ~ComportementPersMultiple() override;
+        virtual T* getCouleur() const override;
         std::vector<IComportement*> comportements;
         ComportementPersMultiple(std::vector<IComportement*> comportements);
         void bougeSelonComportement(Milieu &m, Bestiole &b) override;
