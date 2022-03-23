@@ -7,7 +7,7 @@
 #include "IBestiole.h"
 #include "comportements/IComportement.h"
 #include "Accessoires/IAccessoire.h"
-#include "Accessoires/ConcreteCreatorNageoire.h"
+#include "Accessoires/Nageoire.h"
 #include "Capteurs/capteur.h"
 #include "Capteurs/capteurFactory.h"
 
@@ -51,9 +51,7 @@ std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
    int rand_nag = rand() % 100;
    if (rand_nag <= 5){
 
-      /// Appeler le creator dans milieu
-      ConcreteCreatorNageoire creator_nageoire;
-      Nageoire* nageoire = creator_nageoire.createAccessoire();
+      Nageoire* nageoire = this->milieu.createNageoire();
       listAccessoires.push_back(nageoire);
       this->vitesse = this->vitesse * nageoire->getMultvitesse();
    }

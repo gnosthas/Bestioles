@@ -6,6 +6,7 @@
 
 #include "Bestiole.h"
 #include "Capteurs/capteurFactory.h"
+#include "Accessoires/ConcreteCreatorNageoire.h"
 #include <iostream>
 #include <vector>
 
@@ -29,6 +30,7 @@ private :
    std::vector<IBestiole*>   listeBestioles;
  
    CapteurFactory            factory;
+   ConcreteCreatorNageoire   createur_nageoire;
 
 public :
    Milieu( int _width, int _height, int nb_Bestioles, double Greg, double Peur, double Kamik, double Prev, double Mult);
@@ -60,6 +62,8 @@ public :
 
 
    ICapteur* createCapteur(TypeCapteur type);
+   Nageoire* createNageoire();
+   
 };
 
 
