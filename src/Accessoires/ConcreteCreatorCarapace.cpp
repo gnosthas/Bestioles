@@ -3,7 +3,9 @@
 using namespace std;
 
 
-Carapace* ConcreteCreatorCarapace::createAccessoire(){
+Carapace* ConcreteCreatorCarapace::createAccessoire() const{
+            double OMEGA_MAX = 2;
+            double ETA_MAX = 2;
             double omega;
             double eta;
             omega =  ((double) rand() / (RAND_MAX))*(OMEGA_MAX-1) + 1; // Génération d'un nombre aléatoire entre [1;OMEGA_MAX]
