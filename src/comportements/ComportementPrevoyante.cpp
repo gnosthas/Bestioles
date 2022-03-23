@@ -6,6 +6,21 @@
 #include "Deplacements.h"
 #include <cmath>
 
+ComportementPrevoyante::ComportementPrevoyante() {
+    couleur = new T[ 3 ];
+    couleur[ 0 ] = 0;
+    couleur[ 1 ] = 230;
+    couleur[ 2 ] = 0;
+}
+
+ComportementPrevoyante::~ComportementPrevoyante() {
+    delete[] couleur;
+}
+
+T* ComportementPrevoyante::getCouleur() const {
+    return couleur;
+}
+
 void ComportementPrevoyante::adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins)
 {
     if (!listeVoisins.empty()) {

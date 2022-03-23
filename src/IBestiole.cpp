@@ -31,10 +31,7 @@ void IBestiole::initBestiole(){
    this->vitesse = static_cast<double>( rand() )/RAND_MAX*MAX_VITESSE;
 
    // définit la couleur de la bestiole r , g , b
-   couleur = new T[ 3 ];
-   couleur[ 0 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 1 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
-   couleur[ 2 ] = static_cast<int>( static_cast<double>( rand() )/RAND_MAX*230. );
+   couleur = comportement->getCouleur();
 
    // this->proba_death = ((rand() % 101))/100.0 ;// valeur entre 0 et 1
    this->proba_death = 0.1;
@@ -92,7 +89,6 @@ proba_death(ib.proba_death), duree_vie(ib.duree_vie), proba_clone(ib.proba_clone
 IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
-   delete[] this->couleur;
    //delete this->comportement; //Warning Segment error
    
 }
@@ -216,7 +212,6 @@ void IBestiole::draw( UImg & support )
 
    double         xt = x + cos( orientation )*AFF_SIZE/2.1;
    double         yt = y - sin( orientation )*AFF_SIZE/2.1;
-
 
    support.draw_ellipse( x, y, AFF_SIZE, AFF_SIZE/5., -orientation/M_PI*180., couleur );
    support.draw_circle( xt, yt, AFF_SIZE/2., couleur );
