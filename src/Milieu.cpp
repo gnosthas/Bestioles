@@ -126,15 +126,15 @@ void Milieu::naissanceSpontanee( void ){
    {
       addBestiole(creator_bestiole.createBestiole(*this, new ComportementGregaire()));
    }
-   else if (this->getPropGreg()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPeur()*100)
+   else if (this->getPropGreg()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPeur()*100 + this->getPropGreg()*100)
    {
       addBestiole(creator_bestiole.createBestiole(*this, new ComportementPeureuse()));
    }
-   else if (this->getPropPeur()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropKamik()*100)
+   else if (this->getPropPeur()*100 + this->getPropGreg()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPeur()*100 + this->getPropGreg()*100 + this->getPropKamik()*100)
    {
       addBestiole(creator_bestiole.createBestiole(*this, new ComportementKamikaze()));
    }
-   else if (this->getPropKamik()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPrev()*100)
+   else if (this->getPropPeur()*100 + this->getPropGreg()*100 + this->getPropKamik()*100 <= proba_naissance(rng) && proba_naissance(rng) <= this->getPropPeur()*100 + this->getPropGreg()*100 + this->getPropKamik()*100 + this->getPropPrev()*100)
    {
       addBestiole(creator_bestiole.createBestiole(*this, new ComportementPrevoyante()));
    }
