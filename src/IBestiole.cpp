@@ -100,11 +100,12 @@ IBestiole::IBestiole(Milieu &milieu): milieu(milieu){
 
 IBestiole::IBestiole( const IBestiole & ib) : identite(++next), x(ib.x), y(ib.y), 
 cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
-proba_death(ib.proba_death), duree_vie(ib.duree_vie), proba_clone(ib.proba_clone),comportement(ib.comportement), milieu(ib.milieu)
+proba_death(ib.proba_death), proba_clone(ib.proba_clone),comportement(ib.comportement), milieu(ib.milieu)
 {
    cout << "const IBestiole (" << this->identite << ") par copie" << endl;
    couleur = new T[ 3 ];
    memcpy( couleur, ib.couleur, 3*sizeof(T) );
+   this->duree_vie = 200 + rand() % 201;
 }
 
 ///////////////////////// Destructeur /////////////////////////////
