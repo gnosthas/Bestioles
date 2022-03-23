@@ -12,7 +12,7 @@ Bestiole::Bestiole():IBestiole(){
 }
 Bestiole::Bestiole(const Bestiole & b):IBestiole(b){}
 
-Bestiole::~Bestiole(){cout << "Destruction bestiole" << endl;}
+Bestiole::~Bestiole(){}//cout << "Destruction bestiole" << endl;}
 
 IBestiole* Bestiole::clone() const{
    cout << "Je suis issu d'un clonage" << endl;

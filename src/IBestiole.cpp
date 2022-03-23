@@ -6,6 +6,8 @@
 #include "Milieu.h"
 #include "IBestiole.h"
 #include "comportements/IComportement.h"
+#include "Accessoires/IAccessoire.h"
+#include "Accessoires/ConcreteCreatorNageoire.h"
 
 #include <cstdlib>
 #include <cmath>
@@ -40,6 +42,20 @@ void IBestiole::initBestiole(){
    this->proba_death = 0.1;
    this->duree_vie = 200 + rand() % 201; // Durée de vie entre 200 et 400 aléatoire
    this->proba_clone= 0.003; 
+   std::vector<IAccessoire*> listAccessoires = this->ajout_Accessoires();
+}
+
+
+std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
+   std::vector<IAccessoire*> listAccessoires;
+   int rand_nag = rand() % 100;
+   if (rand_nag <= 5){
+      ConcreteCreatorNageoire creator_nageoire;
+      Nageoire* nageoire = creator_nageoire.createAccessoire();
+      listAccessoires.push_back(nageoire);
+      this->vitesse = this->vitesse * nageoire->getMultvitesse();
+   }
+   return listAccessoires;
 }
 
 ///////////////////////// Constructeur d'une bestiole /////////////////////////////
@@ -93,6 +109,11 @@ IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
    delete[] this->couleur;
+   
+   for (IAccessoire* a : this->listAccessoires) {
+      delete a;
+   }
+   this->listAccessoires.clear();
    //delete this->comportement; //Warning Segment error
    
 }
@@ -112,6 +133,7 @@ bool operator==( const IBestiole & ib1, const IBestiole & ib2 )
 void IBestiole::decrDureeVie(){
    -- this->duree_vie;
 }
+
 /// Savoir si la bestiole passée en argument est dans le champ de vision de la bestiole courante ///
 bool IBestiole::jeTeVois( const IBestiole & ib ) const
 {

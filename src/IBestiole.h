@@ -12,6 +12,7 @@ using namespace std;
 
 class Milieu;
 class IComportement;
+class IAccessoire;
 class IBestiole{
 
 protected : 
@@ -33,7 +34,7 @@ protected :
    double proba_clone; //proba de se cloner à chaque pas de simul
    double proba_death; //proba de mort lors d'une collision
    // std::vector<ICapteur*> listCapteurs; //liste de capteurs associée à la bestiole
-   // std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
+   std::vector<IAccessoire*> listAccessoires; //liste d'accessoires associée à la bestiole
    IComportement* comportement; //Comportement de la bestiole
 
 
@@ -52,6 +53,8 @@ private :
    void decrDureeVie(void);
 
    void initBestiole(void);
+
+   std::vector<IAccessoire*> ajout_Accessoires();
 
 public :         
 

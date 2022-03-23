@@ -8,6 +8,7 @@
 using namespace std;
 
 class IComportement;
+class IAccessoire;
 
 class ConcreteCreatorBestiole : public BestiolesFactory {
 
@@ -17,8 +18,8 @@ public:
 
     ~ConcreteCreatorBestiole(){cout << "Destruction concrete creator bestiole" << endl;}; //Destructeur
 
-    Bestiole* createBestiole(IComportement* comportement) const override; //Mettre IComportement* en argument
-    Bestiole* createBestiole() const override; ////////// TEMPORAIRE POUR TEST COMPILATION
+    Bestiole* createBestiole(IComportement* comportement) const override; 
+    Bestiole* createBestiole() const override;
 };
 
 #endif

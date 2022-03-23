@@ -31,11 +31,14 @@ Aquarium::~Aquarium( void )
 }
 
 Milieu& Aquarium::getMilieu( void ) { return *flotte; }
+
 void Aquarium::run( void )
 {
 
    cout << "running Aquarium" << endl;
    bool pause = false;
+
+   // flotte->initialisation();
 
    while ( ! is_closed() )
    {
@@ -48,10 +51,13 @@ void Aquarium::run( void )
          if ( is_keySPACE() ) pause = !pause;
       }
       if (!pause) {
+         cout << "------------ New step -----------" << endl;
          flotte->step();
 
          display( *flotte );
-         cout << "Nombre de Bestioles : " << flotte->getListeBestiole().size() << endl;
+
+         
+         // cout << "Nombre de Bestioles : " << flotte->getListeBestiole().size() << endl;
       }
       
 

@@ -10,8 +10,9 @@ class Nageoire : public IAccessoire {
         double nu;
 
     public:
+        Nageoire(double nu);
         double getMultvitesse() const;
-        void setMultvitesse(double nu);
+        // void setMultvitesse(double nu);
 };
 
 #endif

@@ -11,7 +11,7 @@
 
 class AccessoiresFactory {
     public:
-        virtual ~AccessoiresFactory(){};//cout<<"Destruction d'un Concrete creator d'accessoire"<<endl;};
+        virtual ~AccessoiresFactory(){std::cout << "Destruction d'un factory accessoire" << std::endl;};//cout<<"Destruction d'un Concrete creator d'accessoire"<<endl;};
         virtual IAccessoire* createAccessoire() const = 0;
 };
 
