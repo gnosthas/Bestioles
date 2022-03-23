@@ -16,7 +16,7 @@ public:
     
     ConcreteCreatorBestiole(); //Constructeur
 
-    ~ConcreteCreatorBestiole(){cout << "Destruction concrete creator bestiole" << endl;}; //Destructeur
+    ~ConcreteCreatorBestiole(){cout << "dest Creator bestiole" << endl;}; //Destructeur
 
     Bestiole* createBestiole(IComportement* comportement) const override; 
     Bestiole* createBestiole() const override;

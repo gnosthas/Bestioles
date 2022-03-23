@@ -39,7 +39,6 @@ void IBestiole::initBestiole(){
    this->proba_death = 0.1;
    this->duree_vie = 200 + rand() % 201; // Durée de vie entre 200 et 400 aléatoire
    this->proba_clone= 0.003; 
-   std::vector<IAccessoire*> listAccessoires = this->ajout_Accessoires();
 }
 
 
@@ -62,6 +61,7 @@ std::vector<IAccessoire*> IBestiole::ajout_Accessoires(){
 IBestiole::IBestiole(IComportement* comportement) : comportement(comportement){
 
    initBestiole();
+   std::vector<IAccessoire*> listAccessoires = this->ajout_Accessoires();
    // switch (comportement->getComportementType())
    // {
    // couleur en fonction du comportement ? setColor(r,g,b) mais il faut un enumtype des comportements !
@@ -96,7 +96,7 @@ IBestiole::IBestiole( const IBestiole & ib ) : identite(++next), x(ib.x), y(ib.y
 cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
 proba_death(ib.proba_death), duree_vie(ib.duree_vie), proba_clone(ib.proba_clone),comportement(ib.comportement)
 {
-   cout << "const IBestiole (" << this->identite << ") par copie (last en date)" << endl;
+   cout << "const IBestiole (" << this->identite << ") par copie" << endl;
    couleur = new T[ 3 ];
    memcpy( couleur, ib.couleur, 3*sizeof(T) );
 }
@@ -105,14 +105,15 @@ proba_death(ib.proba_death), duree_vie(ib.duree_vie), proba_clone(ib.proba_clone
 IBestiole::~IBestiole( void )
 {
    cout << "dest IBestiole" << endl;
-   
+      
    for (IAccessoire* a : this->listAccessoires) {
+      cout << "Dans boucle for destruction accessoire" << endl;  
       delete a;
+      
    }
    this->listAccessoires.clear();
 
-
-   // delete[] this->couleur;
+   //delete[] this->couleur;
    //delete this->comportement; //Warning Segment error ===> C'est normal : on a cette erreur car les comportements ne sont pas associé à une bestiole en particulier.
    
 }

@@ -142,10 +142,6 @@ int main()
    comportements.push_back(pers);
    // std::cout<<"taille vect persmult : " << pers->comportements.size() << std::endl;;
 
-
-   /////////////////////// CREATION DES ACCESSOIRES /////////////////////////////
-   ConcreteCreatorNageoire creator_nageoire;
-
    ///////////////////////// CREATION DE LA CONFIGURATION DE LA POPULATION INITIALE//////////////////
    // Nombre Bestioles = 30
    // Proportion gregaire = kamikaze = peureuse = prevoyante = personnalités mult = 0.20

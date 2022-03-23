@@ -21,7 +21,7 @@ class Milieu;
 
 class IComportement {
     public:
-        virtual ~IComportement(){std::cout << "Destruction d'un comportement" << std::endl;};
+        virtual ~IComportement(){std::cout << "dest comportement" << std::endl;};
         virtual T* getCouleur() const = 0;
         virtual void bougeSelonComportement(Milieu &m, Bestiole &b) = 0;
         virtual void adapterBestioleAVoisins(Bestiole &b, std::vector<IBestiole*>& listeVoisins) = 0;

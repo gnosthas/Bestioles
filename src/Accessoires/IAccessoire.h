@@ -8,7 +8,7 @@
 
 class IAccessoire {
     public:
-        virtual ~IAccessoire(){std::cout << "Destruction d'un accessoire" << std::endl;};//cout<<"Destruction d'un accessoire"<<endl;};
+        virtual ~IAccessoire(){std::cout << "dest accessoire" << std::endl;};//cout<<"Destruction d'un accessoire"<<endl;};
 };
 
 #endif
