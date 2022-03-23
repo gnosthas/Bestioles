@@ -11,7 +11,6 @@ class Milieu;
 class Bestiole : public IBestiole
 {
 
-<<<<<<< HEAD
 public :          
    // Constructeur non utilisé en pratique                                
    Bestiole(Milieu &milieu);  
@@ -29,14 +28,6 @@ public :
    IBestiole* clone() const override; 
 
    //override de la méthode bouge() issue de IBestiole
-=======
-public :                                           // Forme canonique :
-   // Bestiole(Milieu &milieu);                               // Constructeur par defaut
-   Bestiole(Milieu &milieu, IComportement* comportement);//fait appel au constructeur de IBestiole
-   Bestiole(const Bestiole & b);//fait appel au constructeur par copie de IBestiole
-   ~Bestiole();                             // Destructeur
-   IBestiole* clone() const override; //DP Prototype
->>>>>>> d59648951c8a62e82699725feb833d218f24e8cf
    void bouge() override;
 };
 

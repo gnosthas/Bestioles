@@ -8,11 +8,8 @@ using namespace std;
 
 //Constructeur
 Bestiole::Bestiole(Milieu &milieu, IComportement* comportement):IBestiole(milieu, comportement){}
-<<<<<<< HEAD
 
 //Constructeur par copie
-=======
->>>>>>> d59648951c8a62e82699725feb833d218f24e8cf
 Bestiole::Bestiole(const Bestiole & b):IBestiole(b){}
 
 //Destructeur

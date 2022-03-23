@@ -23,7 +23,46 @@ const double      IBestiole::LIMITE_VUE = 30.0;
 
 int               IBestiole::next = 0;
 
+//Constructeur 
+IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milieu), comportement(comportement){
+   initBestiole();
+   this->ajout_Accessoires();
+}
 
+//Constructeur par copie
+IBestiole::IBestiole( const IBestiole & ib) : identite(++next), x(ib.x), y(ib.y), 
+cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
+proba_death(ib.proba_death), proba_clone(ib.proba_clone),comportement(ib.comportement), milieu(ib.milieu)//, listAccessoires(listAccessoires)
+{
+   cout << "const IBestiole (" << this->identite << ") par copie" << endl;
+   /*On fait le choix de réinitialiser la durée de vie lors du clonage sinon la bestiole clonnée 
+   meurt en meme temps que sa version originale, ce qui provoque des "sauts" dans la simulation*/
+   duree_vie = 200 + rand() % 201; 
+   couleur = new T[ 3 ];
+   memcpy( couleur, ib.couleur, 3*sizeof(T) );
+   this->duree_vie = 200 + rand() % 201;
+
+   this->ajout_Accessoires();
+}
+
+//Destructeur
+IBestiole::~IBestiole( void )
+{
+   cout << "dest IBestiole" << endl;
+      
+   for (IAccessoire* a : this->listAccessoires) {
+      delete a;
+   }
+   
+   for (ICapteur* c : this->listCapteurs) {
+      delete c;
+   }
+   // this->listCapteurs.clear();
+
+   //delete[] this->couleur;
+   //delete this->comportement; //Warning Segment error ===> C'est normal : on a cette erreur car les comportements ne sont pas associé à une bestiole en particulier.
+   
+}
 
 //Initialise la bestiole : (Id, position, vitesse, ...) - Appelée dans le Constructeur
 void IBestiole::initBestiole(){
@@ -75,52 +114,8 @@ void IBestiole::ajout_Accessoires(){
       // this->has_carapace = true;
       listAccessoires.push_back(nullptr);
    }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> d59648951c8a62e82699725feb833d218f24e8cf
-}
-
-//Constructeur 
-IBestiole::IBestiole(Milieu& milieu, IComportement* comportement) : milieu(milieu), comportement(comportement){
-   initBestiole();
-   this->ajout_Accessoires();
-}
-
-//Constructeur par copie
-IBestiole::IBestiole( const IBestiole & ib) : identite(++next), x(ib.x), y(ib.y), 
-cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
-proba_death(ib.proba_death), proba_clone(ib.proba_clone),comportement(ib.comportement), milieu(ib.milieu)//, listAccessoires(listAccessoires)
-{
-   cout << "const IBestiole (" << this->identite << ") par copie" << endl;
-   /*On fait le choix de réinitialiser la durée de vie lors du clonage sinon la bestiole clonnée 
-   meurt en meme temps que sa version originale, ce qui provoque des "sauts" dans la simulation*/
-   duree_vie = 200 + rand() % 201; 
-   couleur = new T[ 3 ];
-   memcpy( couleur, ib.couleur, 3*sizeof(T) );
-   this->duree_vie = 200 + rand() % 201;
-
-   this->ajout_Accessoires();
-}
-
-//Destructeur
-IBestiole::~IBestiole( void )
-{
-   cout << "dest IBestiole" << endl;
-      
-   for (IAccessoire* a : this->listAccessoires) {
-      delete a;
-   }
-   
-   for (ICapteur* c : this->listCapteurs) {
-      delete c;
-   }
-   // this->listCapteurs.clear();
-
-   //delete[] this->couleur;
-   //delete this->comportement; //Warning Segment error ===> C'est normal : on a cette erreur car les comportements ne sont pas associé à une bestiole en particulier.
-   
 }
 
 ////Place la bestiole à un endroit aléatoire avec limite horyzontale & verticale
@@ -256,23 +251,9 @@ double IBestiole::getCumulX() const{return this-> cumulX;}
 double IBestiole::getCumulY() const{return this-> cumulY;}
 double IBestiole::getOrientation() const{return this->orientation;}
 
-<<<<<<< HEAD
-=======
-void IBestiole::collision(vector<IBestiole*> & removeBestioles){
-   vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
-   double         distance_bestioles;
-   for (auto it = bestioles.begin() ; it != bestioles.end() ; ++it)
-   {
-      if(*it != this)
-      {
-         distance_bestioles = sqrt( pow(this->x-(*it)->x,2)+ pow(this->y-(*it)->y,2) );
-         
-         if (distance_bestioles <= AFF_SIZE) 
-         {
-            double proba_survive = (rand() % 101)/100.0;            
->>>>>>> d59648951c8a62e82699725feb833d218f24e8cf
 
 /////////////////////////////////SETTEURS //////////////////////////////
+
 void IBestiole::setVitesse(double v){
    this->vitesse = v;
 };
@@ -296,11 +277,3 @@ void IBestiole::setOrientation(double o){
    } 
    this->orientation =o;
    }
-
-
-
-
-
-
-
-
