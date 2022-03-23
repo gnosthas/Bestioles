@@ -9,7 +9,7 @@ using namespace std;
 // yeux.cpp genere un secteur de disque et verifie la presence d'autres bestioles dans cette zone
 // A passer un quadrant de l'aquarium en paramètre 
 
-void Corps::detection(Milieu milieu) const{
+bool Corps::detection(Milieu milieu) const{
 // std::vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
 //    double         distance_bestioles;
 //    for (std::vector<IBestiole*>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it)
@@ -20,5 +20,7 @@ void Corps::detection(Milieu milieu) const{
          
 //       }
 //    } 
+            cout << "corps" << endl;
+            return false;
 
 };

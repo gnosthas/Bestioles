@@ -8,6 +8,7 @@ using namespace std;
 
 
 
-void Oreilles::detection(Milieu milieu) const{
+bool Oreilles::detection(Milieu milieu) const{
             cout << "je t'entends" << endl;
+            return false;
 };

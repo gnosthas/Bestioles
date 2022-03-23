@@ -2,14 +2,15 @@
 #define _IBESTIOLE_H_
 
 #include <iostream>
-// #include <vector>
+#include <vector>
 // #include "Accessoires/IAccessoire.h"
 // #include "comportements/IComportement.h"
 #include "UImg.h"
 
 using namespace std;
 
-// class ICapteur; //capteurs
+class ICapteur; //capteurs
+
 
 class Milieu;
 
@@ -59,7 +60,6 @@ private :
 public :         
 
    virtual ~IBestiole( void );                              // Destructeur
-
    
    IBestiole(); ////////// TEMPORAIRE POUR TEST COMPILATION
    // IBestiole(IComportement* comportement); //Constructeur d'une bestiole
@@ -81,6 +81,8 @@ public :
 
    friend bool operator==( const IBestiole & b1, const IBestiole & b2 ); //Est-ce utile ? ou directement le faire pour les bestioles
 
+
+   /////// Pointeur vers le milieu, 
    /////////////////////////  GETTEURS / SETTEURS //////////////////////////////
 
    virtual double get_proba_death(void) const;

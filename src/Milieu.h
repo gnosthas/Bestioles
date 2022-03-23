@@ -20,13 +20,15 @@ private :
    int                     width, height;
    
    std::vector<IBestiole*>   listeBestioles;
-
+ 
    CapteurFactory            factory;
 
 public :
    Milieu( int _width, int _height );
    ~Milieu( void );
 
+   std::vector<IBestiole*>   bestiolesInit;
+   
    int getWidth( void ) const { return width; };
    int getHeight( void ) const { return height; };
    std::vector<IBestiole*>& getListeBestiole() {return listeBestioles;};
@@ -36,7 +38,7 @@ public :
    void addBestiole( IBestiole* ib ) { listeBestioles.push_back(ib);listeBestioles.back()->initCoords(width, height); };
    int nbVoisins( const IBestiole & ib );
 
-
+   ICapteur* createCapteur(TypeCapteur type);
 };
 
 

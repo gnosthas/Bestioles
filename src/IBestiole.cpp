@@ -1,13 +1,13 @@
-#include <iostream>
-#include <vector>
-
 // #include "comportements/IComportement.h"
 #include "Milieu.h"
 #include "UImg.h"
 #include "IBestiole.h"
+#include "Capteurs/capteur.h"
+#include "Capteurs/capteurFactory.h"
 
 #include <cstdlib>
 #include <cmath>
+
 using namespace std;
 
 const double      IBestiole::AFF_SIZE = 8.0;
@@ -39,6 +39,8 @@ void IBestiole::initBestiole(){
    this->proba_death = ((rand() % 101))/100.0 ;// valeur entre 0 et 1
    this->age = 0; //Toute bestiole même durée de vie du coup ? ou alors crée champ durée de vie et on l'initialise aléatoirement puis il décroit à chaque pas de simul
    this->proba_clone= 0.01; 
+
+   bool capteursInit = 0;
 }
 
 ///////////////////////// Constructeur d'une bestiole /////////////////////////////
@@ -183,10 +185,12 @@ void IBestiole::action(Milieu & milieu ){
 
    ///////// Clonage /////////////
    bouge(milieu);
-
+   if (capteur
+   genererCapteurs(milieu);
    ///////// Collision ////////////
    collision(milieu);
    incr_age();
+
 }; 
 
 
@@ -230,20 +234,24 @@ void IBestiole::collision(Milieu &milieu){
 };
 
 
+
+
+// IL FAUT REUSSIR A PASSER UNE REFERENCE AU MILIEU À L'INIT DE CHAQUE IBESTIOLE POUR QUE CELA MARCHE
 void IBestiole::genererCapteurs(Milieu & monMilieu){
-   listCapteurs.push(monMilieu.createCapteur(TC_Corps));
+   listCapteurs.push_back(monMilieu.createCapteur(TC_Corps));
    int n = rand() % 2;
    switch(n){
       case 0 :
-         listCapteurs.push(monMilieu.createCapteur(TC_Oreilles));
+         listCapteurs.push_back(monMilieu.createCapteur(TC_Oreilles));
          break;
       case 1 :
-         listCapteurs.push(monMilieu.createCapteur(TC_Yeux));
+         listCapteurs.push_back(monMilieu.createCapteur(TC_Yeux));
          break;
       case 2 : 
-         listCapteurs.push(monMilieu.createCapteur(TC_Yeux));
-         listCapteurs.push(monMilieu.createCapteur(TC_Oreilles));
+         listCapteurs.push_back(monMilieu.createCapteur(TC_Yeux));
+         listCapteurs.push_back(monMilieu.createCapteur(TC_Oreilles));
          break;
+
    }
 
 }

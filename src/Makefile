@@ -26,7 +26,7 @@ oreilles.o: Capteurs/oreilles.cpp Capteurs/capteur.h Capteurs/oreilles.h
 	$(CC) -Wall -std=c++11 -c Capteurs/oreilles.cpp -I .
 	
 
-Milieu.o : Milieu.h Milieu.cpp IBestiole.h Bestiole.h
+Milieu.o : Milieu.h Milieu.cpp IBestiole.h Bestiole.h Capteurs/capteurFactory.h
 	$(CC) -Wall -std=c++11  -c Milieu.cpp -I .
 
 clean:

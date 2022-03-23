@@ -7,7 +7,7 @@
 
 class Yeux : public ICapteur {
     public:
-        void detection(Milieu milieu) const override;
+        bool detection(Milieu milieu) const override;
 
 };
 
