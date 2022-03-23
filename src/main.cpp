@@ -140,12 +140,12 @@ int main()
    comportements.push_back(peur);
    ComportementPersMultiple *pers = new ComportementPersMultiple(comportements);
    comportements.push_back(pers);
-   // std::cout<<"taille vect persmult : " << pers->comportements.size() << std::endl;;
+   std::cout<<"taille vect persmult : " << pers->comportements.size() << std::endl;;
 
    ///////////////////////// CREATION DE LA CONFIGURATION DE LA POPULATION INITIALE//////////////////
-   // Nombre Bestioles = 30
-   // Proportion gregaire = kamikaze = peureuse = prevoyante = personnalités mult = 0.20
-   Aquarium       ecosysteme( 640, 480, 30,  30, 0.20, 0.20, 0.20, 0.20, 0.20);
+   //Nombre Bestioles = 30
+   //Proportion gregaire = kamikaze = peureuse = prevoyante = personnalités mult = 0.20
+   Aquarium       ecosysteme( 640, 480, 60,  30, 0.20, 0.20, 0.20, 0.20, 0.20);
    ConcreteCreatorBestiole creator_bestiole;
 
    for ( int i = 1; i <= floor(ecosysteme.getMilieu().getNbBest()*ecosysteme.getMilieu().getPropGreg()); ++i ){
@@ -175,6 +175,7 @@ int main()
    delete kami;
    delete peur;
    delete pers;
+
 
    return 0;
 
