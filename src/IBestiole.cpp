@@ -78,29 +78,13 @@ IBestiole::IBestiole(){
 
 ///////////////////////// Constructeur par copie de la bestiole /////////////////////////////
 
-////////// TEMPORAIRE POUR TEST COMPILATION
-// IBestiole::IBestiole( const IBestiole & b )
-// {
-
-//    identite = ++next;
-
-//    cout << "const Bestiole (" << identite << ") par copie" << endl;
-
-//    x = b.x;
-//    y = b.y;
-//    cumulX = cumulY = 0.;
-//    orientation = b.orientation;
-//    vitesse = b.vitesse;
-//    couleur = new T[ 3 ];
-//    memcpy( couleur, b.couleur, 3*sizeof(T) );
-
-// }
 
 IBestiole::IBestiole( const IBestiole & ib ) : identite(++next), x(ib.x), y(ib.y), 
 cumulX(ib.cumulX), cumulY(ib.cumulY), vitesse(ib.vitesse), orientation(ib.orientation), 
-proba_death(ib.proba_death), duree_vie(ib.duree_vie), proba_clone(ib.proba_clone),comportement(ib.comportement)
+proba_death(ib.proba_death), proba_clone(ib.proba_clone),comportement(ib.comportement)
 {
    cout << "const IBestiole (" << this->identite << ") par copie" << endl;
+   duree_vie = 200 + rand() % 201; // Il faut réinitialiser la durée de vie sinon la bestiole clonnée meurt en meme temps que sa version originale
    couleur = new T[ 3 ];
    memcpy( couleur, ib.couleur, 3*sizeof(T) );
 }
