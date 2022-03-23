@@ -6,20 +6,9 @@
 using namespace std;
 
 
-// yeux.cpp genere un secteur de disque et verifie la presence d'autres bestioles dans cette zone
-// A passer un quadrant de l'aquarium en paramètre 
+// corps.cpp genere un disque de taille AFF_SIZE et verifie la presence d'autres bestioles dans cette zone
 
 bool Corps::detection(Milieu milieu) const{
-// std::vector<IBestiole*>& bestioles = milieu.getListeBestiole(); 
-//    double         distance_bestioles;
-//    for (std::vector<IBestiole*>::iterator it = bestioles.begin() ; it != bestioles.end() ; ++it)
-//    {
-//       if(*it != this){
-//          distance_bestioles = sqrt( pow(this->x-(*it)->x,2)+ pow(this->y-(*it)->y,2) );
-
-         
-//       }
-//    } 
             cout << "corps" << endl;
             return false;
 

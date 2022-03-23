@@ -12,7 +12,6 @@ class Corps : public ICapteur {
         bool detection(Milieu milieu) const override;
 
 
-
 };
 
 #endif

@@ -62,7 +62,7 @@ public :
 
    std::vector<IBestiole*> getBestiolesVues( IBestiole &b );
 
-   ICapteur* createCapteur(TypeCapteur type);
+   ICapteur* createCapteur(TypeCapteur type);   // instances uniques des factories dans le milieu
    Nageoire* createNageoire();
    Carapace* createCarapace();
 
