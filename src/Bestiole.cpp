@@ -6,16 +6,8 @@
 
 using namespace std;
 
-<<<<<<< HEAD
-//////////////////////////// Constructeur Bestiole //////////////////////////////////////////
-Bestiole::Bestiole(IComportement* comportement):IBestiole(comportement){}
-
-Bestiole::Bestiole():IBestiole()
-{
-=======
 Bestiole::Bestiole(Milieu &milieu, IComportement* comportement):IBestiole(milieu, comportement){}
 Bestiole::Bestiole(Milieu &milieu):IBestiole(milieu){
->>>>>>> 62620cada6977ab5a76b5f29e314af304daf23bf
    cout << "Création nouvelle bestiole" << endl;
 }
 Bestiole::Bestiole(const Bestiole & b):IBestiole(b){}
